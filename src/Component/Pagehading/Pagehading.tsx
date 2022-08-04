@@ -1,5 +1,5 @@
 import React from 'react'
-import {standartInP} from "../../intefaceProps/standartInP"
+import {standartInP} from "../../inteface/standartInP"
 function Pagehading({
   name,price}:standartInP
 ) {

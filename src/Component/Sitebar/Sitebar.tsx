@@ -1,12 +1,17 @@
 import * as React from "react";
 import {Link, NavLink } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../hook/redux";
+import { testSlice } from "../../store/reducers/testSlice";
 const Sitebar = () => {
+const dispatch = useAppDispatch()
+const {increment} = testSlice.actions
+const {increment1} = testSlice.actions
   return (
     <ul
       className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
       id="accordionSidebar"
     >
-      <NavLink
+      <NavLink  onClick={()=> dispatch(increment1(1))}
         className="sidebar-brand d-flex align-items-center justify-content-center"
         to="/"
       >
@@ -18,7 +23,7 @@ const Sitebar = () => {
         </div>
         </NavLink>
       <hr className="sidebar-divider my-0"></hr>
-      <NavLink to="/55" className="nav-item ">
+      <NavLink  onClick={()=> dispatch(increment(1))} to="/55" className="nav-item ">
         <span className="nav-link">
           <i className="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span>
