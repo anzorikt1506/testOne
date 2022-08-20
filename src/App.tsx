@@ -10,12 +10,10 @@ import Sitebar from './Component/Sitebar/Sitebar';
 
 
 function App() {
-const {test} = useAppSelector(state => state.userReducer)
 console.log()
   return (
     <>
     <div id="wrapper">
-      <h1>{test}</h1>
     <Sitebar/>
     <Content/>
     </div>

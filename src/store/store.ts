@@ -1,9 +1,12 @@
 import * as React from 'react';
 import { combineReducers, configureStore } from "@reduxjs/toolkit";//Импорт нужных иструментов
 import userReducer from "./reducers/testSlice";
+import objectSlice from './reducers/objectSlice';
 //создание списка редюссоров
 const rootReducer =  combineReducers({
-    userReducer
+    userReducer,
+    objectSlice
+
 })
 //Создание Store
 export const  setupStore = () => {

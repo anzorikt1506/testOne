@@ -1,7 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useAppDispatch, useAppSelector } from '../../hook/redux';
+import { userAPI } from '../../store/reducers/userAPI';
 function Datatables() {
+  const dispatch = useAppDispatch();
+  const {error, isLoading, user} = useAppSelector(state => state.userReducer)
+  const QQQQ = () =>{
+    dispatch(userAPI()) 
+    console.log('render')
+  }
+//   useEffect(()=>{}, [])
+
+  
     return ( 
+        
         <div className="card shadow mb-4">
+         <button onClick={QQQQ}>111111</button>   
         <div className="card-header py-3">
             <h6 className="m-0 font-weight-bold text-primary">DataTables Example</h6>
         </div>
@@ -29,14 +42,23 @@ function Datatables() {
                         </tr>
                     </tfoot>
                     <tbody>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>$320,800</td>
-                        </tr>
+                    {isLoading && <h1>Идёт загрузка</h1>}
+                    {error && <h1>{error}</h1>}
+                     {user.map((user)=>
+                     
+                     <tr key = {user.id}>
+                     <td>{user.name}</td>
+                     <td>{user.email}</td>
+                     <td>{user.phone}</td>
+                     <td>{user.website}</td>
+                     <td>{user.username}</td>
+                     <td>$320,800</td>
+                     </tr>
+                     
+                     )}                 
+
+                        
+
                     </tbody>
                 </table>
             </div>
