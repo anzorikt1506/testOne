@@ -17,3 +17,9 @@ export interface IObject{
     name: string
     bool?: boolean
 }
+export interface Idepartment{
+    id: number
+    id_object: number
+    name: string
+    bool?: boolean
+}

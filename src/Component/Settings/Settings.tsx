@@ -27,8 +27,11 @@ const Settings = () => {
            
 
            
-            <NavLink to='/users' className="collapse-item">
+            <NavLink to='/object' className="collapse-item">
               Объекты
+            </NavLink>
+            <NavLink to='/department' className="collapse-item">
+              Отделы
             </NavLink>
             <a className="collapse-item" href="cards.html">
               Cards

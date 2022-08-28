@@ -11,6 +11,7 @@ interface UserState {
   error: string;
   verithik: string;
   booleanverithik: boolean;
+  selected: number
 }
 export const initialState: UserState = {
   object: [],
@@ -18,11 +19,15 @@ export const initialState: UserState = {
   error: "",
   verithik: "",
   booleanverithik: false,
+  selected: 0
 };
 export const objectSlice = createSlice({
   name: "Test",
   initialState,
   reducers: {
+    selectObject(state,action: PayloadAction<number>){
+     state.selected = action.payload
+    },
     loadTest(state, action: PayloadAction<string>) {
       state.isLoading = true;
     },
