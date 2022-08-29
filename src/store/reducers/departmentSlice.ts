@@ -79,18 +79,18 @@ export const department_add_API =
     }
   };
 
-// export const object_add_API_spis =
-//   (name: string) => async (dispatch: AppDispatch) => {
-//     try {
-//       dispatch(departmentSlice.actions.loadTest("yy"));
-//       const response = await axios.post<Idepartment[]>(
-//         "http://localhost:5000/objectspis",
-//         {
-//           nameObject: name,
-//         }
-//       );
-//       dispatch(departmentSlice.actions.trueTest(response.data));
-//     } catch {
-//       dispatch(departmentSlice.actions.errorTest("Не получилось"));
-//     }
-//   };
+export const department_add_API_spis =
+  (name: string) => async (dispatch: AppDispatch) => {
+    try {
+      dispatch(departmentSlice.actions.departament_loadTest("yy"));
+      const response = await axios.post<Idepartment[]>(
+        "http://localhost:5000/department",
+        {
+          nameObject: name,
+        }
+      );
+      dispatch(departmentSlice.actions.departament_trueTest(response.data));
+    } catch {
+      dispatch(departmentSlice.actions.departament_errorTest("Не получилось"));
+    }
+  };

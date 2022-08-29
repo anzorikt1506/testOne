@@ -27,9 +27,9 @@ const SpisObject: React.FC<ObjectF> = ({
     
   {error && <h1>{error}</h1>}
                 {object.map((object) => (
-                  <>
+                  
                     <a key={object.id} onClick={selectObject}   id={`${object.id}`} className="dropdown-item" href="#">{object.name}</a>
-                    </>
+                 
                   
           ))}
   </div>

@@ -1,6 +1,6 @@
 import { eventNames } from "process";
 import React from "react";
-import { Idepartment} from "../../inteface/standartInP";
+
 import SpisObjectC from "../SpisObject/SpisObjectC";
 interface ObjectF {
   addObject: () => void;
@@ -8,23 +8,25 @@ interface ObjectF {
   departmentName: string;
   error: string;
   isLoading: boolean;
-  department: Idepartment[];
   veryfic: string;
   show: boolean;
   verithik: string;
   booleanverithik: boolean;
+  nameeee: any;
 }
 const Object: React.FC<ObjectF> = ({
   addObject,
   error,
   isLoading,
   name,
-  department,
+
   departmentName,
   show,
   veryfic,
   verithik,
   booleanverithik,
+ 
+  nameeee
 }) => {
   return (
     <>
@@ -89,14 +91,10 @@ const Object: React.FC<ObjectF> = ({
                 </tr>
               </tfoot>
               <tbody>
-                
+               
                 {error && <h1>{error}</h1>}
-                {department.map((department) => (
-                  <tr key={department.id}>
-                    <td>{department.id_object}</td>
-                    <td>{department.name}</td>
-                  </tr>
-                ))}
+                 {nameeee}
+                
               </tbody>
             </table>
           </div>

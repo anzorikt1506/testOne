@@ -25,7 +25,7 @@ const Object: React.FC<ObjectF> = ({
   verithik,
   booleanverithik,
 }) => {
-  console.log(object)
+
   return (
     <>
       {isLoading && (
