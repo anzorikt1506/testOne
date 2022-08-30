@@ -14,6 +14,11 @@ module.exports  = (app) =>{
    app
    .route('/addDepartment')
    .post(department_f.department)
+   
+   app
+   .route('/department')
+   .post(department_f.nachdepartment)
+
 }
 
 

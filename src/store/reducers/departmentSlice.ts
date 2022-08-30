@@ -47,6 +47,9 @@ export const departmentSlice = createSlice({
     departament_falseVerithik(state, actions: PayloadAction<boolean>) {
       state.booleanverithik = actions.payload;
     },
+    departament_object(state, actions: PayloadAction<Idepartment[]>) {
+      state.department = actions.payload;
+    },
     departament_errorTest(state, action: PayloadAction<string>) {
       state.isLoading = false;
       state.error = action.payload;
