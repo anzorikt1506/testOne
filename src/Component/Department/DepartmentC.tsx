@@ -13,7 +13,7 @@ const ObjectC = () => {
     useAppSelector((state) => state.departmentSlice);
     const { selected, object} = useAppSelector((state) => state.objectSlice);
   useEffect(() => {
-    dispatch(department_add_API_spis(''));
+      dispatch(department_add_API_spis(''));
   }, []);
   
   const [show, fshow] = useState<boolean>(false);
@@ -51,16 +51,7 @@ const ObjectC = () => {
 
   
 
-  let ff
- const nameeee =  department.map((department) => ( 
-  ff = object.filter(function(object) {return object.id == department.id_object;}),    
-    <tr key={department.id}>
-    <td>{ff[0].name}</td> 
-    <td>{department.name}</td>
-    </tr>
-    ))
-
-  return (
+   return (
     <Department
       name={name}
       error={error}
@@ -71,7 +62,7 @@ const ObjectC = () => {
       isLoading={isLoading}
       departmentName={departmentName}
       verithik={verithik}
-      nameeee = {nameeee}
+      department={department}
     />
   );
 }

@@ -93,3 +93,54 @@ export const object_add_API_spis =
       dispatch(objectSlice.actions.errorTest("Не получилось"));
     }
   };
+
+  export const object_udate_name =
+  (name: string,id:number) => async (dispatch: AppDispatch) => {
+    try {
+      dispatch(objectSlice.actions.loadTest("yy"));
+      const response = await axios.post<IObject[]>(
+        "http://localhost:5000/objectupdate",
+        {
+          name: name,
+          id: id
+        }
+      );
+      dispatch(objectSlice.actions.trueTest(response.data));
+    } catch {
+      dispatch(objectSlice.actions.errorTest("Не получилось"));
+    }
+  };
+
+  export const object_del_name =
+  (id:number) => async (dispatch: AppDispatch) => {
+    try {
+      dispatch(objectSlice.actions.loadTest("yy"));
+      const response = await axios.post<IObject[]>(
+        "http://localhost:5000/objectdel",
+        {
+          id: id
+        }
+      );
+      dispatch(objectSlice.actions.trueTest(response.data));
+    } catch {
+      dispatch(objectSlice.actions.errorTest("Не получилось"));
+    }
+  };
+
+  export const object_update_table =
+  (id_object:number, id:number, table:number) => async (dispatch: AppDispatch) => {
+    try {
+      dispatch(objectSlice.actions.loadTest("yy"));
+      const response = await axios.post<IObject[]>(
+        "http://localhost:5000/objectUpdateTable",
+        {
+          id_object: id_object,
+          id: id,
+          table:table
+        }
+      );
+      dispatch(objectSlice.actions.trueTest(response.data));
+    } catch {
+      dispatch(objectSlice.actions.errorTest("Не получилось"));
+    }
+  };

@@ -4,30 +4,25 @@ import { IObject } from "../../inteface/standartInP";
 interface ObjectF {
   object: IObject[];
   error: string,
-  selectObject: (event: any) => void,
-  nameObject: string,
-  selected: number,
-  vseObject: () => void,
+  selectObject: (event:any) => void,
+  name: IObject[];
 }
 const SpisObject: React.FC<ObjectF> = ({
   object,
   error,
   selectObject,
-  nameObject,
-  selected,
-  vseObject
+  name
 }) => {
 
-  const fff = object.filter((object)=>(object.id == selected))
+
   return (
     <>
 
 <div className="dropdown">
   <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-   {(selected == 0) ? nameObject : fff[0].name  }
+   {name.length > 0 ? name[0].name : 'Нет объектов' }
   </button>
   <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-  <a onClick={vseObject}  className="dropdown-item" href="#"><strong>Показать все</strong></a> 
   {error && <h1>{error}</h1>}
                 {object.map((object) => (
                   

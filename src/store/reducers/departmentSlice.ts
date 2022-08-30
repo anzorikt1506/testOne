@@ -94,3 +94,21 @@ export const department_add_API_spis =
       dispatch(departmentSlice.actions.departament_errorTest("Не получилось"));
     }
   };
+
+export const department_object = (id_object:any) => async(dispatch:AppDispatch)=>{
+  try{
+    dispatch(departmentSlice.actions.departament_loadTest("yy"));
+          const response = await axios.post<Idepartment[]>(
+        "http://localhost:5000/department",
+        {
+          nameObject: '',
+        }
+      );
+     
+      
+      const department_filter =  response.data.filter((name)=>{return name.id_object == id_object})
+      dispatch(departmentSlice.actions.departament_trueTest(department_filter));
+  }catch{
+    dispatch(departmentSlice.actions.departament_errorTest("Не получилось"));
+  }
+}  
