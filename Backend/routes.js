@@ -18,6 +18,10 @@ module.exports  = (app) =>{
    .route('/objectdel')
    .post(object_f.delObject)
 
+   app
+   .route('/objectUpdateTable')
+   .post(object_f.updateObjectTabel)
+
    const department_f = require("./zapros/department.js") 
    app
    .route('/addDepartment')
@@ -29,10 +33,6 @@ module.exports  = (app) =>{
    .post(department_f.nachdepartment)
 
 
-
-   app
-   .route('/department')
-   .post(department_f.nachdepartment)
 
 }
 

@@ -5,13 +5,13 @@ interface ObjectF {
   object: IObject[];
   error: string,
   selectObject: (event:any) => void,
-  name: IObject[];
+  nameObject1: string;
 }
 const SpisObject: React.FC<ObjectF> = ({
   object,
   error,
   selectObject,
-  name
+  nameObject1
 }) => {
 
 
@@ -20,13 +20,20 @@ const SpisObject: React.FC<ObjectF> = ({
 
 <div className="dropdown">
   <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-   {name.length > 0 ? name[0].name : 'Нет объектов' }
+   {nameObject1}
   </button>
   <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
   {error && <h1>{error}</h1>}
                 {object.map((object) => (
                   
-                    <a key={object.id} onClick={selectObject}   id={`${object.id}`} className="dropdown-item" href="#">{object.name}</a>
+                    <a key={object.id} 
+                       onClick={selectObject} 
+                       role={`${object.name}`}   
+                       id={`${object.id}`} 
+                       className="dropdown-item" 
+                       href="#">
+                        {object.name}
+                    </a>
                  
                   
           ))}

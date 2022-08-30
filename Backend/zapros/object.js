@@ -107,3 +107,24 @@ exports.delObject = ((req, res)=>{
  
            
 })
+
+
+exports.updateObjectTabel = ((req, res)=>{
+    const id_object = req.body.id_object
+    const id = req.body.id
+    const table = req.body.table
+
+    switch(true){
+        case(table == 2):
+           const p = new Promise((resolve, reject) => {
+              pool.query(
+                `UPDATE department SET id_object = ? WHERE id = ?`,[id_object,id],
+                function (err, result) {
+                    if (err) console.log(err);   
+                    resolve(result)
+                });
+            })
+    break;
+}
+           
+})
