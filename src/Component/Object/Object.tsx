@@ -12,6 +12,8 @@ interface ObjectF {
   show: boolean;
   verithik: string;
   booleanverithik: boolean;
+  red_object: (event: any) => void;
+  del_object: (event: any) => void;
 }
 const Object: React.FC<ObjectF> = ({
   addObject,
@@ -24,12 +26,14 @@ const Object: React.FC<ObjectF> = ({
   veryfic,
   verithik,
   booleanverithik,
+  red_object,
+  del_object
 }) => {
 
   return (
     <>
       {isLoading && (
-        <div className="alert alert-primary" role="alert">
+        <div className="okno" role="alert"> {/* alert alert-primary */}
           Идёт загрузка
         </div>
       )}
@@ -87,9 +91,19 @@ const Object: React.FC<ObjectF> = ({
               <tbody>
                 {error && <h1>{error}</h1>}
                 {object.map((object) => (
-                  <tr key={object.id}>
-                    <td>{object.id}</td>
-                    <td>{object.name}</td>
+                  <tr className="point" key={object.id}  >
+                    <td  
+                    onClick={del_object}
+                    className = {`${object.id}`} 
+                    role={`Вы точно хотите удалить объект (${object.name})`} 
+                    title={`Удалить объект (${object.name})`}  >
+                      {object.id}</td>
+                    <td onClick={red_object} 
+                        className = {`${object.id}`} 
+                        slot="name" title={`Изменить имя объекта (${object.name})`} 
+                        role={`новое название для ${object.name}`} >
+                          {object.name}
+                     </td>
                   </tr>
                 ))}
               </tbody>

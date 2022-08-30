@@ -10,11 +10,26 @@ module.exports  = (app) =>{
    .route('/objectspis')
    .post(object_f.nachObject)
 
+   app
+   .route('/objectupdate')
+   .post(object_f.updateObject)
+
+   app
+   .route('/objectdel')
+   .post(object_f.delObject)
+
    const department_f = require("./zapros/department.js") 
    app
    .route('/addDepartment')
    .post(department_f.department)
+
    
+   app
+   .route('/department')
+   .post(department_f.nachdepartment)
+
+
+
    app
    .route('/department')
    .post(department_f.nachdepartment)

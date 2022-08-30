@@ -51,3 +51,59 @@ exports.nachObject =((req, res)=>{
         });
            
 })
+
+
+exports.updateObject = ((req, res)=>{
+    const name = req.body.name
+    const id = req.body.id
+    const p = new Promise((resolve, reject) => {
+        pool.query(
+        `UPDATE object SET name = ? WHERE id = ?`,[name,id],
+        function (err, result) {
+            if (err) console.log(err);   
+            resolve(result)
+        });
+    })
+    p.then((data)=>{
+         pool.query(
+            `SELECT * FROM object ORDER BY id desc`,
+            function (err, result) {
+                if (err) console.log(err);
+                res.send(result)
+            });  
+    })
+     
+ 
+           
+})
+
+exports.delObject = ((req, res)=>{
+    const id = req.body.id
+    const p = new Promise((resolve, reject) => {
+        
+        pool.query(
+            `DELETE from department WHERE id_object = ?`,id,
+            function (err, result) {
+                if (err) console.log(err);   
+                resolve(result)
+            });
+
+        pool.query(
+        `DELETE from object WHERE id = ?`,id,
+        function (err, result) {
+            if (err) console.log(err);   
+            resolve(result)
+        });
+    })
+    p.then((data)=>{
+         pool.query(
+            `SELECT * FROM object ORDER BY id desc`,
+            function (err, result) {
+                if (err) console.log(err);
+                res.send(result)
+            });  
+    })
+     
+ 
+           
+})

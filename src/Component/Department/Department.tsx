@@ -1,7 +1,9 @@
 import { eventNames } from "process";
 import React from "react";
+import { Idepartment } from "../../inteface/standartInP";
 
 import SpisObjectC from "../SpisObject/SpisObjectC";
+import SpisObjectTabC from "../SpisObjectTab/SpisObjectTabC";
 interface ObjectF {
   addObject: () => void;
   name: (event: any) => void;
@@ -12,26 +14,24 @@ interface ObjectF {
   show: boolean;
   verithik: string;
   booleanverithik: boolean;
-  nameeee: any;
+  department: Idepartment[];
 }
 const Object: React.FC<ObjectF> = ({
   addObject,
   error,
   isLoading,
   name,
-
   departmentName,
   show,
   veryfic,
   verithik,
   booleanverithik,
- 
-  nameeee
+  department
 }) => {
   return (
     <>
       {isLoading && (
-        <div className="alert alert-primary" role="alert">
+        <div className="okno" role="alert"> {/* alert alert-primary */}
           Идёт загрузка
         </div>
       )}
@@ -93,8 +93,14 @@ const Object: React.FC<ObjectF> = ({
               <tbody>
                
                 {error && <h1>{error}</h1>}
-                 {nameeee}
-                
+               { department.map((department) => ( 
+         
+              <tr key={department.id}>
+              <td><SpisObjectTabC id_object={department.id_object} id={department.id} table={2}/>
+              </td>
+              <td>{department.name}</td>
+                </tr>
+                ))}
               </tbody>
             </table>
           </div>
