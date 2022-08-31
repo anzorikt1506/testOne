@@ -4,3 +4,9 @@
 .okno{
     position: absolute;
 }
+.redC{
+  color: red;
+}
+.greenC{
+    color: green;
+  }

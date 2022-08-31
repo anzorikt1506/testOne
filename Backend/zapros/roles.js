@@ -1,11 +1,26 @@
  const pool = require("../db.js")
 
-exports.department = ((req, res) => {
+
+ exports.rolesSpis =((req, res)=>{
+    pool.query(
+        `SELECT * FROM roles ORDER BY id desc`,
+        function (err, result) {
+            if (err) console.log(err);
+            res.send(result)
+        });
+           
+})
+
+
+
+
+exports.addroles = ((req, res) => {
    
-    const namedepartment = req.body.name
+    const name = req.body.name
     const id_object = req.body.id_object
+    const id_department = req.body.id_department
     const p = new Promise((resolve, reject) => {
-        pool.query(`SELECT * FROM department WHERE name=? and id_object=?`, [namedepartment,id_object],
+        pool.query(`SELECT * FROM roles WHERE name=? and id_object=? and id_department=?`, [name,id_object,id_department],
             (err, result) => {
                 if (err) console.log(err);
                 resolve(result)
@@ -15,7 +30,7 @@ exports.department = ((req, res) => {
         if (Object.keys(result).length == 0) {
             return new Promise((resolve, reject) => {
                 pool.query(
-                    `INSERT INTO department (name,id_object) VALUES (?,?)`, [namedepartment,id_object],
+                    `INSERT INTO roles (name,id_object,id_department) VALUES (?,?,?)`, [name,id_object,id_department],
                     function (err, result) {
                         if (err) console.log(err);
                         else console.log(result);
@@ -23,14 +38,14 @@ exports.department = ((req, res) => {
                     });
             })
         } else {
-            const tt = [{ id: 500, name: `Есть совпадения ${namedepartment}`, bool: true }]
+            const tt = [{ id: 5000000000000000000, name: `Есть совпадения ${name}`, bool: true }]
             res.send(tt)
         }
     })
     .then(data => {
             if (data === true) {
                 pool.query(
-                    `SELECT * FROM department ORDER BY id desc`,
+                    `SELECT * FROM roles  ORDER BY id desc`,
                     function (err, result) {
                         if (err) console.log(err);
                         res.send(result)
@@ -43,50 +58,34 @@ exports.department = ((req, res) => {
         
 })
 
-exports.nachdepartment =((req, res)=>{
-    pool.query(
-        `SELECT * FROM department ORDER BY id desc`,
-        function (err, result) {
-            if (err) console.log(err);
-            res.send(result)
-        });
-           
-})
 
 
-exports.updateNameDepartment = ((req, res)=>{
+exports.redroles = ((req, res)=>{
     const name = req.body.name
     const id = req.body.id
         pool.query(
-        `UPDATE department SET name = ? WHERE id = ?`,[name,id],
+        `UPDATE roles SET name = ? WHERE id = ?`,[name,id],
         function (err, result) {
             if (err) console.log(err);   
             
         });           
 })
 
-exports.delDepartment = ((req, res)=>{
+exports.rolesdel = ((req, res)=>{
     const id = req.body.id
     const p = new Promise((resolve, reject) => {
         
         pool.query(
-            `DELETE from department WHERE id = ?`,id,
+            `DELETE from roles WHERE id = ?`,id,
             function (err, result) {
                 if (err) console.log(err);   
                 resolve(result)
             });
-        
-            pool.query(
-                `DELETE from roles WHERE id_department = ?`,id,
-                function (err, result) {
-                    if (err) console.log(err);   
-                    resolve(result)
-                });    
 
     })
     p.then((data)=>{
          pool.query(
-            `SELECT * FROM department ORDER BY id desc`,
+            `SELECT * FROM roles ORDER BY id desc`,
             function (err, result) {
                 if (err) console.log(err);
                 res.send(result)

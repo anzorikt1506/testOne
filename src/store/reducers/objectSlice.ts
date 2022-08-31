@@ -22,7 +22,7 @@ export const initialState: UserState = {
   selected: 0
 };
 export const objectSlice = createSlice({
-  name: "Test",
+  name: "objectSlice",
   initialState,
   reducers: {
     selectObject(state,action: PayloadAction<number>){

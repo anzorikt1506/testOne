@@ -23,3 +23,10 @@ export interface Idepartment{
     name: string
     bool?: boolean
 }
+export interface IRoles{
+    id: number
+    id_object: number
+    id_department: number
+    name: string
+    bool?: boolean
+}

@@ -22,7 +22,7 @@ export const initialState: UserState = {
   selected: 0
 };
 export const departmentSlice = createSlice({
-  name: "Test",
+  name: "departmentSlice",
   initialState,
   reducers: {
     departament_selectDepartment(state,action: PayloadAction<number>){
@@ -115,3 +115,36 @@ export const department_object = (id_object:any) => async(dispatch:AppDispatch)=
     dispatch(departmentSlice.actions.departament_errorTest("Не получилось"));
   }
 }  
+
+
+export const department_red_name = (id:number,name:string) => async(dispatch:AppDispatch)=>{
+  try{
+    dispatch(departmentSlice.actions.departament_loadTest("yy"));
+          const response = await axios.post<Idepartment[]>(
+        "http://localhost:5000/departmentRedName",
+        {
+          id: id,
+          name: name
+        }
+      );
+  }catch{
+    dispatch(departmentSlice.actions.departament_errorTest("Не получилось"));
+  }
+}  
+
+export const depatment_del = (id:number,id_object:number) => async (dispatch: AppDispatch) => {
+  try {
+    dispatch(departmentSlice.actions.departament_loadTest("yy"));
+    const response = await axios.post<Idepartment[]>(
+      "http://localhost:5000/departmentdel",
+      {
+        id: id
+      }
+    );
+    
+    const department_filter =  response.data.filter((name)=>{return name.id_object == id_object})
+    dispatch(departmentSlice.actions.departament_trueTest(department_filter));
+  } catch {
+    dispatch(departmentSlice.actions.departament_errorTest("Не получилось"));
+  }
+};

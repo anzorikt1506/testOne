@@ -23,6 +23,7 @@ module.exports  = (app) =>{
    .post(object_f.updateObjectTabel)
 
    const department_f = require("./zapros/department.js") 
+
    app
    .route('/addDepartment')
    .post(department_f.department)
@@ -32,8 +33,31 @@ module.exports  = (app) =>{
    .route('/department')
    .post(department_f.nachdepartment)
 
+   app
+   .route('/departmentRedName')
+   .post(department_f.updateNameDepartment)
 
+   app
+   .route('/departmentdel')
+   .post(department_f.delDepartment)
 
+   const roles_f = require("./zapros/roles.js") 
+
+   app
+   .route('/rolesSpis')
+   .get(roles_f.rolesSpis)
+
+   app
+   .route('/addroles')
+   .post(roles_f.addroles)
+   
+   app
+   .route('/redroles')
+   .post(roles_f.redroles)
+
+   app
+   .route('/rolesdel')
+   .post(roles_f.rolesdel)  
 }
 
 

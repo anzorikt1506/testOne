@@ -3,11 +3,13 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";//Импор�
 import userReducer from "./reducers/testSlice";
 import objectSlice from './reducers/objectSlice';
 import departmentSlice from './reducers/departmentSlice';
+import rolesSlice from './reducers/rolesSlice';
 //создание списка редюссоров
 const rootReducer =  combineReducers({
     userReducer,
     objectSlice,
-    departmentSlice
+    departmentSlice,
+    rolesSlice
 })
 //Создание Store
 export const  setupStore = () => {

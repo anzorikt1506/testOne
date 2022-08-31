@@ -94,6 +94,12 @@ exports.delObject = ((req, res)=>{
             if (err) console.log(err);   
             resolve(result)
         });
+        pool.query(
+            `DELETE from roles WHERE id_object = ?`,id,
+            function (err, result) {
+                if (err) console.log(err);   
+                resolve(result)
+            }); 
     })
     p.then((data)=>{
          pool.query(

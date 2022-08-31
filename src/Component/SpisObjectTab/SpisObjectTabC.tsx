@@ -1,7 +1,6 @@
 import React from 'react'
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hook/redux";
-import { department_add_API_spis, department_object } from '../../store/reducers/departmentSlice';
 import {
   objectSlice, object_update_table,
 } from "../../store/reducers/objectSlice";

@@ -1,6 +1,7 @@
 import { eventNames } from "process";
 import React from "react";
 import { Idepartment } from "../../inteface/standartInP";
+import RoliSettingsC from "../RoliSettings/RoliSettingsC";
 
 import SpisObjectC from "../SpisObject/SpisObjectC";
 import SpisObjectTabC from "../SpisObjectTab/SpisObjectTabC";
@@ -15,6 +16,8 @@ interface ObjectF {
   verithik: string;
   booleanverithik: boolean;
   department: Idepartment[];
+  red: (event: any) => void;
+  del:(event: any) => void;
 }
 const Object: React.FC<ObjectF> = ({
   addObject,
@@ -26,7 +29,9 @@ const Object: React.FC<ObjectF> = ({
   veryfic,
   verithik,
   booleanverithik,
-  department
+  department,
+  red,
+  del
 }) => {
   return (
     <>
@@ -80,14 +85,18 @@ const Object: React.FC<ObjectF> = ({
             >
               <thead>
                 <tr>
-                  <th>Номер объекта </th>
-                  <th>Наименование объекта</th>
+                  <th>Номер отдела </th>
+                  <th>Объект отдела </th>
+                  <th>Наименование отдела</th>
+                  <th>Роли отдела</th>
                 </tr>
               </thead>
               <tfoot>
                 <tr>
-                  <th>Номер объекта </th>
-                  <th>Наименование объекта</th>
+                  <th>Номер отдела </th>
+                  <th>Объект отдела </th>
+                  <th>Наименование отдела</th>
+                  <th>Роли отдела</th>
                 </tr>
               </tfoot>
               <tbody>
@@ -95,10 +104,22 @@ const Object: React.FC<ObjectF> = ({
                 {error && <h1>{error}</h1>}
                { department.map((department) => ( 
          
-              <tr key={department.id}>
+              <tr className="point" key={department.id}>
+                <td 
+                    onClick={del}
+                    className={`${department.id_object}`}
+                    role={`Вы точно хотите удалить отдел (${department.name})`} 
+                    title={`Удалить отдел (${department.name})`} 
+                >{department.id}</td>
               <td><SpisObjectTabC id_object={department.id_object} id={department.id} table={2}/>
               </td>
-              <td>{department.name}</td>
+              <td 
+              onClick={red}
+              className={`${department.id}`} 
+              title={`Изменить имя отдела (${department.name})`}
+              slot='name'
+              >{department.name}</td>
+              <td><RoliSettingsC id_object={department.id_object} id_department={department.id} /></td>
                 </tr>
                 ))}
               </tbody>
