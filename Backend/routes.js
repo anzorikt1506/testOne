@@ -44,6 +44,10 @@ module.exports  = (app) =>{
    const roles_f = require("./zapros/roles.js") 
 
    app
+   .route('/rolesoption')
+   .post(roles_f.rolesoption)
+
+   app
    .route('/rolesSpis')
    .get(roles_f.rolesSpis)
 
@@ -58,7 +62,23 @@ module.exports  = (app) =>{
    app
    .route('/rolesdel')
    .post(roles_f.rolesdel)  
+
+const users_f = require("./zapros/users.js") 
+
+   app
+   .route('/usersSpis')
+   .get(users_f.usersSpis)
+
+   app
+   .route('/addusers')
+   .post(users_f.addusers)
+   
+   app
+   .route('/redusers')
+   .post(users_f.redusers)
+
+   app
+   .route('/usersdel')
+   .post(users_f.usersdel)  
 }
-
-
 

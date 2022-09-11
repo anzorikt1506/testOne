@@ -95,3 +95,29 @@ exports.rolesdel = ((req, res)=>{
  
            
 })
+
+exports.rolesoption = ((req, res)=>{
+    const id_roles = req.body.id_roles
+    const option = req.body.option
+    const p = new Promise((resolve, reject) => {
+        
+        pool.query(
+            `UPDATE roles SET status = ? WHERE id = ?`,[option,id_roles],
+            function (err, result) {
+                if (err) console.log(err);   
+                resolve(result)
+            }); 
+
+    })
+    p.then((data)=>{
+         pool.query(
+            `SELECT * FROM roles ORDER BY id desc`,
+            function (err, result) {
+                if (err) console.log(err);
+                res.send(result)
+            });  
+    })
+     
+ 
+           
+})

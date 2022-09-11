@@ -8,6 +8,7 @@ import DepartmentC from "../Department/DepartmentC";
 import ObjectC from "../Object/ObjectC";
 import Pagehading from "../Pagehading/Pagehading";
 import Projectcard from "../Projectcard/Projectcard";
+import RolesC from "../Roles/RolesC";
 
 
 function Pagecontent() {
@@ -32,6 +33,10 @@ function Pagecontent() {
         <Route 
         path="/department" 
         element={<DepartmentC />} 
+        /> 
+        <Route 
+        path="/roles" 
+        element={<RolesC />} 
         /> 
       </Routes>
 

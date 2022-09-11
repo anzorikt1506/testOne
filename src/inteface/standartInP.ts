@@ -29,4 +29,18 @@ export interface IRoles{
     id_department: number
     name: string
     bool?: boolean
+    status: number
 }
+export interface Iusers{
+    id: number
+    id_object: number
+    id_departament: number
+    id_roles:number
+    fio: string
+    bool?: boolean
+    status: number
+}
+export interface statusM {
+    id:number,
+    text:string
+  }

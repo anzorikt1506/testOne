@@ -34,8 +34,15 @@ const RoliSettings: React.FC<ObjectF> = ({
                        className="dropdown-item" 
                        href="#">
                        <span onClick={red_roles} id={`${sort.id}`}   title="Редактировать роль">{sort.name}</span> 
-                      <span onClick={del_roles} title="Удалить роль" slot={`${sort.id}`} className="redC" role = {`${sort.name}`}>&nbsp;&nbsp;   &#10006;</span>
-                        
+                       <span onClick={del_roles} 
+                            title="Удалить роль" 
+                            slot={`${sort.id}`} 
+                            className="redC" 
+                            role = {`${sort.name}`}>&nbsp;&nbsp;   &#10006; </span>
+                        <span
+                              title="Электронная почта" 
+                              slot={`${sort.id}`} 
+                             >&#64;</span>
                     </a>
                  
                   

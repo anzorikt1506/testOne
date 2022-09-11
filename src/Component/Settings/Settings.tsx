@@ -33,6 +33,9 @@ const Settings = () => {
             <NavLink to='/department' className="collapse-item">
               Отделы
             </NavLink>
+            <NavLink to='/roles' className="collapse-item">
+              Роли
+            </NavLink>
             <a className="collapse-item" href="cards.html">
               Cards
             </a>

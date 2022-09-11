@@ -11,7 +11,7 @@ interface UserState {
   error: string;
   verithik: string;
   booleanverithik: boolean;
-  selected: number
+  status: number
 }
 export const initialState: UserState = {
   roles: [],
@@ -19,14 +19,14 @@ export const initialState: UserState = {
   error: "",
   verithik: "",
   booleanverithik: false,
-  selected: 0
+  status: 0
 };
 export const rolesSlice = createSlice({
   name: "rolesSlice",
   initialState,
   reducers: {
-    roles_selectDepartment(state,action: PayloadAction<number>){
-     state.selected = action.payload
+    roles_statusDepartment(state,action: PayloadAction<number>){
+     state.status = action.payload
     },
     roles_loadTest(state, action: PayloadAction<string>) {
       state.isLoading = true;
@@ -130,5 +130,18 @@ export const roles_add_API = (id_object: number, id_department: number,name:any)
     }
   };
 
-
+  export const roles_option = (id_roles:number, option:number) => async (dispatch: AppDispatch) => {
+    try {
+      const response = await axios.post<IRoles[]>(
+        "http://localhost:5000/rolesoption",
+        {
+          id_roles: id_roles,
+          option: option
+        }
+      );
+      dispatch(rolesSlice.actions.roles_trueTest(response.data));
+    } catch {
+      dispatch(rolesSlice.actions.roles_errorTest("Не получилось"));
+    }
+  };
 
