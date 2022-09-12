@@ -113,7 +113,45 @@ export const roles_add_API = (id_object: number, id_department: number,name:any)
     }
   };
 
+  export const roles_red_pass = (id: number,name:any) => async (dispatch: AppDispatch) => {
+    try {
+      dispatch(rolesSlice.actions.roles_loadTest("yy"));
+      const response = await axios.post<IRoles[]>(
+        "http://localhost:5000/redpassroles",
+        {
+          id: id,
+          name:name
+        }
+      );
+      if (response.data[0].bool === true) {
+        dispatch(rolesSlice.actions.roles_trueVerithik(response.data[0].name));
+      } else {
+        dispatch(rolesSlice.actions.roles_trueTest(response.data));
+      }
+    } catch {
+      dispatch(rolesSlice.actions.roles_errorTest("Не получилось"));
+    }
+  };
 
+  export const roles_red_email = (id: number,name:any) => async (dispatch: AppDispatch) => {
+    try {
+      dispatch(rolesSlice.actions.roles_loadTest("yy"));
+      const response = await axios.post<IRoles[]>(
+        "http://localhost:5000/redemailroles",
+        {
+          id: id,
+          name:name
+        }
+      );
+      if (response.data[0].bool === true) {
+        dispatch(rolesSlice.actions.roles_trueVerithik(response.data[0].name));
+      } else {
+        dispatch(rolesSlice.actions.roles_trueTest(response.data));
+      }
+    } catch {
+      dispatch(rolesSlice.actions.roles_errorTest("Не получилось"));
+    }
+  };
 
   export const roles_del = (id:number) => async (dispatch: AppDispatch) => {
     try {

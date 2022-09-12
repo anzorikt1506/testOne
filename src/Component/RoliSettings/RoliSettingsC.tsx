@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAppDispatch, useAppSelector } from "../../hook/redux";
-import  {rolesSlice, roles_add_API, roles_add_API_spis, roles_del, roles_red_API } from '../../store/reducers/rolesSlice';
+import  {rolesSlice, roles_add_API, roles_add_API_spis, roles_del, roles_red_API, roles_red_email, roles_red_pass } from '../../store/reducers/rolesSlice';
 
 import RoliSettings from './RoliSettings';
 
@@ -54,6 +54,31 @@ const RoliSettingsC: React.FC<ObjectF> = ({id_object,id_department}) => {
       }
   }  
 
+  const  red_pass_roles = (event:any) =>{
+    const id = event.target.id
+    const name = event.target.innerHTML
+     const newroles = prompt("Введите новое имя для роли ("+name+")")
+     const newroles_array = Array.from(`${newroles}`)
+     const newroles_vr = newroles_array.filter((e)=>{return  e == '@' })//e.toUpperCase()
+     switch (true) {
+      case newroles == "": // if (x === 'value1')
+        alert("Поле пустое")
+        break;
+      case newroles && newroles.length < 3 : // if (x === 'value2')
+        alert('Не меннее трёх символов ')
+        break;
+      case newroles_vr.length == 0:
+        alert("Неверный формат ")
+        break;
+      case newroles == null: // if (x === 'value2')
+        break;  
+      default:
+        dispatch(roles_red_email(id,newroles))
+        event.target.innerHTML = newroles
+        break; 
+    }
+} 
+
    
   const del_roles = (event:any) => {
     const id = event.target.slot
@@ -70,6 +95,7 @@ const RoliSettingsC: React.FC<ObjectF> = ({id_object,id_department}) => {
       add_roles = {add_roles}
       red_roles= {red_roles}
       del_roles={del_roles}
+      red_pass_roles={red_pass_roles}
     />
   );
 }

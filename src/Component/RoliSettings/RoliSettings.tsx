@@ -7,13 +7,15 @@ interface ObjectF {
   add_roles: () => void,
   red_roles:(event:any)=>void
   del_roles:(event:any)=>void
+  red_pass_roles:(event:any)=>void
 }
 const RoliSettings: React.FC<ObjectF> = ({
   sort,
   error,
   add_roles,
   red_roles,
-  del_roles
+  del_roles,
+  red_pass_roles
 }) => {
 
 
@@ -40,6 +42,7 @@ const RoliSettings: React.FC<ObjectF> = ({
                             className="redC" 
                             role = {`${sort.name}`}>&nbsp;&nbsp;   &#10006; </span>
                         <span
+                              onClick={red_pass_roles}
                               title="Электронная почта" 
                               slot={`${sort.id}`} 
                              >&#64;</span>
