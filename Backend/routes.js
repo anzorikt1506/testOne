@@ -80,5 +80,11 @@ const users_f = require("./zapros/users.js")
    app
    .route('/usersdel')
    .post(users_f.usersdel)  
+
+const avtoriz = require("./zapros/avtoriz.js") 
+   app
+   .route('/test1')
+   .get(avtoriz.registration) 
+
 }
 
