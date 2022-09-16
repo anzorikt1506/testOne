@@ -2,9 +2,8 @@
 const pool = require("../db.js")
 const bcrypt = require('bcrypt')
 const uuid = require('uuid')
-const mailService = require('./mail-service')
 const tokenServis = require('./token-service')
-const UserDto = require('../dtos/user-dto')
+//const UserDto = require('../dtos/user-dto')
      exports.registration=(email,password,id_roli)=>{
       const ff = new Promise((res,rej) => {
         pool.query(`SELECT * FROM users WHERE email=?`, email,
@@ -19,7 +18,7 @@ const UserDto = require('../dtos/user-dto')
         }else{
           const hashPassword = await bcrypt.hash(password, 3)
           const activationLink = uuid.v4()
-
+         
          const ttt = {email,id_roli,activationLink: true}
          const token = tokenServis.generateTokens(ttt);
          tokenServis.saveToken(id_roli,token.refreshToken)
@@ -30,5 +29,5 @@ const UserDto = require('../dtos/user-dto')
 }
 
 
-         //await mailService.sendActivationMail(hashPassword,activationLink)
+         
          //const userDto = new UserDto()
