@@ -12,7 +12,7 @@ const tokenServis = require('./token-service')
            res(result)
         });
       })
-      ff.then(async (data)=>{
+      .then(async (data)=>{
         if(Object.keys(data).length > 0){
           return `Пользователь ${email} уже существует` // throw new Error(`Пользователь ${email} уже существует` )
         }else{
@@ -22,7 +22,7 @@ const tokenServis = require('./token-service')
          const ttt = {email,id_roli,activationLink: true}
          const token = tokenServis.generateTokens(ttt);
          tokenServis.saveToken(id_roli,token.refreshToken)
-         return token.refreshToken
+         return token
         }  
       })
     return ff

@@ -4,7 +4,7 @@ const UserServis = require('../service/user-service')
     exports.registration = (req,res,next) => {
         try{
             new Promise((res,rej) =>{
-                const ff  = UserServis.registration('anzor190@mail.ru','anzorik123','5')
+                const ff  = UserServis.registration('anzor190@mail.ru','anzorik123','5')    
                 res(ff)
             })
             .then((data)=>{
