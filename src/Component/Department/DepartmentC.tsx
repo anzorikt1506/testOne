@@ -8,6 +8,7 @@ import {
   department_red_name,
   depatment_del
 } from "../../store/reducers/departmentSlice";
+import { object_add_API_spis } from '../../store/reducers/objectSlice';
 import { roles_add_API_spis } from '../../store/reducers/rolesSlice';
 
 import Department from './Department';
@@ -17,8 +18,12 @@ const ObjectC = () => {
     useAppSelector((state) => state.departmentSlice);
     const { selected, object} = useAppSelector((state) => state.objectSlice);
   useEffect(() => {
+    if(department.length == 0){
+          dispatch(object_add_API_spis(""));
       dispatch(department_add_API_spis(''));
       dispatch(roles_add_API_spis());
+    }
+
   }, []);
   
   const [show, fshow] = useState<boolean>(false);

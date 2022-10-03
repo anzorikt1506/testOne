@@ -63,6 +63,10 @@ module.exports  = (app) =>{
    .route('/rolesdel')
    .post(roles_f.rolesdel)  
 
+   app
+   .route('/redrolespassword')
+   .post(roles_f.redrolespassword)  
+
 const users_f = require("./zapros/users.js") 
 
    app

@@ -44,6 +44,10 @@ export const rolesSlice = createSlice({
       state.booleanverithik = true;
       state.error = "";
     },
+    roles_isLoading_false(state) {
+      state.isLoading = false;
+
+    },
     roles_falseVerithik(state, actions: PayloadAction<boolean>) {
       state.booleanverithik = actions.payload;
     },
@@ -178,6 +182,23 @@ export const roles_add_API = (id_object: number, id_department: number,name:any)
         }
       );
       dispatch(rolesSlice.actions.roles_trueTest(response.data));
+    } catch {
+      dispatch(rolesSlice.actions.roles_errorTest("Не получилось"));
+    }
+  };
+
+  export const roles_red_paswword = (id: number,name:any) => async (dispatch: AppDispatch) => {
+    try {
+      dispatch(rolesSlice.actions.roles_loadTest("yy"));
+      const response = await axios.post<IRoles[]>(
+        "http://localhost:5000/redrolespassword",
+        {
+          id: id,
+          name:name
+        }
+      );
+        dispatch(rolesSlice.actions.roles_isLoading_false);
+
     } catch {
       dispatch(rolesSlice.actions.roles_errorTest("Не получилось"));
     }

@@ -15,7 +15,10 @@ const ObjectC = () => {
     useAppSelector((state) => state.objectSlice);
 
   useEffect(() => {
-   dispatch(object_add_API_spis(""));
+    if(object.length == 0){
+     dispatch(object_add_API_spis("")); 
+    }
+   
 
     
   }, []);

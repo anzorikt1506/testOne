@@ -4,14 +4,14 @@ import { statusM } from "../../inteface/standartInP";
 interface ObjectF {
   rolesStatus: string,
   statusMF: statusM[],
-  id_roles:number,
   statusRed:(event:any)=>void
+  red_password:(event:any)=>void
 }
 const Statusroles: React.FC <ObjectF> = ({
   rolesStatus,
   statusMF,
-  id_roles,
-  statusRed
+  statusRed,
+  red_password
   
 }) => {
 return(
@@ -27,12 +27,12 @@ return(
 
         {statusMF.map((statusMF)=>(
     
-    <li key={statusMF.id} ><a onClick={statusRed} id={`${statusMF.id}`} role={`${id_roles}`}   className="dropdown-item" href="#">{statusMF.text}</a></li>
+    <li key={statusMF.id} ><a onClick={statusRed} id={`${statusMF.id}`}   className="dropdown-item" href="#">{statusMF.text}</a></li>
     ))}
   </div>
 </div>
 
-
+<p className="point" onClick={red_password}>Смена пароля</p>
 
 
 

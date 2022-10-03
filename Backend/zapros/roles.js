@@ -1,4 +1,5 @@
  const pool = require("../db.js")
+ const bcrypt = require(`bcrypt`)
 
 
  exports.rolesSpis =((req, res)=>{
@@ -120,4 +121,16 @@ exports.rolesoption = ((req, res)=>{
      
  
            
+})
+
+exports.redrolespassword =  (async(req, res)=>{
+
+    const hashPassword = await  bcrypt.hash(req.body.name, 1)
+    const id = req.body.id
+        pool.query(
+        `UPDATE roles SET password = ? WHERE id = ?`,[hashPassword,id],
+        function (err, result) {
+            if (err) console.log(err);   
+            
+        });           
 })
