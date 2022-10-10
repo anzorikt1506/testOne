@@ -5,13 +5,15 @@ interface ObjectF {
   login:string,
   password:string,
   changeLogin:(e:any)=>void,
-  changePassword:(e:any)=>void
+  changePassword:(e:any)=>void,
+  avtoriz:()=>void
 }
 const Login: React.FC<ObjectF> = ({
   login,
   password,
   changeLogin,
-  changePassword
+  changePassword,
+  avtoriz
 }) => {
 
   return (
@@ -44,9 +46,9 @@ const Login: React.FC<ObjectF> = ({
                                         id="exampleInputPassword" value={password} placeholder="Введите пароль"/>
                                 </div>
 
-                                <a href="index.html" className="btn btn-primary btn-user btn-block">
+                                <p onClick={avtoriz} className="btn btn-primary btn-user btn-block">
                                     Отправить
-                                </a>
+                                </p>
                                 
 
                             </form>

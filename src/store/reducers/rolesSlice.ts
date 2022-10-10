@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {  IRoles } from "../../inteface/standartInP"; //импортировали интерфейс type пользователей
 import { AppDispatch } from "../store";
 import axios from "axios";
+import $api from "../../interceptor/intercepter";
 
 interface UserState {
   //создали интерфейс типов для state редюссора
@@ -199,6 +200,19 @@ export const roles_add_API = (id_object: number, id_department: number,name:any)
       );
         dispatch(rolesSlice.actions.roles_isLoading_false);
 
+    } catch {
+      dispatch(rolesSlice.actions.roles_errorTest("Не получилось"));
+    }
+  };
+
+  export const roles_avtoriz =(login:string,password:string) => async (dispatch: AppDispatch) => {
+    try {
+      const response = await $api.post(
+        "http://localhost:5000/rolesSpis",
+        {login,password}
+        );
+      console.log(response.data);
+      
     } catch {
       dispatch(rolesSlice.actions.roles_errorTest("Не получилось"));
     }
