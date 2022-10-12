@@ -10,7 +10,12 @@ const UserServis = require('../service/user-service')
                 res(ff)
             })
             .then((data)=>{
-                 res.send(data)
+                if(data != null){
+                    res.send(data)
+                }else{
+                    res.status(401).json({error:'Неверный пароль'});
+                }
+                 
             })
            
         }catch(e){

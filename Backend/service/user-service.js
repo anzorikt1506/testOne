@@ -6,7 +6,7 @@ const tokenServis = require('./token-service')
 //const UserDto = require('../dtos/user-dto')
      exports.registration=(login,password)=>{
       const ff = new Promise((res,rej) => {
-           const hashPassword = bcrypt.hashSync(password, '$2b$10$UNWiozInZyGZmedBTEIPGO')
+           const hashPassword = bcrypt.hashSync(password, process.env.SOLE_PASS)
            pool.query(`SELECT * FROM roles WHERE name=? and password=?`, [login,hashPassword],
            (err, result) => {
               if (err) console.log(err);
@@ -20,14 +20,17 @@ const tokenServis = require('./token-service')
           
         const ttt = {email: data[0].email,name:data[0].name,activationLink: true}
         const token = tokenServis.generateTokens(ttt);
-        console.log(token.refreshToken);
+        console.log(data);
         // tokenServis.saveToken(data[0].id,token.refreshToken)
-        return token
+        return {
+          token,
+          data
+        }
         
         
         }else{
-        // //   const hashPassword = await bcrypt.hash(password, 3)
-        // //   const activationLink = uuid.v4()
+          return null;
+
          
 
          }  
