@@ -6,37 +6,31 @@ const tokenServis = require('./token-service')
 //const UserDto = require('../dtos/user-dto')
      exports.registration=(login,password)=>{
       const ff = new Promise((res,rej) => {
-         // создаем соль
-         var salt = bcrypt.genSaltSync(10);
- 
-// шифруем пароль
-var hashPassword = bcrypt.hashSync(password, $2b$10$UNWiozInZyGZmedBTEIPGO)
-
-           res(hashPassword)
-      
+           const hashPassword = bcrypt.hashSync(password, '$2b$10$UNWiozInZyGZmedBTEIPGO')
+           pool.query(`SELECT * FROM roles WHERE name=? and password=?`, [login,hashPassword],
+           (err, result) => {
+              if (err) console.log(err);
+         console.log('1');
+          res(result);  
+          }); 
       })
       .then((data)=>{
-        pool.query(`SELECT * FROM roles WHERE name=? and password=?`, [login,data],
-        (err, result) => {
-            if (err) console.log(err);
-         console.log(data);  
-        });       
-      })
-      .then(async (data)=>{
-        
-        if(1 > 0){
-          return `Пользователь  уже существует` // throw new Error(`Пользователь ${email} уже существует` )
+           
+        if(Object.keys(data).length > 0){
+          
+        const ttt = {email: data[0].email,name:data[0].name,activationLink: true}
+        const token = tokenServis.generateTokens(ttt);
+        console.log(token.refreshToken);
+        // tokenServis.saveToken(data[0].id,token.refreshToken)
+        return token
         
         
         }else{
-          const hashPassword = await bcrypt.hash(password, 3)
-          const activationLink = uuid.v4()
+        // //   const hashPassword = await bcrypt.hash(password, 3)
+        // //   const activationLink = uuid.v4()
          
-         const ttt = {email,id_roli,activationLink: true}
-         const token = tokenServis.generateTokens(ttt);
-         tokenServis.saveToken(id_roli,token.refreshToken)
-         return token
-        }  
+
+         }  
       })
     return ff
 }

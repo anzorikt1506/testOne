@@ -9,10 +9,10 @@ const jwt = require('jsonwebtoken')
         refreshToken
       }
   }
-  exports.saveToken=(userId,refreshToken)=>{
+  exports.saveToken=(rolesId,refreshToken)=>{
     const prom = new Promise((resolve,reject)=>{
         pool.query(
-            `SELECT * FROM token where user = ? order by id asc`,userId,
+            `SELECT * FROM token where roles = ? `,rolesId,
             function (err, result) {
                 if (err) console.log(err);
                 resolve(result)

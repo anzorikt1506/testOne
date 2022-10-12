@@ -124,8 +124,8 @@ exports.rolesoption = ((req, res)=>{
 })
 
 exports.redrolespassword =  (async(req, res)=>{
-            // создаем соль
-            var salt = await bcrypt.genSaltSync(10);
+            // // создаем соль
+            // var salt = await bcrypt.genSaltSync(10);
  
             // шифруем пароль
             var hashPassword = await bcrypt.hashSync(req.body.name, '$2b$10$UNWiozInZyGZmedBTEIPGO')
