@@ -40,6 +40,12 @@ module.exports  = (app) =>{
    app
    .route('/departmentdel')
    .post(department_f.delDepartment)
+      
+   const avtoriz_f = require("./zapros/avtoriz") 
+
+   app
+   .route('/rolesavtoriz')
+   .post(avtoriz_f.registration) 
 
    const roles_f = require("./zapros/roles.js") 
 

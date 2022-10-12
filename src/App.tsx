@@ -33,10 +33,10 @@ console.log()
   return (
     <>
     <div id="wrapper">
-      <LoginC/>
+      {/* <LoginC/> */}
  {/* <input type="button" onClick={notifyMe} value="Notification"/>  */}
-    {/* <Sitebar/>
-    <Content/> */}
+    <Sitebar/>
+    <Content/>
     </div>
     </>
   );

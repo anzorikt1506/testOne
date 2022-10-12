@@ -124,8 +124,14 @@ exports.rolesoption = ((req, res)=>{
 })
 
 exports.redrolespassword =  (async(req, res)=>{
-
-    const hashPassword = await  bcrypt.hash(req.body.name, 1)
+            // создаем соль
+            var salt = await bcrypt.genSaltSync(10);
+ 
+            // шифруем пароль
+            var hashPassword = await bcrypt.hashSync(req.body.name, '$2b$10$UNWiozInZyGZmedBTEIPGO')
+            
+                    
+    // const hashPassword = await  bcrypt.hash(req.body.name, 1)
     const id = req.body.id
         pool.query(
         `UPDATE roles SET password = ? WHERE id = ?`,[hashPassword,id],

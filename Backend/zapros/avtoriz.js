@@ -4,7 +4,9 @@ const UserServis = require('../service/user-service')
     exports.registration = (req,res,next) => {
         try{
             new Promise((res,rej) =>{
-                const ff  = UserServis.registration('anzor190@mail.ru','anzorik123','5')    
+                const login = req.body.login
+                const password = req.body.password
+                const ff  = UserServis.registration(login,password)    
                 res(ff)
             })
             .then((data)=>{
@@ -17,34 +19,34 @@ const UserServis = require('../service/user-service')
     }
     
 
-    exports.login = (req,res,next) =>{
-        try{
+    // exports.login = (req,res,next) =>{
+    //     try{
 
-        }catch(e){
+    //     }catch(e){
             
-        }
-    }
+    //     }
+    // }
     
-    exports.activate= (req,res,next) => {
-        try{
+    // exports.activate= (req,res,next) => {
+    //     try{
 
-        }catch(e){
+    //     }catch(e){
             
-        }
-    }
+    //     }
+    // }
 
-    exports.refresh=(req,res,next)=>{
-        try{
+    // exports.refresh=(req,res,next)=>{
+    //     try{
 
-        }catch(e){
+    //     }catch(e){
             
-        }
-    }
+    //     }
+    // }
     
-    exports.getUsers=(req,res,next)=>{
-        try{
+    // exports.getUsers=(req,res,next)=>{
+    //     try{
 
-        }catch(e){
+    //     }catch(e){
             
-        }
-    }
+    //     }
+    // }

@@ -207,8 +207,8 @@ export const roles_add_API = (id_object: number, id_department: number,name:any)
 
   export const roles_avtoriz =(login:string,password:string) => async (dispatch: AppDispatch) => {
     try {
-      const response = await $api.post(
-        "http://localhost:5000/rolesSpis",
+      const response = await axios.post(
+        "http://localhost:5000/rolesavtoriz",
         {login,password}
         );
       console.log(response.data);
