@@ -7,33 +7,23 @@ const tokenServis = require('./token-service')
      exports.registration=(login,password)=>{
       const ff = new Promise((res,rej) => {
            const hashPassword = bcrypt.hashSync(password, process.env.SOLE_PASS)
-           pool.query(`SELECT * FROM roles WHERE name=? and password=?`, [login,hashPassword],
+           pool.query(`SELECT * FROM roles WHERE id=? and password=?`, [login,hashPassword],
            (err, result) => {
               if (err) console.log(err);
-         console.log('1');
           res(result);  
           }); 
       })
-      .then((data)=>{
-           
-        if(Object.keys(data).length > 0){
-          
-        const ttt = {email: data[0].email,name:data[0].name,activationLink: true}
+      .then((data)=>{    
+        if(Object.keys(data).length > 0){ 
+        const ttt = {status: data[0].status,name:data[0].name,activationLink: true}
         const token = tokenServis.generateTokens(ttt);
-        console.log(data);
-        // tokenServis.saveToken(data[0].id,token.refreshToken)
+        tokenServis.saveToken(data[0].id,token.refreshToken)
         return {
-          token,
-          data
-        }
+          id:data[0].id,
+          token}
         
         
-        }else{
-          return null;
-
-         
-
-         }  
+        }else{return null}  
       })
     return ff
 }

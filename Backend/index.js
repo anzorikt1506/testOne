@@ -18,4 +18,8 @@ app.use(
 const routers = require("./routes.js")
 routers(app)
 
+// let now = new Date();
+// let now1 = now.setDate(now.getDate()+30);
+// let ff = new Date(now1)
+// console.log(`${ff.getFullYear()}-${ff.getMonth()+1}-${ff.getDate()}  `);
 app.listen(PORT, () => console.log(`server statsrt ${PORT}`))

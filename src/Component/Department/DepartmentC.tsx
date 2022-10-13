@@ -14,7 +14,7 @@ import { roles_add_API_spis } from '../../store/reducers/rolesSlice';
 import Department from './Department';
 const ObjectC = () => {
   const dispatch = useAppDispatch();
-  const { error, isLoading, department, verithik, booleanverithik } =
+  const { error, isLoading, department, verithik,booleanverithik } =
     useAppSelector((state) => state.departmentSlice);
     const { selected, object} = useAppSelector((state) => state.objectSlice);
   useEffect(() => {

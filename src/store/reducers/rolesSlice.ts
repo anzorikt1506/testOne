@@ -205,13 +205,14 @@ export const roles_add_API = (id_object: number, id_department: number,name:any)
     }
   };
 
-  export const roles_avtoriz =(login:string,password:string) => async (dispatch: AppDispatch) => {
+  export const roles_avtoriz =(login:number,password:string) => async (dispatch: AppDispatch) => {
     try {
       const response = await $api.post(
         "http://localhost:5000/rolesavtoriz",
         {login,password}
         );
-      console.log(response.data);
+        localStorage.setItem('token',response.data.token.accessToken)
+        console.log(response.data);
       
     } catch {
       dispatch(rolesSlice.actions.roles_errorTest("Не получилось"));

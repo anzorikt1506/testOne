@@ -1,19 +1,22 @@
 import { eventNames } from "process";
 import React from "react";
+import { IRoles } from "../../inteface/standartInP";
 
 interface ObjectF {
   login:string,
   password:string,
   changeLogin:(e:any)=>void,
   changePassword:(e:any)=>void,
-  avtoriz:()=>void
+  avtoriz:()=>void,
+  roles:IRoles[]
 }
 const Login: React.FC<ObjectF> = ({
   login,
   password,
   changeLogin,
   changePassword,
-  avtoriz
+  avtoriz,
+  roles
 }) => {
 
   return (
@@ -37,10 +40,39 @@ const Login: React.FC<ObjectF> = ({
                             </div>
                             <form className="user">
                                 <div className="form-group">
-                                    <input type="text" onChange={changeLogin} className="form-control form-control-user"
-                                        id="exampleInputEmail" value={login} aria-describedby="emailHelp"
-                                        placeholder="Введите логин"/>
+                                    <input type="text"
+                                      className="form-control form-control-user dropdown-toggle" 
+                                      data-toggle="dropdown"  
+                                      aria-haspopup="true" 
+                                      aria-expanded="false"
+                                      id="dropdownMenuButton"  aria-describedby="emailHelp"
+                                      placeholder="Выберите логин"
+                                      value={login}/>
+
+  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+ 
+ 
+                {roles.map((sort) => (
+                  
+                    <a key={sort.id} 
+                       onClick={changeLogin} 
+                       id={`${sort.id}`}  
+                       className="dropdown-item point" >
+                             {sort.name}
+                    </a>
+                 
+                  
+          ))}
+  </div>
+
                                 </div>
+
+                                <div className="dropdown">
+
+</div>
+
+
+
                                 <div className="form-group">
                                     <input onChange={changePassword} type="password" className="form-control form-control-user"
                                         id="exampleInputPassword" value={password} placeholder="Введите пароль"/>
@@ -70,3 +102,6 @@ const Login: React.FC<ObjectF> = ({
 };
 
 export default  React.memo(Login);
+
+
+

@@ -9,28 +9,17 @@ const jwt = require('jsonwebtoken')
         refreshToken
       }
   }
-  exports.saveToken=(rolesId,refreshToken)=>{
-    const prom = new Promise((resolve,reject)=>{
-        pool.query(
-            `SELECT * FROM token where roles = ? `,rolesId,
-            function (err, result) {
-                if (err) console.log(err);
-                resolve(result)
-            });
-    })
-    .then((data)=>{
-         if(Object.keys(data).length > 10){
-            pool.query(`UPDATE token SET refreshToken = ? WHERE id = ?`,[refreshToken,data[0].id]);
-        }else{
-            pool.query(
-                `INSERT INTO token (user,refreshToken) VALUES (?,?)`, [userId,refreshToken],
-                function (err, result) {
-                    if (err) console.log(err);
-                    else console.log(result);
-                    
-                });
-        }
-    })
+  exports.deleteRefreshTokenOLD=()=>{
+          let now = new Date();
+          let now1 = now.setDate(now.getDate()-30);
+          let ff = new Date(now1)
+          let dateOld =   `${ff.getFullYear()}-${ff.getMonth()+1}-${ff.getDate()}`
+          pool.query(`DELETE FROM token WHERE DATE(data) < ?`,dateOld);
+
+  }
+  exports.saveToken=(rolesId,refreshTokenNew)=>{
+        this.deleteRefreshTokenOLD();
+        pool.query(`INSERT INTO token (roles,refreshToken) VALUES (?,?)`,[rolesId,refreshTokenNew]);
   }
 
 

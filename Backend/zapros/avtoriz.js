@@ -4,14 +4,16 @@ const UserServis = require('../service/user-service')
     exports.registration = (req,res,next) => {
         try{
             new Promise((res,rej) =>{
-                const login = req.body.login
-                const password = req.body.password
+                const {login,password} = req.body
+               // const {refreshToken} = req.cookies
+               console.log(authorizationHeader);
                 const ff  = UserServis.registration(login,password)    
                 res(ff)
             })
             .then((data)=>{
                 if(data != null){
-                    res.send(data)
+                    res.cookie('refreshToken ',data.token.refreshToken ,{maxAge:30*24*60*60*1000, httpOnly:true}).json(data)
+                    
                 }else{
                     res.status(401).json({error:'Неверный пароль'});
                 }
