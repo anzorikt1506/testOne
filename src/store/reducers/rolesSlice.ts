@@ -1,6 +1,6 @@
 import * as React from "react";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {  IRoles } from "../../inteface/standartInP"; //импортировали интерфейс type пользователей
+import {  avtorizRole, IRoles } from "../../inteface/standartInP"; //импортировали интерфейс type пользователей
 import { AppDispatch } from "../store";
 import axios from "axios";
 import $api from "../../interceptor/intercepter";
@@ -47,7 +47,9 @@ export const rolesSlice = createSlice({
     },
     roles_isLoading_false(state) {
       state.isLoading = false;
-
+    },
+    roles_status(state,action: PayloadAction<number>) {
+      state.status = action.payload;
     },
     roles_falseVerithik(state, actions: PayloadAction<boolean>) {
       state.booleanverithik = actions.payload;
@@ -207,12 +209,13 @@ export const roles_add_API = (id_object: number, id_department: number,name:any)
 
   export const roles_avtoriz =(login:number,password:string) => async (dispatch: AppDispatch) => {
     try {
-      const response = await $api.post(
+      const response = await $api.post<avtorizRole>(
         "http://localhost:5000/rolesavtoriz",
         {login,password}
         );
         localStorage.setItem('token',response.data.token.accessToken)
-        console.log(response.data);
+        dispatch(rolesSlice.actions.roles_status(response.data.status));
+        console.log(response.data.status);
       
     } catch {
       dispatch(rolesSlice.actions.roles_errorTest("Не получилось"));

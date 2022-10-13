@@ -29,15 +29,27 @@ import LoginC from './Component/Login/LoginC';
 // }
 
 function App() {
-console.log()
+  const {status} = useAppSelector((state)=>state.rolesSlice)
+  switch (true) {
+    case (status == 0) :
+      return <LoginC/>
+      break;
+    case (status == 1 || status == 2 || status == 3) :
+     return(
+        <div id="wrapper">
+          <Sitebar/>
+          <Content/>
+          {/* <input type="button" onClick={notifyMe} value="Notification"/>  */}
+        </div>
+     )
+      break;
+  
+    default:
+      break;
+  }
   return (
     <>
-    <div id="wrapper">
-      <LoginC/>
- {/* <input type="button" onClick={notifyMe} value="Notification"/>  */}
-    {/* <Sitebar/>
-    <Content/> */}
-    </div>
+
     </>
   );
 }

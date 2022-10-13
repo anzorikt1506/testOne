@@ -6,7 +6,6 @@ const UserServis = require('../service/user-service')
             new Promise((res,rej) =>{
                 const {login,password} = req.body
                // const {refreshToken} = req.cookies
-               console.log(authorizationHeader);
                 const ff  = UserServis.registration(login,password)    
                 res(ff)
             })

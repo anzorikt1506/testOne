@@ -20,6 +20,7 @@ const tokenServis = require('./token-service')
         tokenServis.saveToken(data[0].id,token.refreshToken)
         return {
           id:data[0].id,
+          status:data[0].status,
           token}
         
         

@@ -44,3 +44,11 @@ export interface statusM {
     id:number,
     text:string
   }
+  export interface avtorizRole {
+    id:number,
+    status:number,
+    token:{
+        accessToken:string,
+        refreshToken:string
+    }
+  }
