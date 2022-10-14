@@ -20,18 +20,28 @@ const UserServis = require('../service/user-service')
             })
            
         }catch(e){
-            
+            res.json({error:e});
         }
     }
     
 
-    // exports.login = (req,res,next) =>{
-    //     try{
-
-    //     }catch(e){
+    exports.refresh = (req,res,next) =>{
+        try{
+            const {refreshToken} = req.cookies
+            const authorizationHeader = req.headers.authorization;
+          if(authorizationHeader){
+            const accessToken = authorizationHeader.split(' ')[1];
+            const avtorVerith =  UserServis.refresh(accessToken,refreshToken)
+            if(avtorVerith.ss === true){
+               res.cookie('refreshToken ',avtorVerith.token.refreshToken ,{maxAge:30*24*60*60*1000, httpOnly:true}).json(avtorVerith) 
+            }else{res.json(avtorVerith) }
             
-    //     }
-    // }
+          } else{res.json({error:'Нет нужных данных'});} 
+
+        }catch(e){
+            res.json({error:e});
+        }
+    }
     
     // exports.activate= (req,res,next) => {
     //     try{

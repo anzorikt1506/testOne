@@ -222,3 +222,17 @@ export const roles_add_API = (id_object: number, id_department: number,name:any)
     }
   };
 
+  export const roles_refresh =() => async (dispatch: AppDispatch) => {
+    try {
+      const response = await $api.get("http://localhost:5000/refresh");
+     
+    
+        
+        dispatch(rolesSlice.actions.roles_status(response.data.status));
+        localStorage.setItem('token',response.data.token.accessToken)
+        console.log(response.data.status);
+      
+    } catch {
+      dispatch(rolesSlice.actions.roles_errorTest("Не получилось"));
+    }
+  };

@@ -2,10 +2,11 @@ import React, { useReducer } from 'react';
 import './App.css';
 import { useAppDispatch, useAppSelector } from './hook/redux';
 import { testSlice } from './store/reducers/testSlice';
-
+import { useEffect, useState } from "react";
 import Content from './Component/Content/Content';
 import Sitebar from './Component/Sitebar/Sitebar';
 import LoginC from './Component/Login/LoginC';
+import { roles_refresh } from './store/reducers/rolesSlice';
 
 
 
@@ -30,6 +31,15 @@ import LoginC from './Component/Login/LoginC';
 
 function App() {
   const {status} = useAppSelector((state)=>state.rolesSlice)
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+       dispatch(roles_refresh())
+      }
+
+  }, []);
+
   switch (true) {
     case (status == 0) :
       return <LoginC/>

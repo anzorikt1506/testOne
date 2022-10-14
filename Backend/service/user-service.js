@@ -15,7 +15,7 @@ const tokenServis = require('./token-service')
       })
       .then((data)=>{    
         if(Object.keys(data).length > 0){ 
-        const ttt = {status: data[0].status,name:data[0].name,activationLink: true}
+        const ttt = {status: data[0].status,id:data[0].id,activationLink: true}
         const token = tokenServis.generateTokens(ttt);
         tokenServis.saveToken(data[0].id,token.refreshToken)
         return {
@@ -28,7 +28,40 @@ const tokenServis = require('./token-service')
       })
     return ff
 }
+exports.refresh=(accessToken,refreshToken)=> {
+  try {
+    const dataAccess = tokenServis.validateAccessToken(accessToken);
+    const dataRefresh = tokenServis.validateRefreshToken(refreshToken);
+     switch(true){
+      case (dataAccess === null && dataRefresh === null):
+         tokenServis.deleteRefreshToken(refreshToken);
+        return {message: 'Пользователь не авторизован',status:0,ss:false}
+        break;
+      case(dataAccess === null && dataRefresh != null):
+         tokenServis.deleteRefreshToken(refreshToken);
+        const ttt = {status: dataRefresh.status,id:dataRefresh.id,activationLink: true}
+        const token = tokenServis.generateTokens(ttt);
+        tokenServis.saveToken(dataRefresh.id,token.refreshToken)
+        return{
+          id:dataRefresh.id,
+          status:dataRefresh.status,
+          ss: true,
+          token}
+      break;  
+      case(dataAccess != null):
+      return{
+        id:dataAccess.id,
+        status:dataAccess.status,
+        accessToken:accessToken,
+        ss: false
+        }     
+      break;
+     }
+     
 
-
+  } catch (e) {
+      
+  }
+}
          
          //const userDto = new UserDto()

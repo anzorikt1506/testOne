@@ -47,6 +47,10 @@ module.exports  = (app) =>{
    .route('/rolesavtoriz')
    .post(avtoriz_f.registration) 
 
+   app
+   .route('/refresh')
+   .get(avtoriz_f.refresh) 
+
    const roles_f = require("./zapros/roles.js") 
 
    app
