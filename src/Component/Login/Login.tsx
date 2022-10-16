@@ -41,6 +41,7 @@ const Login: React.FC<ObjectF> = ({
                             <form className="user">
                                 <div className="form-group">
                                     <input type="text"
+                                      autoComplete="off"
                                       className="form-control form-control-user dropdown-toggle" 
                                       data-toggle="dropdown"  
                                       aria-haspopup="true" 

@@ -63,5 +63,11 @@ exports.refresh=(accessToken,refreshToken)=> {
       
   }
 }
+
+
+exports.logout=(refreshToken)=> {
+  tokenServis.deleteRefreshToken(refreshToken)
+}
+
          
          //const userDto = new UserDto()

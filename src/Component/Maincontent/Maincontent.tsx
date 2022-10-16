@@ -1,10 +1,10 @@
 import React from 'react'
 import Pagecontent from '../Pagecontent/Pagecontent';
-import Topbar from '../Topbar/Topbar';
+import TopbarC from '../Topbar/TopbarC';
 function Maincontent() {
     return ( 
         <div id="content">
-        <Topbar/>
+        <TopbarC/>
         <Pagecontent/>
        </div>
      );

@@ -44,6 +44,10 @@ module.exports  = (app) =>{
    const avtoriz_f = require("./zapros/avtoriz") 
 
    app
+   .route('/logout')
+   .get(avtoriz_f.logout) 
+
+   app
    .route('/rolesavtoriz')
    .post(avtoriz_f.registration) 
 

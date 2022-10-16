@@ -46,11 +46,10 @@ function App() {
       break;
     case (status == 1 || status == 2 || status == 3) :
      return(
-        <div id="wrapper">
-          <Sitebar/>
+       
           <Content/>
-          {/* <input type="button" onClick={notifyMe} value="Notification"/>  */}
-        </div>
+          
+       
      )
       break;
   

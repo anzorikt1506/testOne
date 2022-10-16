@@ -1,13 +1,14 @@
 import React from 'react'
-const Topbar = () => {
+import { NavLink } from 'react-router-dom';
+interface TopbarF {
+  logoutF:()=>void
+}
+const Topbar: React.FC<TopbarF> = ({logoutF}) => {
     return ( 
 
         <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-        {/* Sidebar Toggle (Topbar) */}
-        <button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3">
-            <i className="fa fa-bars"></i>
-        </button>
+
 
         {/* Topbar Search */}
         <form
@@ -50,54 +51,43 @@ const Topbar = () => {
                 </div>
             </li>
 
-            {/* Nav Item - Alerts */}
+            {/* Nav Item - Alerts  Окно настроек*/}
             <li className="nav-item dropdown no-arrow mx-1">
-                <a className="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                <a title='Настройки' className="nav-link dropdown-toggle" id="alertsDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i className="fas fa-bell fa-fw"></i>
-                    {/* Counter - Alerts */}
-                    <span className="badge badge-danger badge-counter">3+</span>
+                    <i className="fa fa-cog" aria-hidden="true"></i>
                 </a>
                 {/* Dropdown - Alerts */}
                 <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                     aria-labelledby="alertsDropdown">
-                    <h6 className="dropdown-header">
-                        Alerts Center
-                    </h6>
-                    <a className="dropdown-item d-flex align-items-center" href="#">
+
+                    <NavLink to='/object' className="dropdown-item d-flex align-items-center">
                         <div className="mr-3">
                             <div className="icon-circle bg-primary">
                                 <i className="fas fa-file-alt text-white"></i>
                             </div>
                         </div>
                         <div>
-                            <div className="small text-gray-500">December 12, 2019</div>
-                            <span className="font-weight-bold">A new monthly report is ready to download!</span>
+                            <div className="small text-gray-500">Объекты</div>
                         </div>
-                    </a>
-                    <a className="dropdown-item d-flex align-items-center" href="#">
+                    </NavLink>
+                    <NavLink to='/department' className="dropdown-item d-flex align-items-center" >
                         <div className="mr-3">
                             <div className="icon-circle bg-success">
                                 <i className="fas fa-donate text-white"></i>
                             </div>
                         </div>
-                        <div>
-                            <div className="small text-gray-500">December 7, 2019</div>
-                            $290.29 has been deposited into your account!
-                        </div>
-                    </a>
-                    <a className="dropdown-item d-flex align-items-center" href="#">
+                        <div>Отделы</div>
+                    </NavLink>
+                    <NavLink to='/roles' className="dropdown-item d-flex align-items-center">
                         <div className="mr-3">
                             <div className="icon-circle bg-warning">
                                 <i className="fas fa-exclamation-triangle text-white"></i>
                             </div>
                         </div>
-                        <div>
-                            <div className="small text-gray-500">December 2, 2019</div>
-                            Spending Alert: We've noticed unusually high spending for your account.
-                        </div>
-                    </a>
-                    <a className="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                        <div>Роли</div>
+                    </NavLink>
+                    
                 </div>
             </li>
 
@@ -193,7 +183,7 @@ const Topbar = () => {
                         Activity Log
                     </a>
                     <div className="dropdown-divider"></div>
-                    <a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                    <a onClick={logoutF} className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                         <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                         Logout
                     </a>
@@ -207,3 +197,65 @@ const Topbar = () => {
 }
 
 export default Topbar ;
+
+
+
+
+
+
+
+
+// {/* Nav Item - Alerts */}
+// <li className="nav-item dropdown no-arrow mx-1">
+// <a className="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+//     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+//     <i className="fas fa-bell fa-fw"></i>
+//     {/* Counter - Alerts */}
+//     <span className="badge badge-danger badge-counter">3+</span>
+// </a>
+// {/* Dropdown - Alerts */}
+// <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+//     aria-labelledby="alertsDropdown">
+//     <h6 className="dropdown-header">
+//         Alerts Center
+//     </h6>
+//     <a className="dropdown-item d-flex align-items-center" href="#">
+//         <div className="mr-3">
+//             <div className="icon-circle bg-primary">
+//                 <i className="fas fa-file-alt text-white"></i>
+//             </div>
+//         </div>
+//         <div>
+//             <div className="small text-gray-500">December 12, 2019</div>
+//             <span className="font-weight-bold">A new monthly report is ready to download!</span>
+//         </div>
+//     </a>
+//     <a className="dropdown-item d-flex align-items-center" href="#">
+//         <div className="mr-3">
+//             <div className="icon-circle bg-success">
+//                 <i className="fas fa-donate text-white"></i>
+//             </div>
+//         </div>
+//         <div>
+//             <div className="small text-gray-500">December 7, 2019</div>
+//             $290.29 has been deposited into your account!
+//         </div>
+//     </a>
+//     <a className="dropdown-item d-flex align-items-center" href="#">
+//         <div className="mr-3">
+//             <div className="icon-circle bg-warning">
+//                 <i className="fas fa-exclamation-triangle text-white"></i>
+//             </div>
+//         </div>
+//         <div>
+//             <div className="small text-gray-500">December 2, 2019</div>
+//             Spending Alert: We've noticed unusually high spending for your account.
+//         </div>
+//     </a>
+//     <a className="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+// </div>
+// </li>
+        // {/* Sidebar Toggle (Topbar) */}
+        // <button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3">
+        //     <i className="fa fa-bars"></i>
+        // </button>

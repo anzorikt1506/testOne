@@ -39,17 +39,21 @@ const UserServis = require('../service/user-service')
           } else{res.json({error:'Нет нужных данных'});} 
 
         }catch(e){
-            res.json({error:e});
+            res.json({error:`${e} что то не так`});
         }
     }
     
-    // exports.activate= (req,res,next) => {
-    //     try{
+    exports.logout= (req,res,next) => {
+        try{
+            const {refreshToken} = req.cookies;
+            console.log(refreshToken);
+           UserServis.logout(refreshToken)
+           //res.json({fff:'  res.clearCookie(refreshToken)'})
 
-    //     }catch(e){
-            
-    //     }
-    // }
+        }catch(e){
+            res.json({error:`${e} что то не так`});
+        }
+    }
 
     // exports.refresh=(req,res,next)=>{
     //     try{

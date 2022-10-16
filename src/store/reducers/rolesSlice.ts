@@ -236,3 +236,15 @@ export const roles_add_API = (id_object: number, id_department: number,name:any)
       dispatch(rolesSlice.actions.roles_errorTest("Не получилось"));
     }
   };
+
+  export const roles_out =() => async (dispatch: AppDispatch) => {
+    try {
+      const response = await axios.get("http://localhost:5000/logout");
+        dispatch(rolesSlice.actions.roles_status(0));
+        localStorage.removeItem('token');
+      
+    } catch {
+      dispatch(rolesSlice.actions.roles_errorTest("Не получилось"));
+    }
+  };
+  
