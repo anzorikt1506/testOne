@@ -35,6 +35,7 @@ const StatusrolesC:React.FC<ObjectF> = ({
   ]
  const [statusid, statusidF] = useState<number>(id_status);
 
+ 
   const rolesStatus = statusM[statusid].text
   const statusMF = statusM.filter((statusM)=>{return statusM.id != statusid});
   const statusRed = (event:any) =>{

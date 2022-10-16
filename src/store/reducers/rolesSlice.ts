@@ -12,7 +12,8 @@ interface UserState {
   error: string;
   verithik: string;
   booleanverithik: boolean;
-  status: number
+  status: number,
+  name:string
 }
 export const initialState: UserState = {
   roles: [],
@@ -20,7 +21,8 @@ export const initialState: UserState = {
   error: "",
   verithik: "",
   booleanverithik: false,
-  status: 0
+  status: 0,
+  name:""
 };
 export const rolesSlice = createSlice({
   name: "rolesSlice",
@@ -50,6 +52,9 @@ export const rolesSlice = createSlice({
     },
     roles_status(state,action: PayloadAction<number>) {
       state.status = action.payload;
+    },
+    roles_name(state,action: PayloadAction<string>) {
+      state.name = action.payload;
     },
     roles_falseVerithik(state, actions: PayloadAction<boolean>) {
       state.booleanverithik = actions.payload;
@@ -215,6 +220,7 @@ export const roles_add_API = (id_object: number, id_department: number,name:any)
         );
         localStorage.setItem('token',response.data.token.accessToken)
         dispatch(rolesSlice.actions.roles_status(response.data.status));
+        dispatch(rolesSlice.actions.roles_name(response.data.name));
         console.log(response.data.status);
       
     } catch {
@@ -229,6 +235,7 @@ export const roles_add_API = (id_object: number, id_department: number,name:any)
     
         
         dispatch(rolesSlice.actions.roles_status(response.data.status));
+        dispatch(rolesSlice.actions.roles_name(response.data.name));
         localStorage.setItem('token',response.data.token.accessToken)
         console.log(response.data.status);
       
@@ -239,8 +246,9 @@ export const roles_add_API = (id_object: number, id_department: number,name:any)
 
   export const roles_out =() => async (dispatch: AppDispatch) => {
     try {
-      const response = await axios.get("http://localhost:5000/logout");
-        dispatch(rolesSlice.actions.roles_status(0));
+      const response = await axios.get("http://localhost:5000/logout",{ withCredentials:true});
+        dispatch(rolesSlice.actions.roles_status(5));
+        dispatch(rolesSlice.actions.roles_name(''));
         localStorage.removeItem('token');
       
     } catch {

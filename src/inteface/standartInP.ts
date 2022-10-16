@@ -47,6 +47,7 @@ export interface statusM {
   export interface avtorizRole {
     id:number,
     status:number,
+    name:string,
     token:{
         accessToken:string,
         refreshToken:string

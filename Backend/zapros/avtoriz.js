@@ -43,12 +43,11 @@ const UserServis = require('../service/user-service')
         }
     }
     
-    exports.logout= (req,res,next) => {
+    exports.logout= async(req,res,next) => {
         try{
             const {refreshToken} = req.cookies;
-            console.log(refreshToken);
            UserServis.logout(refreshToken)
-           //res.json({fff:'  res.clearCookie(refreshToken)'})
+          res.clearCookie('refreshToken').json({message:'Вы вышли'})
 
         }catch(e){
             res.json({error:`${e} что то не так`});

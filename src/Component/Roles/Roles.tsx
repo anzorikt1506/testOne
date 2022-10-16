@@ -48,8 +48,6 @@ const Roles: React.FC<ObjectF> = ({
                 </tr>
               </tfoot>
               <tbody>
-               
-                {error && <h1>{error}</h1>}
                {
                roles.map((roles) => ( 
               <tr key={roles.id}>

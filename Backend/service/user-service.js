@@ -15,11 +15,12 @@ const tokenServis = require('./token-service')
       })
       .then((data)=>{    
         if(Object.keys(data).length > 0){ 
-        const ttt = {status: data[0].status,id:data[0].id,activationLink: true}
+        const ttt = {status: data[0].status,id:data[0].id,name:data[0].name,activationLink: true}
         const token = tokenServis.generateTokens(ttt);
         tokenServis.saveToken(data[0].id,token.refreshToken)
         return {
           id:data[0].id,
+          name:data[0].name,
           status:data[0].status,
           token}
         
@@ -35,7 +36,7 @@ exports.refresh=(accessToken,refreshToken)=> {
      switch(true){
       case (dataAccess === null && dataRefresh === null):
          tokenServis.deleteRefreshToken(refreshToken);
-        return {message: 'Пользователь не авторизован',status:0,ss:false}
+        return {message: 'Пользователь не авторизован',status:5,ss:false}
         break;
       case(dataAccess === null && dataRefresh != null):
          tokenServis.deleteRefreshToken(refreshToken);
@@ -44,6 +45,7 @@ exports.refresh=(accessToken,refreshToken)=> {
         tokenServis.saveToken(dataRefresh.id,token.refreshToken)
         return{
           id:dataRefresh.id,
+          name:dataRefresh.name,
           status:dataRefresh.status,
           ss: true,
           token}
@@ -51,6 +53,7 @@ exports.refresh=(accessToken,refreshToken)=> {
       case(dataAccess != null):
       return{
         id:dataAccess.id,
+        name:dataAccess.name,
         status:dataAccess.status,
         accessToken:accessToken,
         ss: false

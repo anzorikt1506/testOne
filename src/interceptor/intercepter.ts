@@ -18,7 +18,7 @@ $api.interceptors.response.use((config)=>{
              const response = await axios.get(`${API_URL}/refresh`, { withCredentials:true})
              localStorage.setItem('token',response.data.accessToken)
              return $api.request(originalRequest)
-            } catch(e){console.log('Не авторизован')}
+            } catch(e){alert('Неверный пароль')}
       }
      throw error;
   })

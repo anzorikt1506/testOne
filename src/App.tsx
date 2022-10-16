@@ -41,12 +41,11 @@ function App() {
   }, []);
 
   switch (true) {
-    case (status == 0) :
+    case (status == 5) :
       return <LoginC/>
       break;
-    case (status == 1 || status == 2 || status == 3) :
+    case (status == 0 || status == 1 || status == 2 || status == 3) :
      return(
-       
           <Content/>
           
        

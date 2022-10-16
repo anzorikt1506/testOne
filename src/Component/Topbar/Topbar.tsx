@@ -1,9 +1,13 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
 interface TopbarF {
-  logoutF:()=>void
+  logoutF:()=>void,
+  name:string
 }
-const Topbar: React.FC<TopbarF> = ({logoutF}) => {
+const Topbar: React.FC<TopbarF> = ({
+    logoutF,
+    name
+}) => {
     return ( 
 
         <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -163,7 +167,7 @@ const Topbar: React.FC<TopbarF> = ({logoutF}) => {
             <li className="nav-item dropdown no-arrow">
                 <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span className="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                    <span className="mr-2 d-none d-lg-inline text-gray-600 small">{name}</span>
                     <img className="img-profile rounded-circle"
                         src="img/undraw_profile.svg"/>
                 </a>
