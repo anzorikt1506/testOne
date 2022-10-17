@@ -3,16 +3,18 @@ import React from "react";
 import { buildingIn, IRoles } from "../../inteface/standartInP";
 
 interface ObjectF {
-  buildingName:any,
-  login:string,
-  Floor:number,
-  buildingM:buildingIn[],
-  clickBuilding:(e:any)=>void,
-  changeLogin:(e:any)=>void,
-  changeFloor:(e:any)=>void,
-  changeRomm: (e:any)=>void,
-  avtoriz:()=>void,
-  roles:IRoles[],
+  opis:string
+  buildingName:any
+  login:string
+  Floor:number
+  buildingM:buildingIn[]
+  changeOpis:(e:any)=>void
+  clickBuilding:(e:any)=>void
+  changeLogin:(e:any)=>void
+  changeFloor:(e:any)=>void
+  changeRomm: (e:any)=>void
+  avtoriz:()=>void
+  roles:IRoles[]
   room:number
 }
 const Addtiket: React.FC<ObjectF> = ({
@@ -26,7 +28,9 @@ const Addtiket: React.FC<ObjectF> = ({
   room,
   buildingM,
   clickBuilding,
-  buildingName
+  buildingName,
+  opis,
+changeOpis
 }) => {
 
   return (
@@ -127,8 +131,8 @@ const Addtiket: React.FC<ObjectF> = ({
                                 
                                 <div className="form-group">
                                   Описание задачи 
-                                    <textarea style={{height:'150px'}} autoComplete="off" onChange={changeRomm}  className="form-control "
-                                        id="exampleInputPassword" value={room} placeholder="Краткое описание задачи"/>
+                                    <textarea style={{height:'150px'}} autoComplete="off" onChange={changeOpis}  className="form-control "
+                                        id="exampleInputPassword" value={opis} placeholder="Краткое описание задачи"/>
                                 </div>
 
                                 <p onClick={avtoriz} className="btn btn-primary btn-user btn-block">

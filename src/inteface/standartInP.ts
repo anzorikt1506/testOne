@@ -17,6 +17,17 @@ export interface IObject{
     name: string
     bool?: boolean
 }
+export interface Itasks{
+    id: number
+    id_user?: number
+    id_roles: number
+    id_department:number
+    id_object:number
+    status:number
+    building:number
+    room:number
+    floor:number
+}
 export interface Idepartment{
     id: number
     id_object: number

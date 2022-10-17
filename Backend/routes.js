@@ -41,20 +41,6 @@ module.exports  = (app) =>{
    .route('/departmentdel')
    .post(department_f.delDepartment)
       
-   const avtoriz_f = require("./zapros/avtoriz") 
-
-   app
-   .route('/logout')
-   .get(avtoriz_f.logout) 
-
-   app
-   .route('/rolesavtoriz')
-   .post(avtoriz_f.registration) 
-
-   app
-   .route('/refresh')
-   .get(avtoriz_f.refresh) 
-
    const roles_f = require("./zapros/roles.js") 
 
    app
@@ -107,6 +93,23 @@ const avtoriz = require("./zapros/avtoriz.js")
    app
    .route('/test1')
    .get(avtoriz.registration) 
+
+   app
+   .route('/logout')
+   .get(avtoriz.logout) 
+
+   app
+   .route('/rolesavtoriz')
+   .post(avtoriz.registration) 
+
+   app
+   .route('/refresh')
+   .get(avtoriz.refresh) 
+
+const tasks = require("./zapros/tasks.js") 
+   app
+   .route('/add_tasks')
+   .post(tasks.tasks_add) 
 
 }
 

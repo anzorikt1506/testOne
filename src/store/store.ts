@@ -5,13 +5,15 @@ import objectSlice from './reducers/objectSlice';
 import departmentSlice from './reducers/departmentSlice';
 import rolesSlice from './reducers/rolesSlice';
 import usersSlice from './reducers/usersSlice';
+import tasksSlice from './reducers/tasksSlice';
 //создание списка редюссоров
 const rootReducer =  combineReducers({
     userReducer,
     objectSlice,
     departmentSlice,
     rolesSlice,
-    usersSlice
+    usersSlice,
+    tasksSlice
 })
 //Создание Store
 export const  setupStore = () => {

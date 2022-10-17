@@ -40,7 +40,7 @@ exports.refresh=(accessToken,refreshToken)=> {
         break;
       case(dataAccess === null && dataRefresh != null):
          tokenServis.deleteRefreshToken(refreshToken);
-        const ttt = {status: dataRefresh.status,id:dataRefresh.id,activationLink: true}
+        const ttt = {status: dataRefresh.status,id:dataRefresh.id,name:dataRefresh.name,activationLink: true}
         const token = tokenServis.generateTokens(ttt);
         tokenServis.saveToken(dataRefresh.id,token.refreshToken)
         return{
