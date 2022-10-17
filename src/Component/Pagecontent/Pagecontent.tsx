@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Route, Routes } from "react-router-dom";
+import AddtiketC from "../Addtiket/AddtiketC";
 import Colorsystem from "../Colorsystem/Colorsystem";
 import Contentrow from "../Contentrow/Contentrow";
 import Datatables from "../Datatables/Datatables";
@@ -25,6 +26,12 @@ function Pagecontent() {
           <Contentrow />
         ]}
         />
+
+        <Route 
+        path="/new_tiket" 
+        element={<AddtiketC />} 
+        /> 
+
 
         <Route 
         path="/object" 

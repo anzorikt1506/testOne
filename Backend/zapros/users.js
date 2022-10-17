@@ -73,6 +73,32 @@ exports.redusers = ((req, res)=>{
         });           
 })
 
+
+exports.reduserspassword = ((req, res)=>{
+    new Promise((resolve,reject)=>{
+    const password = req.body.password
+    const id = req.body.id_users
+        pool.query(
+        `UPDATE users SET password = ? WHERE id = ?`,[password,id],
+        function (err, result) {
+            if (err) console.log(err);   
+            resolve('result')
+        });  
+    })
+    .then((data)=>{
+        pool.query(
+            `SELECT * FROM users  ORDER BY id desc`,
+            function (err, result) {
+                if (err) console.log(err);
+                res.send(result)
+    
+            });
+    })
+         
+})
+
+
+
 exports.usersdel = ((req, res)=>{
     const id = req.body.id
     const p = new Promise((resolve, reject) => {

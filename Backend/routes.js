@@ -84,6 +84,10 @@ module.exports  = (app) =>{
 const users_f = require("./zapros/users.js") 
 
    app
+   .route('/userspassword')
+   .post(users_f.reduserspassword)
+
+   app
    .route('/usersSpis')
    .get(users_f.usersSpis)
 

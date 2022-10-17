@@ -55,6 +55,15 @@ const Topbar: React.FC<TopbarF> = ({
                 </div>
             </li>
 
+            {/* Добавление заявки*/}
+            <li className="nav-item dropdown no-arrow mx-1">
+                <NavLink to='/new_tiket' title='Новая заявка' className="nav-link dropdown-toggle"  
+                     aria-haspopup="true" >
+                    <i className="fa fa-plus-circle" aria-hidden="true"></i> 
+                </NavLink>
+                </li>
+
+
             {/* Nav Item - Alerts  Окно настроек*/}
             <li className="nav-item dropdown no-arrow mx-1">
                 <a title='Настройки' className="nav-link dropdown-toggle" id="alertsDropdown" role="button"

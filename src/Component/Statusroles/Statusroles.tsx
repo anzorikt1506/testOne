@@ -27,7 +27,7 @@ return(
 
         {statusMF.map((statusMF)=>(
     
-    <li key={statusMF.id} ><a onClick={statusRed} id={`${statusMF.id}`}   className="dropdown-item" href="#">{statusMF.text}</a></li>
+    <li key={statusMF.id} ><a onClick={statusRed} id={`${statusMF.id}`}   className="dropdown-item" >{statusMF.text}</a></li>
     ))}
   </div>
 </div>

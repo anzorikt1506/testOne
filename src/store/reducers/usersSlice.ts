@@ -19,7 +19,7 @@ export const initialState: UserState = {
   error: "",
   verithik: "",
   booleanverithik: false,
-  status: 0
+  status: 5,
 };
 export const usersSlice = createSlice({
   name: "usersSlice",
@@ -138,6 +138,21 @@ export const users_add_API = (id_object: number, id_department: number,id_roli:n
         {
           id_users: id_users,
           option: option
+        }
+      );
+      dispatch(usersSlice.actions.users_trueTest(response.data));
+    } catch {
+      dispatch(usersSlice.actions.users_errorTest("Не получилось"));
+    }
+  };
+
+  export const users_password = (id_users:number, password:any) => async (dispatch: AppDispatch) => {
+    try {
+      const response = await axios.post<Iusers[]>(
+        "http://localhost:5000/userspassword",
+        {
+          id_users: id_users,
+          password: password
         }
       );
       dispatch(usersSlice.actions.users_trueTest(response.data));

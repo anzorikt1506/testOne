@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAppDispatch, useAppSelector } from "../../hook/redux";
-import  {usersSlice, users_add_API, users_add_API_spis, users_del, users_red_API } from '../../store/reducers/usersSlice';
+import  {usersSlice, users_add_API, users_add_API_spis, users_del, users_password, users_red_API } from '../../store/reducers/usersSlice';
 
 import Usersettings from './Usersettings';
 
@@ -55,6 +55,23 @@ const UsersettingsC: React.FC<ObjectF> = ({id_object,id_department, id_roli}) =>
       }
   }  
 
+  const userpassword = (event:any) =>{
+    const id = event.target.slot
+    const newusers = prompt("Введите пароль пользователя пользователя")
+    switch (true) {
+      case newusers == "": // if (x === 'value1')
+        alert("Поле пустое")
+        break;
+      case newusers && newusers.length < 3: // if (x === 'value2')
+        alert('Не меннее трёх символов')
+        break;
+      case newusers == null: // if (x === 'value2')
+        break;  
+      default:
+        dispatch(users_password(id,newusers))
+        break; 
+    }
+  }
    
   const del_users = (event:any) => {
     const id = event.target.slot
@@ -71,6 +88,7 @@ const UsersettingsC: React.FC<ObjectF> = ({id_object,id_department, id_roli}) =>
       add_users = {add_users}
       red_users= {red_users}
       del_users={del_users}
+      userpassword={userpassword}
     />
   );
 }

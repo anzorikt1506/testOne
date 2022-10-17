@@ -1,8 +1,8 @@
 import axios from 'axios';
 import {standartInP} from "../../inteface/standartInP"
-function Pagehading({
-  name,price}:standartInP
-) {
+const Pagehading: React.FC<standartInP> =({
+  name,price}
+) => {
 
   
    return ( 

@@ -39,6 +39,7 @@ export interface Iusers{
     fio: string
     bool?: boolean
     status: number
+    password:any
 }
 export interface statusM {
     id:number,
@@ -53,3 +54,7 @@ export interface statusM {
         refreshToken:string
     }
   }
+ export interface buildingIn{
+    num: number,
+    name:string
+   }
