@@ -4,14 +4,6 @@ export interface standartInP{
     name: string
     price: number
 }
-export interface IUser{
-    id: number
-    name: string
-    email: string
-    phone: string
-    website: string
-    username: string
-}
 export interface IObject{
     id: number
     name: string
@@ -19,14 +11,20 @@ export interface IObject{
 }
 export interface Itasks{
     id: number
-    id_user?: number
+    id_users?: number
     id_roles: number
     id_department:number
     id_object:number
     status:number
-    building:number
-    room:number
-    floor:number
+    building?:number
+    room?:number
+    floor?:number
+    data_start?:any
+    data_v_rabote?:any
+    data_end?:any
+    data_no?:any
+    opisanie:string
+    prichina?:string
 }
 export interface Idepartment{
     id: number
@@ -47,7 +45,7 @@ export interface Iusers{
     id_object: number
     id_departament: number
     id_roles:number
-    fio: string
+    fio: any
     bool?: boolean
     status: number
     password:any

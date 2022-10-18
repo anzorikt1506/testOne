@@ -6,6 +6,7 @@ import { department_add_API_spis } from "../../store/reducers/departmentSlice";
 import { object_add_API_spis } from "../../store/reducers/objectSlice";
 import { roles_add_API_spis, roles_avtoriz } from "../../store/reducers/rolesSlice";
 import { tasks_add } from "../../store/reducers/tasksSlice";
+import SpisokTasksC from "../SpisokTasks/SpisokTasksC";
 import Addtiket from "./Addtiket";
 
 
@@ -30,7 +31,7 @@ const AddtiketC: React.FC = ({
 
   }, []);
 
-   const buildingM = [
+  const buildingM = [
       {num:0,name:'Гостиница'},
       {num:1,name:'ЛОК'}
     ]
@@ -91,9 +92,14 @@ const AddtiketC: React.FC = ({
      }
     }
 
+return (
 
-  return (
-   <Addtiket
+<>
+
+  {id_roli < 1000 ?(
+  <SpisokTasksC/>
+  ) : (
+<Addtiket
    opis={opis}
    changeOpis={changeOpis}
    buildingName={buildingName}
@@ -108,7 +114,11 @@ const AddtiketC: React.FC = ({
    roles={roles1}
    room={room}
    />
+  )}
+   
+</>
   );
+  
 };
 
 export default  React.memo(AddtiketC);

@@ -1,7 +1,6 @@
 import React, { useReducer } from 'react';
 import './App.css';
 import { useAppDispatch, useAppSelector } from './hook/redux';
-import { testSlice } from './store/reducers/testSlice';
 import { useEffect, useState } from "react";
 import Content from './Component/Content/Content';
 import Sitebar from './Component/Sitebar/Sitebar';

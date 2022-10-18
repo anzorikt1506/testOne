@@ -1,8 +1,9 @@
 import * as React from "react";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {  Iusers } from "../../inteface/standartInP"; //импортировали интерфейс type пользователей
+
 import { AppDispatch } from "../store";
 import axios from "axios";
+import { Iusers } from "../../inteface/standartInP";
 
 interface UserState {
   //создали интерфейс типов для state редюссора
