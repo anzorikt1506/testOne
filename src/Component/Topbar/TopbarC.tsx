@@ -5,6 +5,7 @@ import {
   objectSlice, object_update_table,
 } from "../../store/reducers/objectSlice";
 import { roles_out } from '../../store/reducers/rolesSlice';
+import { tasksSlice } from '../../store/reducers/tasksSlice';
 import Topbar from './Topbar';
 
 
@@ -18,7 +19,7 @@ const SpisObjectTabC: React.FC = () => {
   }
 
     
-
+const shov = () => {dispatch(tasksSlice.actions.select_tasks(0))}
    
 
   
@@ -26,6 +27,7 @@ const SpisObjectTabC: React.FC = () => {
     <Topbar
     logoutF={logoutF}
     name={name}
+    shov={shov}
     />
   );
 }

@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../hook/redux";
 import { department_add_API_spis } from "../../store/reducers/departmentSlice";
 import { object_add_API_spis } from "../../store/reducers/objectSlice";
 import { roles_add_API_spis, roles_avtoriz } from "../../store/reducers/rolesSlice";
-import { tasks_add } from "../../store/reducers/tasksSlice";
+import { tasksSlice, tasks_add } from "../../store/reducers/tasksSlice";
 import SpisokTasksC from "../SpisokTasks/SpisokTasksC";
 import Addtiket from "./Addtiket";
 
@@ -22,6 +22,7 @@ const AddtiketC: React.FC = ({
 
     const dispatch = useAppDispatch()
     const {roles} = useAppSelector((state)=>state.rolesSlice)
+    const {selected} = useAppSelector((state)=>state.tasksSlice)
   useEffect(() => {
     if(roles.length == 0){
       dispatch(object_add_API_spis(""));
@@ -88,15 +89,20 @@ const AddtiketC: React.FC = ({
          room,
          Floor,
          opis))
+       dispatch(tasksSlice.actions.select_tasks(1))  
+         opisF('')
+         FloorF('')
+         roomF('')
+         
       break;  
      }
     }
 
 return (
-
+ 
 <>
-
-  {id_roli < 1000 ?(
+  
+  {selected == 1 ?(
   <SpisokTasksC/>
   ) : (
 <Addtiket

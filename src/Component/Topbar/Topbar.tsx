@@ -2,11 +2,13 @@ import React from 'react'
 import { NavLink } from 'react-router-dom';
 interface TopbarF {
   logoutF:()=>void,
+  shov:()=>void,
   name:string
 }
 const Topbar: React.FC<TopbarF> = ({
     logoutF,
-    name
+    name,
+    shov
 }) => {
     return ( 
 
@@ -57,7 +59,7 @@ const Topbar: React.FC<TopbarF> = ({
 
             {/* Добавление заявки*/}
             <li className="nav-item dropdown no-arrow mx-1">
-                <NavLink to='/new_tiket' title='Новая заявка' className="nav-link dropdown-toggle"  
+                <NavLink onClick={shov} to='/new_tiket' title='Новая заявка' className="nav-link dropdown-toggle"  
                      aria-haspopup="true" >
                     <i className="fa fa-plus-circle" aria-hidden="true"></i> 
                 </NavLink>

@@ -13,7 +13,7 @@ interface ObjectF {
   booleanverithik: boolean;
   red_object: (event: any) => void;
   del_object: (event: any) => void;
-  nameObject:(tip:number,id:any,id1?:any)=>any
+  nameObject:(tip:number,id:any,id_w:any)=>any
 }
 const SpisokTasks: React.FC<ObjectF> = ({
   error,
@@ -27,7 +27,7 @@ const SpisokTasks: React.FC<ObjectF> = ({
   booleanverithik,
   red_object,
   del_object,
-  nameObject
+  nameObject 
 }) => {
 
   return (
@@ -62,6 +62,7 @@ const SpisokTasks: React.FC<ObjectF> = ({
                   <th>ФИО Исполнителя</th>
                   <th>Описание</th>
                   <th>Статус</th>
+                  <th>Время</th>
                   <th>Причина</th>
                 </tr>
               </thead>
@@ -73,21 +74,23 @@ const SpisokTasks: React.FC<ObjectF> = ({
                   <th>ФИО Исполнителя</th>
                   <th>Описание</th>
                   <th>Статус</th>
+                  <th>Время</th>
                   <th>Причина</th>
                 </tr>
               </tfoot>
               <tbody>
                 {error && <h1>{error}</h1>}
                 {tasks.map((tasks) => (
-                  <tr style={{backgroundColor: `${nameObject(5,tasks.status)[1]}`, color: `${nameObject(5,tasks.status)[2]}`}} className="point" key={tasks.id}  >
+                  <tr style={{backgroundColor: `${nameObject(5,tasks.status,tasks.id)[1]}`, color: `${nameObject(5,tasks.status,tasks.id)[2]}`}} className="point" key={tasks.id}  >
                     <td >{tasks.id}</td>
-                    <td >{nameObject(4,tasks.building)} (этаж {tasks.floor} номер {tasks.room})</td>
-                    <td >{nameObject(2,tasks.id_roles)}</td>
-                    <td >{nameObject(3,tasks.id_users)}</td>
+                    <td >{nameObject(4,tasks.building,tasks.id)} (этаж {tasks.floor} номер {tasks.room})</td>
+                    <td >{nameObject(2,tasks.id_roles,tasks.id)}</td>
+                    <td >{nameObject(3,tasks.id_users,tasks.id)}</td>
                     <td >{tasks.opisanie}</td>
-                    <td >{nameObject(5,tasks.status)[0]}</td>
-                    <td >{tasks.prichina}</td>
-                  </tr>
+                    <td >{nameObject(5,tasks.status,tasks.id)[0]}</td>
+                    <td >{nameObject(5,tasks.status,tasks.id)[3]}</td>
+                    <td >{tasks.prichina}</td> 
+                  </tr>   
                 ))}
               </tbody>
             </table>

@@ -19,7 +19,7 @@ export interface Itasks{
     building?:number
     room?:number
     floor?:number
-    data_start?:any
+    data_statrt?:any
     data_v_rabote?:any
     data_end?:any
     data_no?:any

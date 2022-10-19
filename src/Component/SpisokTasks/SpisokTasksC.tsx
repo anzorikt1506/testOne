@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../hook/redux";
+import { time_old, useAppDispatch, useAppSelector } from "../../hook/redux";
 import { IObject } from '../../inteface/standartInP';
 import {
   objectSlice,
@@ -18,7 +18,11 @@ const SpisokTasksC = () => {
     const { department } = useAppSelector((state) => state.departmentSlice);
     const { roles } = useAppSelector((state) => state.rolesSlice);
     const { users } = useAppSelector((state) => state.usersSlice);
-    const nameObject = (tip:number,id:any,id1:any) => {       
+
+    const [show1, fshow1] = useState<boolean>(false);
+
+
+    const nameObject = (tip:number,id:any,id_w:any) => {       
       switch(true){
        case(tip==1):
         const f = department.filter((object)=> object.id == id)
@@ -35,22 +39,30 @@ const SpisokTasksC = () => {
        case(tip == 4 && id == 0  ):
         return 'Гостиница'
        break;
-       case(tip == 4 && id == 1  ):
+       case(tip == 4 && id == 1  ): 
         return 'ЛОК'
        break;
        case(tip == 5 && id == 0  ):
-       const ff = ['Ждёт выполнения','#d6d8d9','#383241']
+       const d_e_tasks = tasks.filter((tasks)=>tasks.id == id_w)
+       let time_expect = time_old(d_e_tasks[0].data_statrt) 
+       const ff = ['Ждёт выполнения','#d6d8d9','#383241',time_expect] 
         return ff
        break;
       case(tip == 5 && id == 1  ):
-      const ff1 = ['Выполняется','#fff3cd','#856404']
+      const d_w_tasks = tasks.filter((tasks)=>tasks.id == id_w)
+      let time_work = time_old(d_w_tasks[0].data_v_rabote)
+      const ff1 = ['Выполняется','#de9c00','#856404',time_work]
       return ff1
       break;
       case(tip == 5 && id == 2  ):
-      const ff2 = ['Выполнена','#d4edda','#155724']
+      const d_y_tasks = tasks.filter((tasks)=>tasks.id == id_w)
+      let time_yes = time_old(d_y_tasks[0].data_end)
+      const ff2 = ['Выполнена','#38bb60','#155724',time_yes]
       return ff2
       case(tip == 5 && id == 3  ):
-      const ff3 = ['Не выполнена','#f8d7da','#721024']
+      const d_no_tasks = tasks.filter((tasks)=>tasks.id == id_w) 
+      let time_no = time_old(d_no_tasks[0].data_end)
+      const ff3 = ['Не выполнена','#ff4848','black',time_no] 
       return ff3
        default:
         return ''
