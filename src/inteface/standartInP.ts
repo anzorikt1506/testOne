@@ -67,3 +67,8 @@ export interface statusM {
     num: number,
     name:string
    }
+   export interface str_numIn{
+    key:number,
+    str: string ,
+    activ:string
+   }  

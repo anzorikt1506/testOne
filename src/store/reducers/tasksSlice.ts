@@ -3,10 +3,14 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Itasks } from "../../inteface/standartInP"; //импортировали интерфейс type пользователей
 import { AppDispatch } from "../store";
 import axios from "axios";
+import env from "react-dotenv";
+import { data_default, data_old } from "../../hook/redux";
 
 interface UserState {
   //создали интерфейс типов для state редюссора
   tasks: Itasks[];
+  data_start:string;
+  data_end:string;
   isLoading: boolean;
   error: string;
   verithik: string;
@@ -19,7 +23,9 @@ export const initialState: UserState = {
   error: "",
   verithik: "",
   booleanverithik: false,
-  selected: 0
+  selected: 0,
+  data_start:data_default(),
+  data_end:data_old(7)
 };
 export const tasksSlice = createSlice({
   name: "tasksSlice",
@@ -28,6 +34,12 @@ export const tasksSlice = createSlice({
     select_tasks(state,action: PayloadAction<number>){
      state.selected = action.payload
     },
+    data_old_tasks(state,action: PayloadAction<string>){
+      state.data_end = action.payload
+     },
+     data_start_tasks(state,action: PayloadAction<string>){
+      state.data_start = action.payload
+     }, 
     loadTest_tasks(state, action: PayloadAction<string>) {
       state.isLoading = true;
     },
@@ -61,7 +73,7 @@ export const tasks_add =(
     try {
       dispatch(tasksSlice.actions.loadTest_tasks("yy"));
       const response = await axios.post<Itasks[]>(
-        "http://localhost:5000/add_tasks",
+        `${env.Server_URL}add_tasks`,
         {
           id_roles,
           id_department,
@@ -74,11 +86,22 @@ export const tasks_add =(
       );
 
         dispatch(tasksSlice.actions.trueTest_tasks(response.data));
-        window.history.pushState('','/');
-        console.log(response.data)
+        
+
       
     } catch {
       dispatch(tasksSlice.actions.errorTest_tasks("Не получилось"));
     }
   };
 
+  export const tasks_update =() => async (dispatch: AppDispatch) => {
+      try {
+        dispatch(tasksSlice.actions.loadTest_tasks("yy"));
+        const response = await axios.get<Itasks[]>(`${env.Server_URL}tasks_update`);
+          dispatch(tasksSlice.actions.trueTest_tasks(response.data));
+        
+      } catch {
+        dispatch(tasksSlice.actions.errorTest_tasks("Не получилось"));
+      }
+    };
+  

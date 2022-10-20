@@ -11,8 +11,8 @@ import { isAnyOf } from '@reduxjs/toolkit';
 
 
 
-
-
+ 
+ 
 	 
 // function notifyMe() {
 //   if (!("Notification" in window)) {
@@ -35,8 +35,8 @@ import { isAnyOf } from '@reduxjs/toolkit';
 function App() {
   const {status} = useAppSelector((state)=>state.rolesSlice)
   const dispatch = useAppDispatch()
-
-  useEffect(() => {
+  
+  useEffect(() => { 
     if (localStorage.getItem('token')) {
        dispatch(roles_refresh())
       }

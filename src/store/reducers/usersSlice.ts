@@ -4,6 +4,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppDispatch } from "../store";
 import axios from "axios";
 import { Iusers } from "../../inteface/standartInP";
+import env from "react-dotenv";
 
 interface UserState {
   //создали интерфейс типов для state редюссора
@@ -76,7 +77,7 @@ export const users_add_API = (id_object: number, id_department: number,id_roli:n
     try {
       dispatch(usersSlice.actions.users_loadTest("yy"));
       const response = await axios.post<Iusers[]>(
-        "http://localhost:5000/addusers",
+        `${env.Server_URL}addusers`,
         {
           id_department: id_department,
           id_object: id_object,
@@ -99,7 +100,7 @@ export const users_add_API = (id_object: number, id_department: number,id_roli:n
     try {
       dispatch(usersSlice.actions.users_loadTest("yy"));
       const response = await axios.post<Iusers[]>(
-        "http://localhost:5000/redusers",
+        `${env.Server_URL}redusers`,
         {
           id: id,
           name:name
@@ -121,7 +122,7 @@ export const users_add_API = (id_object: number, id_department: number,id_roli:n
     try {
       dispatch(usersSlice.actions.users_loadTest("yy"));
       const response = await axios.post<Iusers[]>(
-        "http://localhost:5000/usersdel",
+        `${env.Server_URL}usersdel`,
         {
           id: id
         }
@@ -135,7 +136,7 @@ export const users_add_API = (id_object: number, id_department: number,id_roli:n
   export const users_option = (id_users:number, option:number) => async (dispatch: AppDispatch) => {
     try {
       const response = await axios.post<Iusers[]>(
-        "http://localhost:5000/usersoption",
+        `${env.Server_URL}usersoption`,
         {
           id_users: id_users,
           option: option
@@ -150,7 +151,7 @@ export const users_add_API = (id_object: number, id_department: number,id_roli:n
   export const users_password = (id_users:number, password:any) => async (dispatch: AppDispatch) => {
     try {
       const response = await axios.post<Iusers[]>(
-        "http://localhost:5000/userspassword",
+        `${env.Server_URL}userspassword`,
         {
           id_users: id_users,
           password: password

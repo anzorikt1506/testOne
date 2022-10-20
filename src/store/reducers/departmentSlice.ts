@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Idepartment } from "../../inteface/standartInP"; //импортировали интерфейс type пользователей
 import { AppDispatch } from "../store";
 import axios from "axios";
-
+import env from "react-dotenv";
 interface UserState {
   //создали интерфейс типов для state редюссора
   department: Idepartment[];
@@ -66,7 +66,7 @@ export const department_add_API =
     try {
       dispatch(departmentSlice.actions.departament_loadTest("yy"));
       const response = await axios.post<Idepartment[]>(
-        "http://localhost:5000/addDepartment",
+        `${env.Server_URL}addDepartment`,
         {
           name: name,
           id_object: id_object
@@ -87,7 +87,7 @@ export const department_add_API_spis =
     try {
       dispatch(departmentSlice.actions.departament_loadTest("yy"));
       const response = await axios.post<Idepartment[]>(
-        "http://localhost:5000/department",
+        `${env.Server_URL}department`,
         {
           nameObject: name,
         }
@@ -102,7 +102,7 @@ export const department_object = (id_object:any) => async(dispatch:AppDispatch)=
   try{
     dispatch(departmentSlice.actions.departament_loadTest("yy"));
           const response = await axios.post<Idepartment[]>(
-        "http://localhost:5000/department",
+            `${env.Server_URL}department`,
         {
           nameObject: '',
         }
@@ -136,7 +136,7 @@ export const depatment_del = (id:number,id_object:number) => async (dispatch: Ap
   try {
     dispatch(departmentSlice.actions.departament_loadTest("yy"));
     const response = await axios.post<Idepartment[]>(
-      "http://localhost:5000/departmentdel",
+      `${env.Server_URL}departmentdel`,
       {
         id: id
       }

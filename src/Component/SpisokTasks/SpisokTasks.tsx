@@ -1,43 +1,34 @@
 import { eventNames } from "process";
 import React from "react";
-import {IObject, Itasks } from "../../inteface/standartInP";
+import {IObject, Itasks, str_numIn } from "../../inteface/standartInP";
 interface ObjectF {
-  name: (event: any) => void;
-  objectName: string;
-  error: string;
-  isLoading: boolean;
   tasks: Itasks[];
-  veryfic: string;
-  show: boolean;
-  verithik: string;
-  booleanverithik: boolean;
-  red_object: (event: any) => void;
-  del_object: (event: any) => void;
-  nameObject:(tip:number,id:any,id_w:any)=>any
+  valid_spis:(tip:number,id:any,id_w:any)=>any
+  update_tasks:()=>void
+  str_click:any,
+  data_start:string,
+  data_end:string,
+  date_v_old:(e:any)=>void,
+  date_v_start:(e:any)=>void
 }
 const SpisokTasks: React.FC<ObjectF> = ({
-  error,
-  isLoading,
-  name,
   tasks,
-  objectName,
-  show,
-  veryfic,
-  verithik,
-  booleanverithik,
-  red_object,
-  del_object,
-  nameObject 
+  valid_spis,
+  update_tasks,
+  str_click,
+  data_start,
+  data_end,
+  date_v_old,
+  date_v_start
 }) => {
 
   return (
     <>
-      {isLoading && (
-        <div className="okno" role="alert"> {/* alert alert-primary */}
-          Идёт загрузка
-        </div>
-      )}
-      <button type="submit" className="btn btn-primary">
+
+
+<input onChange={date_v_old} className="btn  btn-info" type='date' value={data_end} /><i className="fa fa-arrow-right" aria-hidden="true">  </i>
+<input onChange={date_v_start} className="btn  btn-secondary" type='date' value={data_start}/>
+      <button onClick={update_tasks} type="submit" className="btn btn-primary">
         Добавить заявку
       </button>
       <br />
@@ -79,16 +70,16 @@ const SpisokTasks: React.FC<ObjectF> = ({
                 </tr>
               </tfoot>
               <tbody>
-                {error && <h1>{error}</h1>}
+
                 {tasks.map((tasks) => (
-                  <tr style={{backgroundColor: `${nameObject(5,tasks.status,tasks.id)[1]}`, color: `${nameObject(5,tasks.status,tasks.id)[2]}`}} className="point" key={tasks.id}  >
+                  <tr style={{backgroundColor: `${valid_spis(5,tasks.status,tasks.id)[1]}`, color: `${valid_spis(5,tasks.status,tasks.id)[2]}`}} className="point" key={tasks.id}  >
                     <td >{tasks.id}</td>
-                    <td >{nameObject(4,tasks.building,tasks.id)} (этаж {tasks.floor} номер {tasks.room})</td>
-                    <td >{nameObject(2,tasks.id_roles,tasks.id)}</td>
-                    <td >{nameObject(3,tasks.id_users,tasks.id)}</td>
+                    <td >{valid_spis(4,tasks.building,tasks.id)} (этаж {tasks.floor} номер {tasks.room})</td>
+                    <td >{valid_spis(2,tasks.id_roles,tasks.id)}</td>
+                    <td >{valid_spis(3,tasks.id_users,tasks.id)}</td>
                     <td >{tasks.opisanie}</td>
-                    <td >{nameObject(5,tasks.status,tasks.id)[0]}</td>
-                    <td >{nameObject(5,tasks.status,tasks.id)[3]}</td>
+                    <td >{valid_spis(5,tasks.status,tasks.id)[0]}</td>
+                    <td >{valid_spis(5,tasks.status,tasks.id)[3]}</td>
                     <td >{tasks.prichina}</td> 
                   </tr>   
                 ))}
@@ -97,6 +88,32 @@ const SpisokTasks: React.FC<ObjectF> = ({
           </div>
         </div>
       </div>
+
+
+
+      <nav aria-label="Page navigation example">
+  <ul className="pagination">
+    <li className="page-item">
+      <a className="page-link"  aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span className="sr-only">Previous</span>
+      </a>
+    </li>
+      
+    {str_click.map((str:any)=>(
+      <li style={{cursor:'pointer'}} key={str.key} className={`page-item ${str.activ}`}><a className="page-link" >{str.str}</a></li>
+    ))}
+    {console.log(str_click)}
+     
+    <li className="page-item">
+      <a className="page-link"  aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span className="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
     </>
   );
 };

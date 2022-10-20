@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { str_numIn } from '../inteface/standartInP';
 import { AppDispatch, RootState } from "../store/store";
 
 export const useAppDispatch = () => useDispatch<AppDispatch>()
@@ -65,6 +66,54 @@ export const time_old = (firstDate1:any) => {
 
  }
 
+export const data_default = () =>{
+    const today = new Date();
+    return `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`
+}
 
+export const data_old = (day:number) =>{
+    const today = new Date();
+    today.setDate(today.getDate() - day)
+    return `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`
+}
+
+ export const str_navig_map = (Count_res:number,Count_res_str:number,True_str:number) => {
+    if(Count_res != 0){
+      const count_str = Math.ceil(Count_res/Count_res_str); 
+      const count_srt_left = count_str - True_str;
+      if(True_str <=count_str){
+         const map_str = [
+            {key: 101,str:`${True_str-4}`, activ: 'disabled'},
+            {key: 102,str:`${True_str-3}`, activ: 'disabled'},
+            {key: 103,str:`${True_str-2}`, activ: 'disabled'},
+            {key: 103,str:`${True_str-1}`, activ: 'disabled'},
+            {key: 104, str:`${True_str}`, activ: 'activate'},
+            {key: 105, str:`${True_str+1}`, activ: 'disabled'},
+            {key: 106, str:`${True_str+2}`, activ: 'disabled'},
+            {key: 107, str:`${True_str+3}`, activ: 'disabled'},
+            {key: 108, str:`${True_str+4}`, activ: 'disabled'},
+            {key: 109, str:`${True_str+5}`, activ: 'disabled'},
+        ];
+        if((True_str + 5) > count_str){map_str.pop()}
+        if((True_str + 4) > count_str){map_str.pop()}
+        if((True_str + 3) > count_str){map_str.pop()}
+         if((True_str + 2) > count_str){map_str.pop()}
+         if((True_str + 1) > count_str){map_str.pop()}
+         if((True_str - 4) <= 0){map_str.shift()}
+         if((True_str - 3) <= 0){map_str.shift()}
+         if((True_str - 2) <= 0){map_str.shift()}
+         if((True_str - 1) <= 0){map_str.shift()}
+         if((True_str - 1) != 1 && (True_str - 1) > 0){map_str.unshift({key: 90, str:'...', activ: 'disabled'}); map_str.unshift({key: 89, str:'1', activ: 'disabled'})}
+         if(count_srt_left > 3){map_str.push({key: 88, str:'...', activ: 'disabled'}); map_str.push({key: 87, str:`${count_str}`, activ: 'disabled'})}
+
+         return map_str;
+      }
+     
+ 
+    }else{
+      return [];
+    }
+  
+   }
 
  

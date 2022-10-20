@@ -111,5 +111,9 @@ const tasks = require("./zapros/tasks.js")
    .route('/add_tasks')
    .post(tasks.tasks_add) 
 
+   app
+   .route('/tasks_update')
+   .get(tasks.tasks_update_z) 
+
 }
 

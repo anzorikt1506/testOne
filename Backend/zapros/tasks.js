@@ -30,4 +30,15 @@ const UserServis = require('../service/user-service')
     }
     
 
-    
+    exports.tasks_update_z = (req,res,next) => {
+        try{
+                pool.query(
+                    `SELECT * FROM tasks  ORDER BY id desc`,
+                    function (err, result) {
+                        if (err) console.log(err);
+                        res.send(result)
+                    });           
+        }catch(e){
+            res.json({error:e});
+        }
+    }

@@ -4,6 +4,7 @@ import {  avtorizRole, IRoles } from "../../inteface/standartInP"; //импор�
 import { AppDispatch } from "../store";
 import axios from "axios";
 import $api from "../../interceptor/intercepter";
+import env from "react-dotenv";
 
 interface UserState {
   //создали интерфейс типов для state редюссора
@@ -76,7 +77,7 @@ export default rolesSlice.reducer;
 export const roles_add_API_spis =() => async (dispatch: AppDispatch) => {
     try {
       dispatch(rolesSlice.actions.roles_loadTest("yy"));
-      const response = await axios.get<IRoles[]>("http://localhost:5000/rolesSpis");
+      const response = await axios.get<IRoles[]>(`${env.Server_URL}rolesSpis`);
       dispatch(rolesSlice.actions.roles_trueTest(response.data));
     } catch {
       dispatch(rolesSlice.actions.roles_errorTest("Не получилось"));
@@ -87,7 +88,7 @@ export const roles_add_API = (id_object: number, id_department: number,name:any)
     try {
       dispatch(rolesSlice.actions.roles_loadTest("yy"));
       const response = await axios.post<IRoles[]>(
-        "http://localhost:5000/addroles",
+        `${env.Server_URL}addroles`,
         {
           id_department: id_department,
           id_object: id_object,
@@ -109,7 +110,7 @@ export const roles_add_API = (id_object: number, id_department: number,name:any)
     try {
       dispatch(rolesSlice.actions.roles_loadTest("yy"));
       const response = await axios.post<IRoles[]>(
-        "http://localhost:5000/redroles",
+        `${env.Server_URL}redroles`,
         {
           id: id,
           name:name
@@ -129,7 +130,7 @@ export const roles_add_API = (id_object: number, id_department: number,name:any)
     try {
       dispatch(rolesSlice.actions.roles_loadTest("yy"));
       const response = await axios.post<IRoles[]>(
-        "http://localhost:5000/redpassroles",
+        `${env.Server_URL}redpassroles`,
         {
           id: id,
           name:name
@@ -149,7 +150,7 @@ export const roles_add_API = (id_object: number, id_department: number,name:any)
     try {
       dispatch(rolesSlice.actions.roles_loadTest("yy"));
       const response = await axios.post<IRoles[]>(
-        "http://localhost:5000/redemailroles",
+        `${env.Server_URL}redemailroles`,
         {
           id: id,
           name:name
@@ -169,7 +170,7 @@ export const roles_add_API = (id_object: number, id_department: number,name:any)
     try {
       dispatch(rolesSlice.actions.roles_loadTest("yy"));
       const response = await axios.post<IRoles[]>(
-        "http://localhost:5000/rolesdel",
+        `${env.Server_URL}rolesdel`,
         {
           id: id
         }
@@ -183,7 +184,7 @@ export const roles_add_API = (id_object: number, id_department: number,name:any)
   export const roles_option = (id_roles:number, option:number) => async (dispatch: AppDispatch) => {
     try {
       const response = await axios.post<IRoles[]>(
-        "http://localhost:5000/rolesoption",
+        `${env.Server_URL}rolesoption`,
         {
           id_roles: id_roles,
           option: option
@@ -199,7 +200,7 @@ export const roles_add_API = (id_object: number, id_department: number,name:any)
     try {
       dispatch(rolesSlice.actions.roles_loadTest("yy"));
       const response = await axios.post<IRoles[]>(
-        "http://localhost:5000/redrolespassword",
+        `${env.Server_URL}redrolespassword`,
         {
           id: id,
           name:name
@@ -215,7 +216,7 @@ export const roles_add_API = (id_object: number, id_department: number,name:any)
   export const roles_avtoriz =(login:number,password:string) => async (dispatch: AppDispatch) => {
     try {
       const response = await $api.post<avtorizRole>(
-        "http://localhost:5000/rolesavtoriz",
+        `${env.Server_URL}rolesavtoriz`,
         {login,password}
         );
         localStorage.setItem('token',response.data.token.accessToken)
@@ -230,7 +231,7 @@ export const roles_add_API = (id_object: number, id_department: number,name:any)
 
   export const roles_refresh =() => async (dispatch: AppDispatch) => {
     try {
-      const response = await $api.get("http://localhost:5000/refresh");
+      const response = await $api.get(`${env.Server_URL}refresh`);
      
     
         
@@ -246,7 +247,7 @@ export const roles_add_API = (id_object: number, id_department: number,name:any)
 
   export const roles_out =() => async (dispatch: AppDispatch) => {
     try {
-      const response = await axios.get("http://localhost:5000/logout",{ withCredentials:true});
+      const response = await axios.get(`${env.Server_URL}logout`,{ withCredentials:true});
         dispatch(rolesSlice.actions.roles_status(5));
         dispatch(rolesSlice.actions.roles_name(''));
         localStorage.removeItem('token');

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from "react";
-import { time_midl, time_old, useAppDispatch, useAppSelector } from "../../hook/redux";
-import { IObject } from '../../inteface/standartInP';
+import { str_navig_map, time_midl, time_old, useAppDispatch, useAppSelector } from "../../hook/redux";
+import { IObject, str_numIn } from '../../inteface/standartInP';
 import {
   objectSlice,
   object_add_API,
@@ -9,18 +9,20 @@ import {
   object_del_name,
   object_udate_name,
 } from "../../store/reducers/objectSlice";
+import { tasksSlice, tasks_update } from '../../store/reducers/tasksSlice';
 import { users_add_API_spis } from '../../store/reducers/usersSlice';
 import SpisokTasks from './SpisokTasks';
 
 const SpisokTasksC = () => {
   const dispatch = useAppDispatch();
-  const { error, isLoading, tasks, verithik, booleanverithik } = useAppSelector((state) => state.tasksSlice);
+  const {tasks, data_start, data_end } = useAppSelector((state) => state.tasksSlice);
     const { department } = useAppSelector((state) => state.departmentSlice);
     const { roles } = useAppSelector((state) => state.rolesSlice);
     const { users } = useAppSelector((state) => state.usersSlice);
-
-
-    const nameObject = (tip:number,id:any,id_w:any) => {       
+     
+    
+    
+    const valid_spis = (tip:number,id:any,id_w:any) => {       
       switch(true){
        case(tip==1):
         const f = department.filter((object)=> object.id == id)
@@ -66,108 +68,50 @@ const SpisokTasksC = () => {
         return ''
         break;
       }
-
-
     }
     
+    const update_tasks = () => {
+     dispatch(tasks_update()) 
+    }
+
     const [show1, fshow1] = useState<number>(0);
   useEffect(() => {
     if(tasks.length == 0){
      dispatch(object_add_API_spis("")); 
     }
-  
-
-
-
-
-
     dispatch(users_add_API_spis());
   }, []);
+
+
   setInterval(() => {
     if(show1 < 10){fshow1(show1+1)}else{fshow1(0)}  
-   }, 1000);
-  const [show, fshow] = useState<boolean>(false);
-  const [veryfic, veryficf] = useState<string>("");
-  const [objectName, fmodals] = useState<string>("");
-  
-  const name = (event: any) => {
-    fmodals(event.target.value);
-  };
-
-  const red_object = (event:any) => {
     
-   const slot = event.target.slot
-   const id = event.target.className
-   let new_value_object = prompt (`Введите ${event.target.role}`)
-   switch (true) {
-    case new_value_object == "": 
-      veryficf("Поле пустое");
-      fshow(true);
-      dispatch(objectSlice.actions.falseVerithik(false));
-      break;
-    case new_value_object && new_value_object.length < 3 && slot == 'name': 
-      veryficf("Не меннее трёх символов");
-      fshow(true);
-      dispatch(objectSlice.actions.falseVerithik(false));
-      break;  
-    case new_value_object === null: 
-      break;    
-    default:
-      dispatch(object_udate_name(`${new_value_object}`,id));
-      fmodals("");
-      veryficf("Поле пустое");
-      fshow(false);
-      dispatch(objectSlice.actions.selectObject(0))
-      dispatch(objectSlice.actions.falseVerithik(false));
-  }
-  }
+   }, 30000);
 
-  const del_object = (event:any) => {
-    const slot = event.target.slot
-    const id = event.target.className
-    let new_value_object = prompt (`${event.target.role}`)
-     if (new_value_object != null){
-     dispatch(object_del_name(id)) 
-     dispatch(objectSlice.actions.selectObject(0))
-     }
+   
+    const str_click = str_navig_map(5000,10,250)
+    
+
+ 
+   const date_v_old = (e:any)=>{
+    dispatch(tasksSlice.actions.data_old_tasks(e.target.value))
+   }
+   const date_v_start = (e:any)=>{
+    dispatch(tasksSlice.actions.data_start_tasks(e.target.value))
    }
 
-  const addObject = () => {
-    switch (true) {
-      case objectName == "": // if (x === 'value1')
-        veryficf("Поле пустое");
-        fshow(true);
-        dispatch(objectSlice.actions.falseVerithik(false));
-        break;
-      case objectName.length < 3: // if (x === 'value2')
-        veryficf("Не меннее трёх символов");
-        fshow(true);
-        dispatch(objectSlice.actions.falseVerithik(false));
-        break;
-      default:
-        dispatch(object_add_API(`${objectName}`));
-        fmodals("");
-        veryficf("Поле пустое");
-        fshow(false);
-        dispatch(objectSlice.actions.falseVerithik(false));
-        dispatch(objectSlice.actions.selectObject(0))
-    }
-  };
+
 
   return (
     <SpisokTasks
-      name={name}
-      error={error}
-      show={show}
-      veryfic={veryfic}
-      booleanverithik={booleanverithik}
-      isLoading={isLoading}
-      objectName={objectName}
       tasks={tasks}
-      verithik={verithik}
-      red_object={red_object}
-      del_object={del_object}
-      nameObject={nameObject}
+      valid_spis={valid_spis}
+      update_tasks={update_tasks}
+      str_click={str_click}
+      data_start={data_start}
+      data_end={data_end}
+      date_v_old={date_v_old}
+      date_v_start={date_v_start}
     />
   );
 }

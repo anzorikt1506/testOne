@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IObject } from "../../inteface/standartInP"; //импортировали интерфейс type пользователей
 import { AppDispatch } from "../store";
 import axios from "axios";
+import env from "react-dotenv";
 
 interface UserState {
   //создали интерфейс типов для state редюссора
@@ -63,7 +64,7 @@ export const object_add_API =
     try {
       dispatch(objectSlice.actions.loadTest("yy"));
       const response = await axios.post<IObject[]>(
-        "http://192.168.0.104:5000/object",
+        `${env.Server_URL}object`,
         {
           nameObject: name,
         }
@@ -83,7 +84,7 @@ export const object_add_API_spis =
     try {
       dispatch(objectSlice.actions.loadTest("yy"));
       const response = await axios.post<IObject[]>(
-        "http://192.168.0.104:5000/objectspis",
+        `${env.Server_URL}objectspis`,
         {
           nameObject: name,
         }
@@ -99,7 +100,7 @@ export const object_add_API_spis =
     try {
       dispatch(objectSlice.actions.loadTest("yy"));
       const response = await axios.post<IObject[]>(
-        "http://192.168.0.104:5000/objectupdate",
+        `${env.Server_URL}objectupdate`,
         {
           name: name,
           id: id
@@ -116,7 +117,7 @@ export const object_add_API_spis =
     try {
       dispatch(objectSlice.actions.loadTest("yy"));
       const response = await axios.post<IObject[]>(
-        "http://192.168.0.104:5000/objectdel",
+        `${env.Server_URL}objectdel`,
         {
           id: id
         }
@@ -132,7 +133,7 @@ export const object_add_API_spis =
     try {
       dispatch(objectSlice.actions.loadTest("yy"));
       const response = await axios.post<IObject[]>(
-        "http://192.168.0.104:5000/objectUpdateTable",
+        `${env.Server_URL}objectUpdateTable`,
         {
           id_object: id_object,
           id: id,
