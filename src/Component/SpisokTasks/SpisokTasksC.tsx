@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from "react";
-import { time_old, useAppDispatch, useAppSelector } from "../../hook/redux";
+import { time_midl, time_old, useAppDispatch, useAppSelector } from "../../hook/redux";
 import { IObject } from '../../inteface/standartInP';
 import {
   objectSlice,
@@ -18,8 +18,6 @@ const SpisokTasksC = () => {
     const { department } = useAppSelector((state) => state.departmentSlice);
     const { roles } = useAppSelector((state) => state.rolesSlice);
     const { users } = useAppSelector((state) => state.usersSlice);
-
-    const [show1, fshow1] = useState<boolean>(false);
 
 
     const nameObject = (tip:number,id:any,id_w:any) => {       
@@ -56,7 +54,7 @@ const SpisokTasksC = () => {
       break;
       case(tip == 5 && id == 2  ):
       const d_y_tasks = tasks.filter((tasks)=>tasks.id == id_w)
-      let time_yes = time_old(d_y_tasks[0].data_end)
+      let time_yes = time_midl(d_y_tasks[0].data_end,d_y_tasks[0].data_statrt)
       const ff2 = ['Выполнена','#38bb60','#155724',time_yes]
       return ff2
       case(tip == 5 && id == 3  ):
@@ -72,14 +70,22 @@ const SpisokTasksC = () => {
 
     }
     
-
+    const [show1, fshow1] = useState<number>(0);
   useEffect(() => {
     if(tasks.length == 0){
      dispatch(object_add_API_spis("")); 
     }
+  
+
+
+
+
+
     dispatch(users_add_API_spis());
   }, []);
-  
+  setInterval(() => {
+    if(show1 < 10){fshow1(show1+1)}else{fshow1(0)}  
+   }, 1000);
   const [show, fshow] = useState<boolean>(false);
   const [veryfic, veryficf] = useState<string>("");
   const [objectName, fmodals] = useState<string>("");

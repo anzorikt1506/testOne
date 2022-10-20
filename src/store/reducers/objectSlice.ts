@@ -63,7 +63,7 @@ export const object_add_API =
     try {
       dispatch(objectSlice.actions.loadTest("yy"));
       const response = await axios.post<IObject[]>(
-        "http://localhost:5000/object",
+        "http://192.168.0.104:5000/object",
         {
           nameObject: name,
         }
@@ -83,7 +83,7 @@ export const object_add_API_spis =
     try {
       dispatch(objectSlice.actions.loadTest("yy"));
       const response = await axios.post<IObject[]>(
-        "http://localhost:5000/objectspis",
+        "http://192.168.0.104:5000/objectspis",
         {
           nameObject: name,
         }
@@ -99,7 +99,7 @@ export const object_add_API_spis =
     try {
       dispatch(objectSlice.actions.loadTest("yy"));
       const response = await axios.post<IObject[]>(
-        "http://localhost:5000/objectupdate",
+        "http://192.168.0.104:5000/objectupdate",
         {
           name: name,
           id: id
@@ -116,7 +116,7 @@ export const object_add_API_spis =
     try {
       dispatch(objectSlice.actions.loadTest("yy"));
       const response = await axios.post<IObject[]>(
-        "http://localhost:5000/objectdel",
+        "http://192.168.0.104:5000/objectdel",
         {
           id: id
         }
@@ -132,7 +132,7 @@ export const object_add_API_spis =
     try {
       dispatch(objectSlice.actions.loadTest("yy"));
       const response = await axios.post<IObject[]>(
-        "http://localhost:5000/objectUpdateTable",
+        "http://192.168.0.104:5000/objectUpdateTable",
         {
           id_object: id_object,
           id: id,

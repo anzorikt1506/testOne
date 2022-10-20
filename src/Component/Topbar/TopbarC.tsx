@@ -20,7 +20,7 @@ const SpisObjectTabC: React.FC = () => {
 
     
 const shov = () => {dispatch(tasksSlice.actions.select_tasks(0))}
-   
+const shov1 = () => {dispatch(tasksSlice.actions.select_tasks(1))}   
 
   
   return (
@@ -28,6 +28,7 @@ const shov = () => {dispatch(tasksSlice.actions.select_tasks(0))}
     logoutF={logoutF}
     name={name}
     shov={shov}
+    shov1={shov1}
     />
   );
 }
