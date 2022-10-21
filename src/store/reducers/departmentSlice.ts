@@ -121,7 +121,7 @@ export const department_red_name = (id:number,name:string) => async(dispatch:App
   try{
     dispatch(departmentSlice.actions.departament_loadTest("yy"));
           const response = await axios.post<Idepartment[]>(
-        "http://localhost:5000/departmentRedName",
+            `${env.Server_URL}departmentRedName`,
         {
           id: id,
           name: name

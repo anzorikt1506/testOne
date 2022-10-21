@@ -22,7 +22,7 @@ export const initialState: UserState = {
   error: "",
   verithik: "",
   booleanverithik: false,
-  status: 0,
+  status: 5,
   name:""
 };
 export const rolesSlice = createSlice({

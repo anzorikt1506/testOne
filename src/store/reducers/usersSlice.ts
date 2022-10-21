@@ -66,7 +66,7 @@ export default usersSlice.reducer;
 export const users_add_API_spis =() => async (dispatch: AppDispatch) => {
     try {
       dispatch(usersSlice.actions.users_loadTest("yy"));
-      const response = await axios.get<Iusers[]>("http://localhost:5000/usersSpis");
+      const response = await axios.get<Iusers[]>(`${env.Server_URL}usersSpis`);
       dispatch(usersSlice.actions.users_trueTest(response.data));
     } catch {
       dispatch(usersSlice.actions.users_errorTest("Не получилось"));

@@ -83,16 +83,16 @@ const SpisokTasksC = () => {
   }, []);
 
 
-  setInterval(() => {
-    if(show1 < 10){fshow1(show1+1)}else{fshow1(0)}  
+  // setInterval(() => {
+  //   if(show1 < 10){fshow1(show1+1)}else{fshow1(0)}  
     
-   }, 30000);
+  //  }, 30000);
 
    
     const str_click = str_navig_map(5000,10,250)
     
 
- 
+  
    const date_v_old = (e:any)=>{
     dispatch(tasksSlice.actions.data_old_tasks(e.target.value))
    }
