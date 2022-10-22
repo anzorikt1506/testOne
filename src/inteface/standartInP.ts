@@ -69,6 +69,7 @@ export interface statusM {
    }
    export interface str_numIn{
     key:number,
-    str: string ,
+    str: any ,
     activ:string
    }  
+  

@@ -15,7 +15,9 @@ interface UserState {
   error: string;
   verithik: string;
   booleanverithik: boolean;
-  selected: number
+  selected: number;
+  element_str:number,
+  selected_str:any
 }
 export const initialState: UserState = {
   tasks: [],
@@ -25,7 +27,9 @@ export const initialState: UserState = {
   booleanverithik: false,
   selected: 0,
   data_start:data_default(),
-  data_end:data_old(7)
+  data_end:data_old(7),
+  element_str:25,
+  selected_str:1
 };
 export const tasksSlice = createSlice({
   name: "tasksSlice",
@@ -34,6 +38,12 @@ export const tasksSlice = createSlice({
     select_tasks(state,action: PayloadAction<number>){
      state.selected = action.payload
     },
+    element_str_tasks(state,action: PayloadAction<number>){
+      state.element_str = action.payload
+     },
+     selected_str_tasks(state,action: PayloadAction<any>){
+      state.selected_str = action.payload
+     }, 
     data_old_tasks(state,action: PayloadAction<string>){
       state.data_end = action.payload
      },
@@ -94,10 +104,15 @@ export const tasks_add =(
     }
   };
 
-  export const tasks_update =() => async (dispatch: AppDispatch) => {
+  export const tasks_update =(data_start:string,data_end:string) => async (dispatch: AppDispatch) => {
       try {
         dispatch(tasksSlice.actions.loadTest_tasks("yy"));
-        const response = await axios.get<Itasks[]>(`${env.Server_URL}tasks_update`);
+        const response = await axios.post<Itasks[]>(`${env.Server_URL}tasks_update`,
+        {
+          data_start,
+          data_end
+        }
+        );
           dispatch(tasksSlice.actions.trueTest_tasks(response.data));
         
       } catch {

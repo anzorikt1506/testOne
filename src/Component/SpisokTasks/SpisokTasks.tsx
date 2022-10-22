@@ -9,7 +9,8 @@ interface ObjectF {
   data_start:string,
   data_end:string,
   date_v_old:(e:any)=>void,
-  date_v_start:(e:any)=>void
+  date_v_start:(e:any)=>void,
+  select_str: (e:any)=>void,
 }
 const SpisokTasks: React.FC<ObjectF> = ({
   tasks,
@@ -19,7 +20,8 @@ const SpisokTasks: React.FC<ObjectF> = ({
   data_start,
   data_end,
   date_v_old,
-  date_v_start
+  date_v_start,
+  select_str
 }) => {
 
   return (
@@ -72,7 +74,7 @@ const SpisokTasks: React.FC<ObjectF> = ({
               <tbody>
 
                 {tasks.map((tasks) => (
-                  <tr style={{backgroundColor: `${valid_spis(5,tasks.status,tasks.id)[1]}`, color: `${valid_spis(5,tasks.status,tasks.id)[2]}`}} className="point" key={tasks.id}  >
+                  <tr key={tasks.id} style={{backgroundColor: `${valid_spis(5,tasks.status,tasks.id)[1]}`, color: `${valid_spis(5,tasks.status,tasks.id)[2]}`}} className="point"   >
                     <td >{tasks.id}</td>
                     <td >{valid_spis(4,tasks.building,tasks.id)} (этаж {tasks.floor} номер {tasks.room})</td>
                     <td >{valid_spis(2,tasks.id_roles,tasks.id)}</td>
@@ -101,9 +103,14 @@ const SpisokTasks: React.FC<ObjectF> = ({
     </li>
       
     {str_click.map((str:any)=>(
-      <li style={{cursor:'pointer'}} key={str.key} className={`page-item ${str.activ}`}><a className="page-link" >{str.str}</a></li>
+      <>
+      <li onClick={select_str} 
+          role={str.str}
+          style={{cursor:'pointer'}} 
+          key={str.key} 
+          className={`page-item ${str.activ}`}><a className="page-link" >{str.str}</a></li>
+    </>
     ))}
-    {console.log(str_click)}
      
     <li className="page-item">
       <a className="page-link"  aria-label="Next">

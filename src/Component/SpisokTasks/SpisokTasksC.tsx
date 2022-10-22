@@ -15,12 +15,10 @@ import SpisokTasks from './SpisokTasks';
 
 const SpisokTasksC = () => {
   const dispatch = useAppDispatch();
-  const {tasks, data_start, data_end } = useAppSelector((state) => state.tasksSlice);
+  const {tasks, data_start, data_end, element_str, selected_str } = useAppSelector((state) => state.tasksSlice);
     const { department } = useAppSelector((state) => state.departmentSlice);
     const { roles } = useAppSelector((state) => state.rolesSlice);
     const { users } = useAppSelector((state) => state.usersSlice);
-     
-    
     
     const valid_spis = (tip:number,id:any,id_w:any) => {       
       switch(true){
@@ -71,7 +69,7 @@ const SpisokTasksC = () => {
     }
     
     const update_tasks = () => {
-     dispatch(tasks_update()) 
+     dispatch(tasks_update(data_start,data_end)) 
     }
 
     const [show1, fshow1] = useState<number>(0);
@@ -89,9 +87,14 @@ const SpisokTasksC = () => {
   //  }, 30000);
 
    
-    const str_click = str_navig_map(5000,10,250)
+    const str_click = str_navig_map(tasks.length,element_str,selected_str)
     
-
+  const select_str =  (e:any) =>{
+    debugger;
+    dispatch(tasksSlice.actions.selected_str_tasks(e.target.innerText))
+    console.log(`${tasks.length}-${element_str}-${selected_str}`);
+    
+  }
   
    const date_v_old = (e:any)=>{
     dispatch(tasksSlice.actions.data_old_tasks(e.target.value))
@@ -112,6 +115,7 @@ const SpisokTasksC = () => {
       data_end={data_end}
       date_v_old={date_v_old}
       date_v_start={date_v_start}
+      select_str={select_str}
     />
   );
 }

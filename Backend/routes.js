@@ -113,7 +113,7 @@ const tasks = require("./zapros/tasks.js")
 
    app
    .route('/tasks_update')
-   .get(tasks.tasks_update_z) 
+   .post(tasks.tasks_update_z) 
 
 }
 

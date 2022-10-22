@@ -77,22 +77,23 @@ export const data_old = (day:number) =>{
     return `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`
 }
 
- export const str_navig_map = (Count_res:number,Count_res_str:number,True_str:number) => {
+ export const str_navig_map = (Count_res:number,Count_res_str:number,True_str:any) => {
     if(Count_res != 0){
       const count_str = Math.ceil(Count_res/Count_res_str); 
+      True_str = Number(True_str);
       const count_srt_left = count_str - True_str;
       if(True_str <=count_str){
-         const map_str = [
-            {key: 101,str:`${True_str-4}`, activ: 'disabled'},
-            {key: 102,str:`${True_str-3}`, activ: 'disabled'},
-            {key: 103,str:`${True_str-2}`, activ: 'disabled'},
-            {key: 103,str:`${True_str-1}`, activ: 'disabled'},
-            {key: 104, str:`${True_str}`, activ: 'activate'},
-            {key: 105, str:`${True_str+1}`, activ: 'disabled'},
-            {key: 106, str:`${True_str+2}`, activ: 'disabled'},
-            {key: 107, str:`${True_str+3}`, activ: 'disabled'},
-            {key: 108, str:`${True_str+4}`, activ: 'disabled'},
-            {key: 109, str:`${True_str+5}`, activ: 'disabled'},
+         const map_str:str_numIn[]= [
+            {key: 101,str:True_str-4, activ: 'disabled'},
+            {key: 102,str:True_str-3, activ: 'disabled'},
+            {key: 103,str:True_str-2, activ: 'disabled'},
+            {key: 103,str:True_str-1, activ: 'disabled'},
+            {key: 104, str:True_str, activ: 'activate'},
+            {key: 105, str:True_str+1, activ: 'disabled'},
+            {key: 106, str:True_str+2, activ: 'disabled'},
+            {key: 107, str:True_str+3, activ: 'disabled'},
+            {key: 108, str:True_str+4, activ: 'disabled'},
+            {key: 109, str:True_str+5, activ: 'disabled'},
         ];
         if((True_str + 5) > count_str){map_str.pop()}
         if((True_str + 4) > count_str){map_str.pop()}
