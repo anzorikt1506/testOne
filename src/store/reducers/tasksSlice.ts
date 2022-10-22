@@ -28,7 +28,7 @@ export const initialState: UserState = {
   selected: 0,
   data_start:data_default(),
   data_end:data_old(7),
-  element_str:25,
+  element_str:2,
   selected_str:1
 };
 export const tasksSlice = createSlice({

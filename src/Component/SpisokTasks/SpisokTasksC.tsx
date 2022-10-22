@@ -19,7 +19,15 @@ const SpisokTasksC = () => {
     const { department } = useAppSelector((state) => state.departmentSlice);
     const { roles } = useAppSelector((state) => state.rolesSlice);
     const { users } = useAppSelector((state) => state.usersSlice);
-    
+    const end_element_str = (Number(selected_str)-1)*element_str
+    const start_element_str = Number(selected_str)*element_str
+   const tasks1 = tasks.filter(
+    (task)=>  tasks.indexOf(task) < start_element_str && tasks.indexOf(task) >= end_element_str)
+
+
+
+
+
     const valid_spis = (tip:number,id:any,id_w:any) => {       
       switch(true){
        case(tip==1):
@@ -90,10 +98,7 @@ const SpisokTasksC = () => {
     const str_click = str_navig_map(tasks.length,element_str,selected_str)
     
   const select_str =  (e:any) =>{
-    debugger;
     dispatch(tasksSlice.actions.selected_str_tasks(e.target.innerText))
-    console.log(`${tasks.length}-${element_str}-${selected_str}`);
-    
   }
   
    const date_v_old = (e:any)=>{
@@ -107,7 +112,7 @@ const SpisokTasksC = () => {
 
   return (
     <SpisokTasks
-      tasks={tasks}
+      tasks={tasks1}
       valid_spis={valid_spis}
       update_tasks={update_tasks}
       str_click={str_click}
