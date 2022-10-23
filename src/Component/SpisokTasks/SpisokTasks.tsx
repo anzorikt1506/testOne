@@ -11,6 +11,8 @@ interface ObjectF {
   date_v_old:(e:any)=>void,
   date_v_start:(e:any)=>void,
   select_str: (e:any)=>void,
+  select_str1: ()=>void,
+  select_str2: ()=>void
 }
 const SpisokTasks: React.FC<ObjectF> = ({
   tasks,
@@ -21,7 +23,9 @@ const SpisokTasks: React.FC<ObjectF> = ({
   data_end,
   date_v_old,
   date_v_start,
-  select_str
+  select_str,
+  select_str1,
+  select_str2
 }) => {
 
   return (
@@ -95,7 +99,10 @@ const SpisokTasks: React.FC<ObjectF> = ({
 
       <nav aria-label="Page navigation example">
   <ul className="pagination">
-    <li className="page-item">
+    <li
+    style={{cursor:'pointer'}}
+    onClick={select_str2} 
+    className="page-item">
       <a className="page-link"  aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
         <span className="sr-only">Previous</span>
@@ -112,7 +119,10 @@ const SpisokTasks: React.FC<ObjectF> = ({
     </>
     ))}
      
-    <li className="page-item">
+    <li 
+    style={{cursor:'pointer'}}
+    onClick={select_str1}  
+    className="page-item">
       <a className="page-link"  aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
         <span className="sr-only">Next</span>

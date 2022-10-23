@@ -100,7 +100,19 @@ const SpisokTasksC = () => {
   const select_str =  (e:any) =>{
     dispatch(tasksSlice.actions.selected_str_tasks(e.target.innerText))
   }
-  
+ 
+  const select_str1 =  () =>{
+    if((Number(selected_str) + 1) <= Math.ceil(tasks.length/element_str)){
+      dispatch(tasksSlice.actions.selected_str_tasks(Number(selected_str) + 1))
+    }
+    
+  } 
+  const select_str2 =  () =>{
+    if((Number(selected_str) - 1) > 0){
+      dispatch(tasksSlice.actions.selected_str_tasks(Number(selected_str) - 1))
+    }
+    
+  } 
    const date_v_old = (e:any)=>{
     dispatch(tasksSlice.actions.data_old_tasks(e.target.value))
    }
@@ -121,6 +133,8 @@ const SpisokTasksC = () => {
       date_v_old={date_v_old}
       date_v_start={date_v_start}
       select_str={select_str}
+      select_str1={select_str1}
+      select_str2={select_str2}
     />
   );
 }
