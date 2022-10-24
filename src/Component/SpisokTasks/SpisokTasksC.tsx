@@ -15,15 +15,71 @@ import SpisokTasks from './SpisokTasks';
 
 const SpisokTasksC = () => {
   const dispatch = useAppDispatch();
-  const {tasks, data_start, data_end, element_str, selected_str } = useAppSelector((state) => state.tasksSlice);
+  const {data_start, data_end, element_str, selected_str } = useAppSelector((state) => state.tasksSlice);
+  let {tasks} = useAppSelector((state) => state.tasksSlice);
     const { department } = useAppSelector((state) => state.departmentSlice);
     const { roles } = useAppSelector((state) => state.rolesSlice);
     const { users } = useAppSelector((state) => state.usersSlice);
     const end_element_str = (Number(selected_str)-1)*element_str
     const start_element_str = Number(selected_str)*element_str
-   const tasks1 = tasks.filter(
-    (task)=>  tasks.indexOf(task) < start_element_str && tasks.indexOf(task) >= end_element_str)
+  
+   
+   
+   const [nameStatus, fnameStatus] = useState<string>('Статус заявки');
+   const [idStatus, fidStatus] = useState<number>(-1);
+   const [namebuilding, fnamebuilding] = useState<string>('Здание');
+   const [idbuilding, fidbuilding] = useState<number>(-1);
+   const [namedepartment, fnamedepartment] = useState<string>('');
+   const [iddepartment, fiddepartment] = useState<number>(-1);
+   const [nameobject, fnameobject] = useState<string>('');
+   const [idobject, fidobject] = useState<number>(-1);
+   const [nameroles, fnameroles] = useState<string>('');
+   const [idroles, fidroles] = useState<number>(-1);
+   const [nameusers, fnameusers] = useState<string>('');
+   const [idusers, fidusers] = useState<number>(-1);
 
+
+   const sortVF = (role:string,text:string,vse:string,idF:any,nameF:any) =>{
+    let idd = Number(role) 
+    idd == -1 ? nameF(vse): nameF(text)
+    idF(idd)
+    
+    
+   }
+
+
+  const sortF = (e:any) =>{     
+    switch(true){
+      case e.target.name == 'status':
+        sortVF(
+          e.target.role,
+          e.target.innerText,
+          'Статус заявки',
+          fidStatus,
+          fnameStatus)
+      break;
+      case e.target.name == 'building':
+        sortVF(
+          e.target.role,
+          e.target.innerText,
+          'Здание',
+          fidbuilding,
+          fnamebuilding)
+      break;
+    }
+  }
+
+
+
+  const tasks0 = tasks.filter((task)=> idStatus > -1 ? task.status == idStatus : task.id > 0)
+                .filter((task)=> idbuilding > -1 ? task.building == idbuilding: task.id > 0 )
+                .filter((task)=> iddepartment > -1 ? task.id_department == iddepartment: task.id > 0 )
+                .filter((task)=> idobject > -1 ? task.id_object == idobject: task.id > 0 )
+                .filter((task)=> idroles > -1 ? task.id_roles == idroles: task.id > 0 )
+                .filter((task)=> idusers > -1 ? task.id_users == idusers: task.id > 0 )
+
+  const tasks1 =  tasks0.filter((task)=>  tasks0.indexOf(task) < start_element_str && tasks.indexOf(task) >= end_element_str)
+    
 
 
 
@@ -80,7 +136,7 @@ const SpisokTasksC = () => {
      dispatch(tasks_update(data_start,data_end)) 
     }
 
-    const [show1, fshow1] = useState<number>(0);
+
   useEffect(() => {
     if(tasks.length == 0){
      dispatch(object_add_API_spis("")); 
@@ -95,7 +151,7 @@ const SpisokTasksC = () => {
   //  }, 30000);
 
    
-    const str_click = str_navig_map(tasks.length,element_str,selected_str)
+    const str_click = str_navig_map(tasks0.length,element_str,selected_str)
     
   const select_str =  (e:any) =>{
     dispatch(tasksSlice.actions.selected_str_tasks(e.target.innerText))
@@ -135,6 +191,9 @@ const SpisokTasksC = () => {
       select_str={select_str}
       select_str1={select_str1}
       select_str2={select_str2}
+      sortF={sortF}
+      nameStatus={nameStatus}
+      namebuilding={namebuilding}
     />
   );
 }

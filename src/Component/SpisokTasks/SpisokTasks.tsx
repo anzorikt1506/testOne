@@ -1,6 +1,8 @@
 import { eventNames } from "process";
 import React from "react";
 import {IObject, Itasks, str_numIn } from "../../inteface/standartInP";
+import BuildingSortTasks from "./BuildingSortTasks";
+import StatusSortTasks from "./StatusSortTasks";
 interface ObjectF {
   tasks: Itasks[];
   valid_spis:(tip:number,id:any,id_w:any)=>any
@@ -12,7 +14,10 @@ interface ObjectF {
   date_v_start:(e:any)=>void,
   select_str: (e:any)=>void,
   select_str1: ()=>void,
-  select_str2: ()=>void
+  select_str2: ()=>void,
+  sortF: (e:any)=>void,
+  nameStatus:string,
+  namebuilding:string,
 }
 const SpisokTasks: React.FC<ObjectF> = ({
   tasks,
@@ -25,18 +30,71 @@ const SpisokTasks: React.FC<ObjectF> = ({
   date_v_start,
   select_str,
   select_str1,
-  select_str2
+  select_str2,
+  sortF,
+  nameStatus,
+  namebuilding
 }) => {
 
   return (
     <>
 
 
-<input onChange={date_v_old} className="btn  btn-info" type='date' value={data_end} /><i className="fa fa-arrow-right" aria-hidden="true">  </i>
-<input onChange={date_v_start} className="btn  btn-secondary" type='date' value={data_start}/>
-      <button onClick={update_tasks} type="submit" className="btn btn-primary">
+<div style={{float:'left'}}>
+<input onChange={date_v_old}  className="btn  btn-info" type='date' value={data_end} />
+</div>
+
+<div style={{float:'left'}}>
+<i className="fa fa-arrow-right" aria-hidden="true" >  </i>
+<input onChange={date_v_start}  className="btn  btn-secondary" type='date' value={data_start}/>
+</div>
+
+  <StatusSortTasks 
+    sortF={sortF} 
+    nameStatus={nameStatus}/>
+    
+  <BuildingSortTasks 
+     sortF={sortF}
+     namebuilding={namebuilding}/>
+  <i className="fa fa-arrow-right" aria-hidden="true">  </i>
+
+
+  <button className="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Отдел
+  </button>
+  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <button className="dropdown-item" type="button">Action</button>
+    <button className="dropdown-item" type="button">Another action</button>
+    <button className="dropdown-item" type="button">Something else here</button>
+  </div>
+  <i className="fa fa-arrow-right" aria-hidden="true">  </i>
+
+
+  <button className="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Специальность
+  </button>
+  <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
+    <button className="dropdown-item" type="button">Action</button>
+    <button className="dropdown-item" type="button">Another action</button>
+    <button className="dropdown-item" type="button">Something else here</button>
+  </div>
+  <i className="fa fa-arrow-right" aria-hidden="true">  </i>
+
+
+  <button className="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Работник
+  </button>
+  <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
+    <button className="dropdown-item" type="button">Action</button>
+    <button className="dropdown-item" type="button">Another action</button>
+    <button className="dropdown-item" type="button">Something else here</button>
+  </div>
+  <i className="fa fa-arrow-right" aria-hidden="true">  </i>
+  <button onClick={update_tasks} type="submit" className="btn btn-primary">
         Добавить заявку
       </button>
+
+
       <br />
       <br />
       <div className="card shadow mb-4">
