@@ -23,19 +23,19 @@ const SpisokTasksC = () => {
     const end_element_str = (Number(selected_str)-1)*element_str
     const start_element_str = Number(selected_str)*element_str
   
-   
+    const rolesSort = roles.filter((rol) => rol.status == 0)
+    const usersSort = users.filter((user) => user.status == 0)
+
    
    const [nameStatus, fnameStatus] = useState<string>('Статус заявки');
    const [idStatus, fidStatus] = useState<number>(-1);
    const [namebuilding, fnamebuilding] = useState<string>('Здание');
    const [idbuilding, fidbuilding] = useState<number>(-1);
-   const [namedepartment, fnamedepartment] = useState<string>('');
+   const [namedepartment, fnamedepartment] = useState<string>('Отдел');
    const [iddepartment, fiddepartment] = useState<number>(-1);
-   const [nameobject, fnameobject] = useState<string>('');
-   const [idobject, fidobject] = useState<number>(-1);
-   const [nameroles, fnameroles] = useState<string>('');
+   const [nameroles, fnameroles] = useState<string>('Должность');
    const [idroles, fidroles] = useState<number>(-1);
-   const [nameusers, fnameusers] = useState<string>('');
+   const [nameusers, fnameusers] = useState<string>('Исполнитель');
    const [idusers, fidusers] = useState<number>(-1);
 
 
@@ -66,6 +66,30 @@ const SpisokTasksC = () => {
           fidbuilding,
           fnamebuilding)
       break;
+      case e.target.name == 'depatment':
+        sortVF(
+          e.target.role,
+          e.target.innerText,
+          'Отдел',
+          fiddepartment,
+          fnamedepartment)
+      break;
+      case e.target.name == 'roles':
+        sortVF(
+          e.target.role,
+          e.target.innerText,
+          'Должность',
+          fidroles,
+          fnameroles)
+      break;
+      case e.target.name == 'users':
+        sortVF(
+          e.target.role,
+          e.target.innerText,
+          'Исполнитель',
+          fidusers,
+          fnameusers)
+      break;      
     }
   }
 
@@ -74,7 +98,6 @@ const SpisokTasksC = () => {
   const tasks0 = tasks.filter((task)=> idStatus > -1 ? task.status == idStatus : task.id > 0)
                 .filter((task)=> idbuilding > -1 ? task.building == idbuilding: task.id > 0 )
                 .filter((task)=> iddepartment > -1 ? task.id_department == iddepartment: task.id > 0 )
-                .filter((task)=> idobject > -1 ? task.id_object == idobject: task.id > 0 )
                 .filter((task)=> idroles > -1 ? task.id_roles == idroles: task.id > 0 )
                 .filter((task)=> idusers > -1 ? task.id_users == idusers: task.id > 0 )
 
@@ -194,6 +217,12 @@ const SpisokTasksC = () => {
       sortF={sortF}
       nameStatus={nameStatus}
       namebuilding={namebuilding}
+      department={department}
+      namedepartment={namedepartment}
+      roles={rolesSort}
+      nameroles={nameroles}
+      users={usersSort}
+      nameusers={nameusers}
     />
   );
 }

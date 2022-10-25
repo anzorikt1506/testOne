@@ -109,6 +109,14 @@ exports.rolesoption = ((req, res)=>{
                 resolve(result)
             }); 
 
+            pool.query(
+                `UPDATE users SET status = ? WHERE id_roles = ?`,[option,id_roles],
+                function (err, result) {
+                    if (err) console.log(err);   
+                    resolve(result)
+                }); 
+      
+
     })
     p.then((data)=>{
          pool.query(

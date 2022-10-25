@@ -1,10 +1,16 @@
 import { eventNames } from "process";
 import React from "react";
-import {IObject, Itasks, str_numIn } from "../../inteface/standartInP";
+import {Idepartment, IObject, IRoles, Itasks, Iusers, str_numIn } from "../../inteface/standartInP";
 import BuildingSortTasks from "./BuildingSortTasks";
+import DepartmentSortTasks from "./DepartmentSortTasks";
+import RolesSortTasks from "./RolesSortTasks";
 import StatusSortTasks from "./StatusSortTasks";
+import UsersSortTasks from "./UsersSortTasks";
 interface ObjectF {
   tasks: Itasks[];
+  department:Idepartment[];
+  roles:IRoles[];
+  users:Iusers[];
   valid_spis:(tip:number,id:any,id_w:any)=>any
   update_tasks:()=>void
   str_click:any,
@@ -18,6 +24,9 @@ interface ObjectF {
   sortF: (e:any)=>void,
   nameStatus:string,
   namebuilding:string,
+  namedepartment:string,
+  nameroles:string,
+  nameusers:string
 }
 const SpisokTasks: React.FC<ObjectF> = ({
   tasks,
@@ -33,7 +42,13 @@ const SpisokTasks: React.FC<ObjectF> = ({
   select_str2,
   sortF,
   nameStatus,
-  namebuilding
+  namebuilding,
+  namedepartment,
+  department,
+  roles,
+  nameroles,
+  nameusers,
+  users
 }) => {
 
   return (
@@ -56,39 +71,23 @@ const SpisokTasks: React.FC<ObjectF> = ({
   <BuildingSortTasks 
      sortF={sortF}
      namebuilding={namebuilding}/>
-  <i className="fa fa-arrow-right" aria-hidden="true">  </i>
+ 
+ <DepartmentSortTasks 
+     sortF={sortF}
+     namedepartment={namedepartment}
+     department={department}
+     />
+ <RolesSortTasks 
+     sortF={sortF}
+     nameroles={nameroles}
+     roles={roles}
+     />
+ <UsersSortTasks 
+     sortF={sortF}
+     nameusers={nameusers}
+     users={users}
+     />
 
-
-  <button className="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Отдел
-  </button>
-  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <button className="dropdown-item" type="button">Action</button>
-    <button className="dropdown-item" type="button">Another action</button>
-    <button className="dropdown-item" type="button">Something else here</button>
-  </div>
-  <i className="fa fa-arrow-right" aria-hidden="true">  </i>
-
-
-  <button className="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Специальность
-  </button>
-  <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <button className="dropdown-item" type="button">Action</button>
-    <button className="dropdown-item" type="button">Another action</button>
-    <button className="dropdown-item" type="button">Something else here</button>
-  </div>
-  <i className="fa fa-arrow-right" aria-hidden="true">  </i>
-
-
-  <button className="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Работник
-  </button>
-  <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <button className="dropdown-item" type="button">Action</button>
-    <button className="dropdown-item" type="button">Another action</button>
-    <button className="dropdown-item" type="button">Something else here</button>
-  </div>
   <i className="fa fa-arrow-right" aria-hidden="true">  </i>
   <button onClick={update_tasks} type="submit" className="btn btn-primary">
         Добавить заявку
