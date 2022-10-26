@@ -26,7 +26,7 @@ const DepartmentSortTasks: React.FC<ObjectF> = ({
     <button onClick={sortF} role='-1' className="dropdown-item" name="depatment" type="button">Все</button>
     {department.map((department)=>(
       <>
-      <button onClick={sortF} role={`${department.id}`} className="dropdown-item"  name="depatment" type="button">{department.name}</button>
+      <button key={department.id} onClick={sortF} role={`${department.id}`} className="dropdown-item"  name="depatment" type="button">{department.name}</button>
       </>
     ))}
     

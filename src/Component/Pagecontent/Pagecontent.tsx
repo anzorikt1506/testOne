@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { Route, Routes } from "react-router-dom";
 import AddtiketC from "../Addtiket/AddtiketC";
 import Colorsystem from "../Colorsystem/Colorsystem";
+import ColorsystemC from "../Colorsystem/ColorsystemC";
 import Contentrow from "../Contentrow/Contentrow";
 import Datatables from "../Datatables/Datatables";
 import DepartmentC from "../Department/DepartmentC";
@@ -19,11 +20,11 @@ function Pagecontent() {
         <Route
           path="/"
           element={[
-          <Pagehading name="Хомяк курица" price={55} />,
-          <Datatables />,
-          <Projectcard />,
-          <Colorsystem />,
-          <Contentrow />
+          // <Pagehading name="Хомяк курица" price={55} />,
+          // <Datatables />,
+          // <Projectcard />,
+           <ColorsystemC />,
+          // <Contentrow />
         ]}
         />
 

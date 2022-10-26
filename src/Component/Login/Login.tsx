@@ -67,11 +67,10 @@ const Login: React.FC<ObjectF> = ({
           ))}
   </div>
 
+
                                 </div>
 
-                                <div className="dropdown">
 
-</div>
 
 
 
@@ -79,12 +78,11 @@ const Login: React.FC<ObjectF> = ({
                                     <input onChange={changePassword} type="password" className="form-control form-control-user"
                                         id="exampleInputPassword" value={password} placeholder="Введите пароль"/>
                                 </div>
-
+                                 
                                 <p onClick={avtoriz} className="btn btn-primary btn-user btn-block">
                                     Отправить
                                 </p>
-                                
-
+                                {roles.map((sort) => (<br/>))}
                             </form>
                             
 

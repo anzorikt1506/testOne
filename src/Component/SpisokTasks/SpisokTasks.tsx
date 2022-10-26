@@ -26,7 +26,8 @@ interface ObjectF {
   namebuilding:string,
   namedepartment:string,
   nameroles:string,
-  nameusers:string
+  nameusers:string,
+  m_length_tasks:any
 }
 const SpisokTasks: React.FC<ObjectF> = ({
   tasks,
@@ -48,7 +49,8 @@ const SpisokTasks: React.FC<ObjectF> = ({
   roles,
   nameroles,
   nameusers,
-  users
+  users,
+  m_length_tasks
 }) => {
 
   return (
@@ -90,7 +92,7 @@ const SpisokTasks: React.FC<ObjectF> = ({
 
   <i className="fa fa-arrow-right" aria-hidden="true">  </i>
   <button onClick={update_tasks} type="submit" className="btn btn-primary">
-        Добавить заявку
+        Обновить
       </button>
 
 
@@ -98,7 +100,14 @@ const SpisokTasks: React.FC<ObjectF> = ({
       <br />
       <div className="card shadow mb-4">
         <div className="card-header py-3">
-          <h6 className="m-0 font-weight-bold text-primary">Объекты</h6>
+          <h6 className="m-0 font-weight-bold text-primary">
+           Найдено {m_length_tasks[0]}, из них 
+           ждут {m_length_tasks[1]}, 
+           в работе {m_length_tasks[2]},
+           выполнены {m_length_tasks[3]},
+           не выполнены {m_length_tasks[4]}.
+          </h6>
+          
         </div>
         <div className="card-body">
           <div className="table-responsive">

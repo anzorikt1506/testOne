@@ -21,11 +21,11 @@ const StatusSortTasks: React.FC<ObjectF> = ({
     {nameStatus}
   </button>
   <div className="dropdown-menu" aria-labelledby="dropdownMenu">
-    <button onClick={sortF} role='-1' className="dropdown-item" name="status" type="button">Все</button>
-    <button onClick={sortF} role='0' className="dropdown-item"  name="status" type="button">Ждёт выполнения</button>
-    <button onClick={sortF} role='1' className="dropdown-item"  name="status" type="button">Выполняется</button>
-    <button onClick={sortF} role='2' className="dropdown-item"  name="status" type="button">Выполнена</button>
-    <button onClick={sortF} role='3' className="dropdown-item"  name="status" type="button">Не выполнена</button>
+    <button key={1} onClick={sortF} role='-1' className="dropdown-item" name="status" type="button">Все</button>
+    <button key={2} onClick={sortF} role='0' className="dropdown-item"  name="status" type="button">Ждёт выполнения</button>
+    <button key={3} onClick={sortF} role='1' className="dropdown-item"  name="status" type="button">Выполняется</button>
+    <button key={4} onClick={sortF} role='2' className="dropdown-item"  name="status" type="button">Выполнена</button>
+    <button key={5} onClick={sortF} role='3' className="dropdown-item"  name="status" type="button">Не выполнена</button>
   </div>
   </div>
     </>

@@ -14,7 +14,8 @@ interface UserState {
   verithik: string;
   booleanverithik: boolean;
   status: number,
-  name:string
+  name:string,
+  id:number
 }
 export const initialState: UserState = {
   roles: [],
@@ -23,7 +24,8 @@ export const initialState: UserState = {
   verithik: "",
   booleanverithik: false,
   status: 5,
-  name:""
+  name:"",
+  id:0
 };
 export const rolesSlice = createSlice({
   name: "rolesSlice",
@@ -32,9 +34,13 @@ export const rolesSlice = createSlice({
     roles_statusDepartment(state,action: PayloadAction<number>){
      state.status = action.payload
     },
+    roles_id_roles(state,action: PayloadAction<number>){
+      state.id = action.payload
+     },
     roles_loadTest(state, action: PayloadAction<string>) {
       state.isLoading = true;
     },
+
     roles_trueTest(state, actions: PayloadAction<IRoles[]>) {
       state.isLoading = false;
       state.roles = actions.payload;
@@ -222,7 +228,7 @@ export const roles_add_API = (id_object: number, id_department: number,name:any)
         localStorage.setItem('token',response.data.token.accessToken)
         dispatch(rolesSlice.actions.roles_status(response.data.status));
         dispatch(rolesSlice.actions.roles_name(response.data.name));
-        console.log(response.data.status);
+        dispatch(rolesSlice.actions.roles_id_roles(response.data.id)); 
       
     } catch {
       dispatch(rolesSlice.actions.roles_errorTest("Не получилось"));
@@ -232,11 +238,9 @@ export const roles_add_API = (id_object: number, id_department: number,name:any)
   export const roles_refresh =() => async (dispatch: AppDispatch) => {
     try {
       const response = await $api.get(`${env.Server_URL}refresh`);
-     
-    
-        
         dispatch(rolesSlice.actions.roles_status(response.data.status));
         dispatch(rolesSlice.actions.roles_name(response.data.name));
+        dispatch(rolesSlice.actions.roles_id_roles(response.data.id)); 
         localStorage.setItem('token',response.data.token.accessToken)
         console.log(response.data.status);
       

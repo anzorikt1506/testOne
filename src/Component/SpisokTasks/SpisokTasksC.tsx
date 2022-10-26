@@ -102,10 +102,13 @@ const SpisokTasksC = () => {
                 .filter((task)=> idusers > -1 ? task.id_users == idusers: task.id > 0 )
 
   const tasks1 =  tasks0.filter((task)=>  tasks0.indexOf(task) < start_element_str && tasks.indexOf(task) >= end_element_str)
-    
+  const tasks_s_0 =  tasks0.filter((tasks)=>tasks.status == 0)
+  const tasks_s_1 =  tasks0.filter((tasks)=>tasks.status == 1)  
+  const tasks_s_2 =  tasks0.filter((tasks)=>tasks.status == 2)  
+  const tasks_s_3 =  tasks0.filter((tasks)=>tasks.status == 3) 
+  const m_length_tasks =[tasks0.length,tasks_s_0.length,tasks_s_1.length,tasks_s_2.length,tasks_s_3.length]
 
-
-
+  
 
     const valid_spis = (tip:number,id:any,id_w:any) => {       
       switch(true){
@@ -163,8 +166,10 @@ const SpisokTasksC = () => {
   useEffect(() => {
     if(tasks.length == 0){
      dispatch(object_add_API_spis("")); 
+     dispatch(users_add_API_spis());
+     dispatch(tasks_update(data_start,data_end)) 
     }
-    dispatch(users_add_API_spis());
+    
   }, []);
 
 
@@ -192,11 +197,15 @@ const SpisokTasksC = () => {
     }
     
   } 
-   const date_v_old = (e:any)=>{
+   const date_v_old =  (e:any)=>{
     dispatch(tasksSlice.actions.data_old_tasks(e.target.value))
+    dispatch(tasks_update(data_start,e.target.value)) 
+   
    }
-   const date_v_start = (e:any)=>{
+   const date_v_start = async (e:any)=>{
     dispatch(tasksSlice.actions.data_start_tasks(e.target.value))
+    dispatch(tasks_update(e.target.value,data_end)) 
+   
    }
 
 
@@ -223,6 +232,7 @@ const SpisokTasksC = () => {
       nameroles={nameroles}
       users={usersSort}
       nameusers={nameusers}
+      m_length_tasks={m_length_tasks}
     />
   );
 }
