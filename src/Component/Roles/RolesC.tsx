@@ -10,13 +10,6 @@ import Roles from './Roles';
 const RolesC: React.FC = () => {
   const dispatch = useAppDispatch();
   const {roles , error} = useAppSelector((state) => state.rolesSlice);
-  useEffect(() => {
-    if(roles.length == 0)
-    dispatch(object_add_API_spis(""));
-      dispatch(department_add_API_spis(''));
-      dispatch(roles_add_API_spis());
-      dispatch(users_add_API_spis())
-  }, []);
 
  
 

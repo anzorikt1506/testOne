@@ -35,8 +35,6 @@ const UserServis = require('../service/user-service')
             const {data_start,data_end} = req.body
             var D_start = new Date(data_start);
             D_start.setDate(D_start.getDate() + 1);
-            var D_end = new Date(data_end);
-            D_end.setDate(D_end.getDate() - 1);
                 pool.query(
                     `SELECT * FROM tasks WHERE data_statrt BETWEEN  ? AND  ? ORDER BY id desc`,
                     [data_end,D_start],
@@ -44,6 +42,96 @@ const UserServis = require('../service/user-service')
                         if (err) console.log(err);
                         res.send(result)
                     });           
+        }catch(e){
+            res.json({error:`что то не так ${D_start} c ${D_end}`});
+        }
+    }
+    
+    exports.tasksStartWork = (req,res,next) => {
+        try{
+            const {idTasks,idUser,status} = req.body
+            let data = new Date()
+                new Promise((resolve,reject)=>{
+                    pool.query(
+                    `UPDATE tasks SET id_users = ? , status = ? , data_v_rabote = ? WHERE id = ?`,
+                    [idUser,status,data,idTasks],
+                    function (err, result) {
+                        if (err) console.log(err);
+                        resolve('result')
+                    });
+                })
+                .then((d)=>{
+                      let date = new Date()
+                      let dataOld = date.setDate(date.getDate() - 15);
+                      pool.query(
+                        `SELECT * FROM tasks WHERE data_statrt BETWEEN  ? AND  ?  ORDER BY id desc`,
+                      [dataOld,date],
+                        function (err, result) {
+                            if (err) console.log(err);
+                            res.send(result)
+                        });   
+                })
+                          
+        }catch(e){
+            res.json({error:`что то не так ${D_start} c ${D_end}`});
+        }
+    }
+
+    exports.tasksEndWork = (req,res,next) => {
+        try{
+            const {idTasks,status} = req.body
+            let data = new Date()
+                new Promise((resolve,reject)=>{
+                    pool.query(
+                    `UPDATE tasks SET status = ? , data_end = ? WHERE id = ?`,
+                    [status,data,idTasks],
+                    function (err, result) {
+                        if (err) console.log(err);
+                        resolve('result')
+                    });
+                })
+                .then((d)=>{
+                      let date = new Date()
+                      let dataOld = date.setDate(date.getDate() - 15);
+                      pool.query(
+                        `SELECT * FROM tasks WHERE data_statrt BETWEEN  ? AND  ?  ORDER BY id desc`,
+                      [dataOld,date],
+                        function (err, result) {
+                            if (err) console.log(err);
+                            res.send(result)
+                        });   
+                })
+                          
+        }catch(e){
+            res.json({error:`что то не так ${D_start} c ${D_end}`});
+        }
+    }
+
+    exports.tasksNoWork = (req,res,next) => {
+        try{
+            const {idTasks,text} = req.body
+            let data = new Date()
+                new Promise((resolve,reject)=>{
+                    pool.query(
+                    `UPDATE tasks SET prichina = ? , status = ?, data_no = ? WHERE id = ?`,
+                    [text,3,data,idTasks],
+                    function (err, result) {
+                        if (err) console.log(err);
+                        resolve('result')
+                    });
+                })
+                .then((d)=>{
+                      let date = new Date()
+                      let dataOld = date.setDate(date.getDate() - 15);
+                      pool.query(
+                        `SELECT * FROM tasks WHERE data_statrt BETWEEN  ? AND  ?  ORDER BY id desc`,
+                      [dataOld,date],
+                        function (err, result) {
+                            if (err) console.log(err);
+                            res.send(result)
+                        });   
+                })
+                          
         }catch(e){
             res.json({error:`что то не так ${D_start} c ${D_end}`});
         }

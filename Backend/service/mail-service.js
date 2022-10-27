@@ -21,7 +21,7 @@ class mailService {
             subject: 'Тема письма',
             text:'',
             html:
-                  `
+                  ` 
                   <div>
                   <h1>Тестовое окно1</h1>
                   <p>${link}</p>
@@ -30,4 +30,5 @@ class mailService {
           })
   }
 }
+ 
 module.exports =new mailService()

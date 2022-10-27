@@ -22,9 +22,9 @@ const SpisObjectC = () => {
     nameOnjectF('Выбор объекта')
    }
     
-     useEffect(() => {
-      dispatch(object_add_API_spis(""));  
-     }, []);
+    //  useEffect(() => {
+    //   dispatch(object_add_API_spis(""));  
+    //  }, []);
    
 
   

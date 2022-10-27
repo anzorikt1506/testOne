@@ -27,7 +27,7 @@ export const initialState: UserState = {
   booleanverithik: false,
   selected: 0,
   data_start:data_default(),
-  data_end:data_old(7),
+  data_end:data_old(15),
   element_str:7,
   selected_str:1
 };
@@ -120,3 +120,49 @@ export const tasks_add =(
       }
     };
   
+    export const tasksStartWork = (idTasks:number,idUser:number,status:number) => async (dispatch: AppDispatch) =>{
+      try{
+        const response = await axios.post<Itasks[]>(`${env.Server_URL}tasksStartWork`,
+        {
+          idTasks,
+          idUser,
+          status
+        }
+        );
+        dispatch(tasksSlice.actions.trueTest_tasks(response.data));
+       
+      }catch{
+        dispatch(tasksSlice.actions.errorTest_tasks("Не получилось"));
+      }
+    }
+
+
+    export const tasksEndWork = (idTasks:number,status:number) => async (dispatch: AppDispatch) =>{
+      try{
+        const response = await axios.post<Itasks[]>(`${env.Server_URL}tasksEndWork`,
+        {
+          idTasks,
+          status
+        }
+        );
+        dispatch(tasksSlice.actions.trueTest_tasks(response.data));
+       
+      }catch{
+        dispatch(tasksSlice.actions.errorTest_tasks("Не получилось"));
+      }
+    }
+
+    export const tasksNoWork = (idTasks:number,text:string) => async (dispatch: AppDispatch) =>{
+      try{
+        const response = await axios.post<Itasks[]>(`${env.Server_URL}tasksNoWork`,
+        {
+          idTasks,
+          text
+        }
+        );
+        dispatch(tasksSlice.actions.trueTest_tasks(response.data));
+       
+      }catch{
+        dispatch(tasksSlice.actions.errorTest_tasks("Не получилось"));
+      }
+    }

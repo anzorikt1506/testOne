@@ -107,6 +107,19 @@ const avtoriz = require("./zapros/avtoriz.js")
    .get(avtoriz.refresh) 
 
 const tasks = require("./zapros/tasks.js") 
+   
+app
+.route('/tasksNoWork')
+.post(tasks.tasksNoWork) 
+
+  app
+  .route('/tasksEndWork')
+  .post(tasks.tasksEndWork) 
+
+   app
+   .route('/tasksStartWork')
+   .post(tasks.tasksStartWork) 
+
    app
    .route('/add_tasks')
    .post(tasks.tasks_add) 

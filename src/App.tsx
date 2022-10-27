@@ -5,8 +5,12 @@ import { useEffect, useState } from "react";
 import Content from './Component/Content/Content';
 import Sitebar from './Component/Sitebar/Sitebar';
 import LoginC from './Component/Login/LoginC';
-import { roles_refresh } from './store/reducers/rolesSlice';
+import { roles_add_API_spis, roles_refresh } from './store/reducers/rolesSlice';
 import { isAnyOf } from '@reduxjs/toolkit';
+import { tasks_update } from './store/reducers/tasksSlice';
+import { object_add_API_spis } from './store/reducers/objectSlice';
+import { department_add_API_spis } from './store/reducers/departmentSlice';
+import { users_add_API_spis } from './store/reducers/usersSlice';
 
 
 
@@ -34,25 +38,32 @@ import { isAnyOf } from '@reduxjs/toolkit';
 
 function App() {
   const {status} = useAppSelector((state)=>state.rolesSlice)
+  const {data_start,data_end,tasks} = useAppSelector((state)=>state.tasksSlice)
+  const {object} = useAppSelector((state)=>state.objectSlice)
+  const {department} = useAppSelector((state)=>state.departmentSlice)
+  const {roles} = useAppSelector((state)=>state.rolesSlice)
+  const {users} = useAppSelector((state)=>state.usersSlice)
   const dispatch = useAppDispatch()
   
   useEffect(() => { 
-    if (localStorage.getItem('token')) {
-       dispatch(roles_refresh())
-      }
-
+    if (localStorage.getItem('token')) {dispatch(roles_refresh())}
+      if(Object(tasks).length == 0){dispatch(tasks_update(data_start,data_end))}
+      if(Object(object).length == 0){dispatch(object_add_API_spis(""));}
+      if(Object(department).length == 0){dispatch(department_add_API_spis(''));}
+      if(Object(users).length == 0){ dispatch(users_add_API_spis());;}
   }, []);
+
+
+ 
+
+
 
   switch (true) {
     case (status == 5) :
       return <LoginC/>
       break;
     case (status == 0 || status == 1 || status == 2 || status == 3) :
-     return(
-          <Content/>
-          
-       
-     )
+     return(<Content/>)
       break;
   
     default:

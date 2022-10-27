@@ -5,6 +5,7 @@ import AddtiketC from "../Addtiket/AddtiketC";
 import Colorsystem from "../Colorsystem/Colorsystem";
 import ColorsystemC from "../Colorsystem/ColorsystemC";
 import Contentrow from "../Contentrow/Contentrow";
+import ContentTasksC from "../ContentTasks/ContentTasksC";
 import Datatables from "../Datatables/Datatables";
 import DepartmentC from "../Department/DepartmentC";
 import ObjectC from "../Object/ObjectC";
@@ -19,13 +20,12 @@ function Pagecontent() {
       <Routes>
         <Route
           path="/"
-          element={[
-          // <Pagehading name="Хомяк курица" price={55} />,
-          // <Datatables />,
-          // <Projectcard />,
-           <ColorsystemC />,
-          // <Contentrow />
-        ]}
+          element={[ <ColorsystemC />,]}
+        />
+
+        <Route
+          path="/:id"
+          element={[ <ContentTasksC />,]}
         />
 
         <Route 

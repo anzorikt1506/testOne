@@ -15,7 +15,7 @@ const Colorsystem: React.FC<TasksF> =({
         <>
         
       {tasksR.map((tasksR) =>(
-                <NavLink to={`/tasks/${tasksR.id}`} className="col-lg-6 mb-4">
+                <NavLink to={`/${tasksR.id}`} className="col-lg-6 mb-4">
             <div  className={`card ${taskClassStatus(0,tasksR.status)} text-white shadow`}>
                 <div className="card-body">
                     
