@@ -4,13 +4,15 @@ interface TopbarF {
   logoutF:()=>void,
   shov:()=>void,
   shov1:()=>void,
-  name:string
+  name:string,
+  status:number
 }
 const Topbar: React.FC<TopbarF> = ({
     logoutF,
     name,
     shov,
-    shov1
+    shov1,
+    status
 }) => {
     return ( 
 
@@ -59,63 +61,13 @@ const Topbar: React.FC<TopbarF> = ({
                 </div>
             </li>
 
-            {/* Добавление заявки*/}
-            <li className="nav-item dropdown no-arrow mx-1">
-                <NavLink onClick={shov} to='/new_tiket' title='Новая заявка' className="nav-link dropdown-toggle"  
-                     aria-haspopup="true" >
-                    <i className="fa fa-plus-circle" aria-hidden="true"></i> 
-                </NavLink>
-                </li>
-
-            {/* Добавление заявки*/}
-            <li className="nav-item dropdown no-arrow mx-1">
-                <NavLink onClick={shov1} to='/new_tiket' title='Список заявок' className="nav-link dropdown-toggle"  
-                     aria-haspopup="true" >
-                    <i className="fa fa-plus-circle" aria-hidden="true"></i> 
-                </NavLink>
-                </li>
 
 
 
-            {/* Nav Item - Alerts  Окно настроек*/}
-            <li className="nav-item dropdown no-arrow mx-1">
-                <a title='Настройки' className="nav-link dropdown-toggle" id="alertsDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i className="fa fa-cog" aria-hidden="true"></i>
-                </a>
-                {/* Dropdown - Alerts */}
-                <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                    aria-labelledby="alertsDropdown">
 
-                    <NavLink to='/object' className="dropdown-item d-flex align-items-center">
-                        <div className="mr-3">
-                            <div className="icon-circle bg-primary">
-                                <i className="fas fa-file-alt text-white"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="small text-gray-500">Объекты</div>
-                        </div>
-                    </NavLink>
-                    <NavLink to='/department' className="dropdown-item d-flex align-items-center" >
-                        <div className="mr-3">
-                            <div className="icon-circle bg-success">
-                                <i className="fas fa-donate text-white"></i>
-                            </div>
-                        </div>
-                        <div>Отделы</div>
-                    </NavLink>
-                    <NavLink to='/roles' className="dropdown-item d-flex align-items-center">
-                        <div className="mr-3">
-                            <div className="icon-circle bg-warning">
-                                <i className="fas fa-exclamation-triangle text-white"></i>
-                            </div>
-                        </div>
-                        <div>Роли</div>
-                    </NavLink>
-                    
-                </div>
-            </li>
+
+
+
 
             {/* Nav Item - Messages */}
             <li className="nav-item dropdown no-arrow mx-1">
@@ -125,65 +77,9 @@ const Topbar: React.FC<TopbarF> = ({
                     {/* Counter - Messages */}
                     <span className="badge badge-danger badge-counter">7</span>
                 </a>
-                {/* Dropdown - Messages */}
-                <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                    aria-labelledby="messagesDropdown">
-                    <h6 className="dropdown-header">
-                        Message Center
-                    </h6>
-                    <a className="dropdown-item d-flex align-items-center" href="#">
-                        <div className="dropdown-list-image mr-3">
-                            <img className="rounded-circle" src="img/undraw_profile_1.svg"
-                                alt="..."/>
-                            <div className="status-indicator bg-success"></div>
-                        </div>
-                        <div className="font-weight-bold">
-                            <div className="text-truncate">Hi there! I am wondering if you can help me with a
-                                problem I've been having.</div>
-                            <div className="small text-gray-500">Emily Fowler · 58m</div>
-                        </div>
-                    </a>
-                    <a className="dropdown-item d-flex align-items-center" href="#">
-                        <div className="dropdown-list-image mr-3">
-                            <img className="rounded-circle" src="img/undraw_profile_2.svg"
-                                alt="..."/>
-                            <div className="status-indicator"></div>
-                        </div>
-                        <div>
-                            <div className="text-truncate">I have the photos that you ordered last month, how
-                                would you like them sent to you?</div>
-                            <div className="small text-gray-500">Jae Chun · 1d</div>
-                        </div>
-                    </a>
-                    <a className="dropdown-item d-flex align-items-center" href="#">
-                        <div className="dropdown-list-image mr-3">
-                            <img className="rounded-circle" src="img/undraw_profile_3.svg"
-                                alt="..."/>
-                            <div className="status-indicator bg-warning"></div>
-                        </div>
-                        <div>
-                            <div className="text-truncate">Last month's report looks great, I am very happy with
-                                the progress so far, keep up the good work!</div>
-                            <div className="small text-gray-500">Morgan Alvarez · 2d</div>
-                        </div>
-                    </a>
-                    <a className="dropdown-item d-flex align-items-center" href="#">
-                        <div className="dropdown-list-image mr-3">
-                            <img className="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                alt="..."/>
-                            <div className="status-indicator bg-success"></div>
-                        </div>
-                        <div>
-                            <div className="text-truncate">Am I a good boy? The reason I ask is because someone
-                                told me that people say this to all dogs, even if they aren't good...</div>
-                            <div className="small text-gray-500">Chicken the Dog · 2w</div>
-                        </div>
-                    </a>
-                    <a className="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                </div>
             </li>
 
-            <div className="topbar-divider d-none d-sm-block"></div>
+          
 
             {/* Nav Item - User Information */}
             <li className="nav-item dropdown no-arrow">
@@ -196,18 +92,48 @@ const Topbar: React.FC<TopbarF> = ({
                 {/* Dropdown - User Information */}
                 <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                     aria-labelledby="userDropdown">
+                  {(status==0 )&&(<>
                     <NavLink to='/' className="dropdown-item">
                         <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Profile
+                        Список заявок
+                    </NavLink></>
+                  )}
+
+                  {(status==3 )&&(<>
+                    <NavLink to='/spis' className="dropdown-item">
+                        <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Список заявок
+                    </NavLink></>
+                  )}
+                    {(status>=1 && status<=3 )&&(<>
+                    <NavLink onClick={shov1} to='/' className="dropdown-item">
+                        <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                           Новая заявка
                     </NavLink>
-                    <a className="dropdown-item" href="#">
+                    <NavLink onClick={shov} to='/' className="dropdown-item">
+                        <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                           История
+                    </NavLink>
+
+                    </>)}
+                    {(status == 3)&&(
+                        <>
+                     <NavLink to='/object' className="dropdown-item" >
                         <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Settings
-                    </a>
-                    <a className="dropdown-item" href="#">
+                        Объекты
+                    </NavLink>
+                    <NavLink to='/department' className="dropdown-item" >
                         <i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Activity Log
-                    </a>
+                        Отделы
+                    </NavLink>
+                    <NavLink to='/roles' className="dropdown-item" >
+                        <i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Роли
+                    </NavLink>
+                        </>
+                    )}
+
+
                     <div className="dropdown-divider"></div>
                     <a onClick={logoutF} className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                         <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -285,3 +211,60 @@ export default Topbar ;
         // <button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3">
         //     <i className="fa fa-bars"></i>
         // </button>
+
+         /* Dropdown - Messages */
+    //      <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+    //      aria-labelledby="messagesDropdown">
+    //      <h6 className="dropdown-header">
+    //          Message Center
+    //      </h6>
+    //      <a className="dropdown-item d-flex align-items-center" href="#">
+    //          <div className="dropdown-list-image mr-3">
+    //              <img className="rounded-circle" src="img/undraw_profile_1.svg"
+    //                  alt="..."/>
+    //              <div className="status-indicator bg-success"></div>
+    //          </div>
+    //          <div className="font-weight-bold">
+    //              <div className="text-truncate">Hi there! I am wondering if you can help me with a
+    //                  problem I've been having.</div>
+    //              <div className="small text-gray-500">Emily Fowler · 58m</div>
+    //          </div>
+    //      </a>
+    //      <a className="dropdown-item d-flex align-items-center" href="#">
+    //          <div className="dropdown-list-image mr-3">
+    //              <img className="rounded-circle" src="img/undraw_profile_2.svg"
+    //                  alt="..."/>
+    //              <div className="status-indicator"></div>
+    //          </div>
+    //          <div>
+    //              <div className="text-truncate">I have the photos that you ordered last month, how
+    //                  would you like them sent to you?</div>
+    //              <div className="small text-gray-500">Jae Chun · 1d</div>
+    //          </div>
+    //      </a>
+    //      <a className="dropdown-item d-flex align-items-center" href="#">
+    //          <div className="dropdown-list-image mr-3">
+    //              <img className="rounded-circle" src="img/undraw_profile_3.svg"
+    //                  alt="..."/>
+    //              <div className="status-indicator bg-warning"></div>
+    //          </div>
+    //          <div>
+    //              <div className="text-truncate">Last month's report looks great, I am very happy with
+    //                  the progress so far, keep up the good work!</div>
+    //              <div className="small text-gray-500">Morgan Alvarez · 2d</div>
+    //          </div>
+    //      </a>
+    //      <a className="dropdown-item d-flex align-items-center" href="#">
+    //          <div className="dropdown-list-image mr-3">
+    //              <img className="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+    //                  alt="..."/>
+    //              <div className="status-indicator bg-success"></div>
+    //          </div>
+    //          <div>
+    //              <div className="text-truncate">Am I a good boy? The reason I ask is because someone
+    //                  told me that people say this to all dogs, even if they aren't good...</div>
+    //              <div className="small text-gray-500">Chicken the Dog · 2w</div>
+    //          </div>
+    //      </a>
+    //      <a className="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+    //  </div>

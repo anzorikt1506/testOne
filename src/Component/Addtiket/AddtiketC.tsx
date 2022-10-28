@@ -89,7 +89,7 @@ const AddtiketC: React.FC = ({
          room,
          Floor,
          opis))
-       dispatch(tasksSlice.actions.select_tasks(1))  
+       dispatch(tasksSlice.actions.select_tasks(0))  
          opisF('')
          FloorF('')
          roomF('')
@@ -102,7 +102,7 @@ return (
  
 <>
   
-  {selected == 1 ?(
+  {selected == 0 ?(
   <SpisokTasksC/>
   ) : (
 <Addtiket
