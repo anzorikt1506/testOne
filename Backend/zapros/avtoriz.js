@@ -1,6 +1,6 @@
 const pool = require("../db.js")
 const UserServis = require('../service/user-service')
-
+const mailService = require('../service/mail-service')
     exports.registration = (req,res,next) => {
         try{
             new Promise((res,rej) =>{
@@ -48,12 +48,12 @@ const UserServis = require('../service/user-service')
             const {refreshToken} = req.cookies;
            UserServis.logout(refreshToken)
           res.clearCookie('refreshToken').json({message:'Вы вышли'})
-
+          await mailService.sendActivationMail('anzort1990@mail.ru','Что нибудь')
         }catch(e){
             res.json({error:`${e} что то не так`});
         }
     }
-
+    
     // exports.refresh=(req,res,next)=>{
     //     try{
 

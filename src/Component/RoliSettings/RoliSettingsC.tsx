@@ -55,7 +55,7 @@ const RoliSettingsC: React.FC<ObjectF> = ({id_object,id_department}) => {
   }  
 
   const  red_pass_roles = (event:any) =>{
-    const id = event.target.id
+    const id = event.target.slot
     const name = event.target.innerHTML
      const newroles = prompt("Введите новое имя для роли ("+name+")")
      const newroles_array = Array.from(`${newroles}`)

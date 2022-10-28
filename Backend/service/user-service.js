@@ -1,9 +1,7 @@
 
 const pool = require("../db.js")
 const bcrypt = require('bcrypt')
-const uuid = require('uuid')
 const tokenServis = require('./token-service')
-const mailService = require('./mail-service')
 //const UserDto = require('../dtos/user-dto')
      exports.registration=(login,password)=>{
       const ff = new Promise((res,rej) => {
@@ -71,9 +69,9 @@ exports.refresh=(accessToken,refreshToken)=> {
 
 exports.logout= async(refreshToken)=> {
   tokenServis.deleteRefreshToken(refreshToken)
-  
+ 
 
-await mailService.sendActivationMail('anzort1990@mail.ru','Что нибудь')
+
 }
 
          

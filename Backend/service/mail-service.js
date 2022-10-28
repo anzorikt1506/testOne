@@ -4,12 +4,12 @@ class mailService {
 
    constructor(){
     this.transporter = nodemailer.createTransport({
-        host:process.env.SMTP_HOST,
-        port:process.env.SMTP_PORT,
+        host:'smtp.mail.ru',
+        port:465,
         secure:true,
         auth:{
-             user:process.env.SMTP_USER,
-             pass:process.env.SMTP_PASSWORD
+             user:'zsindika@bk.ru',
+             pass:'t22qn4NxX88pZi65yKJq'
         }
     })
    }

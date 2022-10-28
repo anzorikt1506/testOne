@@ -60,6 +60,10 @@ module.exports  = (app) =>{
    .post(roles_f.redroles)
 
    app
+   .route('/redemailroles')
+   .post(roles_f.redemailroles)
+
+   app
    .route('/rolesdel')
    .post(roles_f.rolesdel)  
 

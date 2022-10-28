@@ -146,3 +146,28 @@ exports.redrolespassword =  (async(req, res)=>{
             
         });           
 })
+
+
+exports.redemailroles = ((req, res)=>{
+    const id = req.body.id
+    const name = req.body.name
+    const p = new Promise((resolve, reject) => {
+        
+        pool.query(
+            `UPDATE roles SET email = ? WHERE id = ?`,[name,id],
+            function (err, result) {
+                if (err) console.log(err);   
+                resolve(result)
+            }); 
+
+
+    })
+    p.then((data)=>{
+         pool.query(
+            `SELECT * FROM roles ORDER BY id desc`,
+            function (err, result) {
+                if (err) console.log(err);
+                res.send(result)
+            });  
+    })
+})
