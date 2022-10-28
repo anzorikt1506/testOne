@@ -37,6 +37,7 @@ export interface IRoles{
     id_object: number
     id_department: number
     name: string
+    email: string
     bool?: boolean
     status: number
 }

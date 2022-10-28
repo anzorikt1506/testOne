@@ -45,7 +45,7 @@ const RoliSettings: React.FC<ObjectF> = ({
                               onClick={red_pass_roles}
                               title="Электронная почта" 
                               slot={`${sort.id}`} 
-                             >&#64;</span>
+                             >{sort.email== ''? '@': sort.email }</span>
                     </a>
                  
                   
