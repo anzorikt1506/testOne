@@ -40,10 +40,10 @@ const SpisokTasksC = () => {
 
 
    const sortVF = (role:string,text:string,vse:string,idF:any,nameF:any) =>{
+    
     let idd = Number(role) 
     idd == -1 ? nameF(vse): nameF(text)
     idF(idd)
-    
     
    }
 
@@ -52,7 +52,7 @@ const SpisokTasksC = () => {
     switch(true){
       case e.target.name == 'status':
         sortVF(
-          e.target.role,
+          e.target.id,
           e.target.innerText,
           'Статус заявки',
           fidStatus,
@@ -60,7 +60,7 @@ const SpisokTasksC = () => {
       break;
       case e.target.name == 'building':
         sortVF(
-          e.target.role,
+          e.target.id,
           e.target.innerText,
           'Здание',
           fidbuilding,
@@ -68,7 +68,7 @@ const SpisokTasksC = () => {
       break;
       case e.target.name == 'depatment':
         sortVF(
-          e.target.role,
+          e.target.id,
           e.target.innerText,
           'Отдел',
           fiddepartment,
@@ -76,7 +76,7 @@ const SpisokTasksC = () => {
       break;
       case e.target.name == 'roles':
         sortVF(
-          e.target.role,
+          e.target.id,
           e.target.innerText,
           'Должность',
           fidroles,
@@ -84,7 +84,7 @@ const SpisokTasksC = () => {
       break;
       case e.target.name == 'users':
         sortVF(
-          e.target.role,
+          e.target.id,
           e.target.innerText,
           'Исполнитель',
           fidusers,
@@ -114,11 +114,11 @@ const SpisokTasksC = () => {
       switch(true){
        case(tip==1):
         const f = department.filter((object)=> object.id == id)
-        return f[0].name
+        if(f.length > 0) return f[0].name
        break;
        case(tip==2):
         const f1 = roles.filter((object)=> object.id == id)
-        return f1[0].name
+        if(f1.length > 0) return f1[0].name
        break;
        case(tip==3 && id > 0 ):
         const f2 = users.filter((object)=> object.id == id)
@@ -167,8 +167,9 @@ const SpisokTasksC = () => {
     if(tasks.length == 0){
      dispatch(object_add_API_spis("")); 
      dispatch(users_add_API_spis());
-     dispatch(tasks_update(data_start,data_end)) 
+     dispatch(tasks_update(data_start,data_end));
     }
+  
     
   }, []);
 

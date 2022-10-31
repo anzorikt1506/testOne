@@ -137,7 +137,7 @@ const ContentTasks: React.FC<ObjectF> = ({
                                    )}
 
                                    {(status > 0 && statusTask == 3)&&(
-                                    <p onClick={tasksStart} role='Закрыть заявку' className="btn btn-success btn-user btn-block">
+                                    <p onClick={tasksStart} id='Закрыть заявку' className="btn btn-success btn-user btn-block">
                                              Закрыть заявку
                                     </p>
                                    )}

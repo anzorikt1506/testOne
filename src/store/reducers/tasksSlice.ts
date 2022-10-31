@@ -72,6 +72,8 @@ export const tasksSlice = createSlice({
 export default tasksSlice.reducer;
 
 export const tasks_add =(
+  data_start:any,
+  data_end:any,
   id_roles: number,
   id_department:number,
   id_object:number,
@@ -85,6 +87,8 @@ export const tasks_add =(
       const response = await axios.post<Itasks[]>(
         `${env.Server_URL}add_tasks`,
         {
+          data_start,
+          data_end,
           id_roles,
           id_department,
           id_object,

@@ -1,9 +1,9 @@
 const pool = require("../db.js")
 const UserServis = require('../service/user-service')
-
+const mailService = require('../service/mail-service')
     exports.tasks_add = (req,res,next) => {
         try{
-            new Promise((res,rej) =>{
+         new Promise((resolve,reject) =>{
                 const {id_roles,id_object,id_department,floor,building,room,opisanie} = req.body
                 pool.query(
                     `INSERT INTO tasks (id_roles,id_object,id_department,floor,building,room,opisanie) VALUES (?,?,?,?,?,?,?)`, 
@@ -11,16 +11,27 @@ const UserServis = require('../service/user-service')
                     function (err, result) {
                         if (err) console.log(err);
                         else console.log(result);
-                        res('true')
+                        resolve(result.insertId)
                     });
             })
+            .then(async(data)=>{
+                const {id_roles} = req.body
+                const email = await UserServis.email_role(id_roles)
+                return [email,data]
+            })
             .then((data)=>{
-                pool.query(
-                    `SELECT * FROM tasks  ORDER BY id desc`,
-                    function (err, result) {
-                        if (err) console.log(err);
-                        res.send(result)
-                    });
+             const {opisanie} = req.body
+             console.log(data[0]);
+             mailService.sendActivationMail(data[0],
+                                            `Заявка №${data[1]}`,
+                                            opisanie,
+                                            `http://deltaljw.bget.ru/${data[1]}`
+                                            )
+            })
+            .then(async(data)=>{
+               const {data_start,data_end} = req.body
+               const ddd = await UserServis.tasks_update_1(data_start,data_end)
+               res.send(ddd)
                  
             })
            
@@ -28,7 +39,8 @@ const UserServis = require('../service/user-service')
             res.json({error:e});
         }
     }
-    
+
+
 
     exports.tasks_update_z = (req,res,next) => {
         try{
@@ -120,6 +132,21 @@ const UserServis = require('../service/user-service')
                         resolve('result')
                     });
                 })
+                .then(async(data)=>{
+                    const wwwww = await  UserServis.tasks_mail_big(11)
+                    return  wwwww;
+                })
+                .then((data)=>{
+                    const {idTasks,text} = req.body
+                    data.map((dd)=>{
+                     mailService.sendActivationMail(dd.email,
+                                                   `Заявка №${idTasks} не выполнена`,
+                                                   text,
+                                                   `http://deltaljw.bget.ru/${idTasks}`
+                                                   )
+                    })
+
+                   })
                 .then((d)=>{
                       let date = new Date()
                       let dataOld = date.setDate(date.getDate() - 15);
@@ -135,4 +162,8 @@ const UserServis = require('../service/user-service')
         }catch(e){
             res.json({error:`что то не так ${D_start} c ${D_end}`});
         }
+    }
+
+    exports.tasksNoWork44 = async(req,res,next) => {
+
     }

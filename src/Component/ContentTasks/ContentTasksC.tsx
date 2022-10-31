@@ -68,19 +68,19 @@ const searchUser = users.filter((user)=>user.password == e.target.value && user.
  const tasksStart = (e:any) =>{
  let fff =  window.confirm(`${fioUser} Вы уверенны?`)
   switch(true){
-    case e.target.role == 'Примите в работу' && fff === true:
+    case e.target.id == 'Примите в работу' && fff === true:
       dispatch(tasksStartWork(numberTasks,idUser,1))
       break;
-    case e.target.role == 'Выполнил работу' && fff === true:
+    case e.target.id == 'Выполнил работу' && fff === true:
        dispatch(tasksEndWork(numberTasks,2))
       break;  
-      case e.target.role == 'Не может выполнить работу' && fff === true:
+      case e.target.id == 'Не может выполнить работу' && fff === true:
         let text:any = prompt('Кратко опшите причину');
         (text == '')&&(alert('Поле пустое'));
         (text.length < 10)&&(alert('Наберите минимум 10 символов'));
         (text.length > 9)&&(dispatch(tasksNoWork(numberTasks,text)));
        break;  
-       case e.target.role == 'Закрыть заявку' && fff === true:
+       case e.target.id == 'Закрыть заявку' && fff === true:
         dispatch(tasksEndWork(numberTasks,2))
        break;       
   }

@@ -21,9 +21,9 @@ const BuildingSortTasks: React.FC<ObjectF> = ({
     {namebuilding}
   </button>
   <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <button key={1} onClick={sortF} role='-1' className="dropdown-item" name="building" type="button">Все</button>
-    <button key={2} onClick={sortF} role='0' className="dropdown-item"  name="building" type="button">Гостиница</button>
-    <button key={3} onClick={sortF} role='1' className="dropdown-item"  name="building" type="button">ЛОК</button>
+    <button key={1} onClick={sortF} id='-1' role='-1' className="dropdown-item" name="building" type="button">Все</button>
+    <button key={2} onClick={sortF} id='0' role='0' className="dropdown-item"  name="building" type="button">Гостиница</button>
+    <button key={3} onClick={sortF} id='1' role='1' className="dropdown-item"  name="building" type="button">ЛОК</button>
   </div>
   </div>
     </>

@@ -22,7 +22,7 @@ const AddtiketC: React.FC = ({
 
     const dispatch = useAppDispatch()
     const {roles} = useAppSelector((state)=>state.rolesSlice)
-    const {selected} = useAppSelector((state)=>state.tasksSlice)
+    const {selected,data_start,data_end} = useAppSelector((state)=>state.tasksSlice)
   useEffect(() => {
     if(roles.length == 0){
       dispatch(object_add_API_spis(""));
@@ -82,6 +82,8 @@ const AddtiketC: React.FC = ({
       default:
        dispatch(
         tasks_add(
+         data_start,
+         data_end,
          id_roli,
          id_department,
          id_object,

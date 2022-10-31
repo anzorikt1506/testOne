@@ -1,5 +1,6 @@
 import { eventNames } from "process";
 import React from "react";
+import { NavLink } from "react-router-dom";
 import {Idepartment, IObject, IRoles, Itasks, Iusers, str_numIn } from "../../inteface/standartInP";
 import BuildingSortTasks from "./BuildingSortTasks";
 import DepartmentSortTasks from "./DepartmentSortTasks";
@@ -145,7 +146,7 @@ const SpisokTasks: React.FC<ObjectF> = ({
 
                 {tasks.map((tasks) => (
                   <tr key={tasks.id} style={{backgroundColor: `${valid_spis(5,tasks.status,tasks.id)[1]}`, color: `${valid_spis(5,tasks.status,tasks.id)[2]}`}} className="point"   >
-                    <td >{tasks.id}</td>
+                    <td ><NavLink to={`/${tasks.id}`}>{tasks.id}</NavLink></td>
                     <td >{valid_spis(4,tasks.building,tasks.id)} (этаж {tasks.floor} номер {tasks.room})</td>
                     <td >{valid_spis(2,tasks.id_roles,tasks.id)}</td>
                     <td >{valid_spis(3,tasks.id_users,tasks.id)}</td>

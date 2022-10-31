@@ -12,7 +12,16 @@ const ColorsystemC: React.FC =()=> {
     const {tasks,data_start,data_end} = useAppSelector((state) => state.tasksSlice);
    // const [tasksSortStatus, ftasksSortStatus] = useState<number>(-1);
      
-
+   useEffect(() => {
+    if(tasks.length == 0){
+     dispatch(object_add_API_spis("")); 
+     dispatch(users_add_API_spis());
+     dispatch(tasks_update(data_start,data_end));
+    }
+    dispatch(tasks_update(data_start,data_end));
+    setInterval(()=>{dispatch(tasks_update(data_start,data_end));},10000)
+    
+  }, []);
 
     const taskClassStatus = (tip:number,status:number) => {
        switch(true){

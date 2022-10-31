@@ -22,10 +22,10 @@ const UsersSortTasks: React.FC<ObjectF> = ({
     {nameusers}
   </button>
   <div className="dropdown-menu" aria-labelledby="dropdownMenu">
-    <button onClick={sortF} role='-1' className="dropdown-item" name="users" type="button">Все</button>
+    <button onClick={sortF} id='-1' role='-1' className="dropdown-item" name="users" type="button">Все</button>
     {users.map((department)=>(
       <>
-      <button key={department.id} onClick={sortF} role={`${department.id}`} className="dropdown-item"  name="users" type="button">{department.fio}</button>
+      <button key={department.id} onClick={sortF} id={`${department.id}`} role={`${department.id}`} className="dropdown-item"  name="users" type="button">{department.fio}</button>
       </>
     ))}
     

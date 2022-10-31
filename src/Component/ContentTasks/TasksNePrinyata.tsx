@@ -29,7 +29,7 @@ const TasksNePrinyata: React.FC<ObjectF> = ({
                                 </div>
                                  )}
                                  {(fioUser != '' && fioUser != 'no')&&(
-                                    <p onClick={tasksStart} role='Примите в работу'  className="btn btn-primary btn-user btn-block">
+                                    <p onClick={tasksStart} id='Примите в работу'  className="btn btn-primary btn-user btn-block">
                                       {fioUser}<br/>
                                     Примите в работу
                                      </p>

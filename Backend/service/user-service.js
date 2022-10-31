@@ -67,6 +67,89 @@ exports.refresh=(accessToken,refreshToken)=> {
 }
 
 
+
+
+exports.email_role= async (role)=>{
+   const ff = await new Promise((res,rej) => {
+    pool.query(
+      `SELECT * FROM roles WHERE id = ?`,[role],
+      function (err, result) {
+          if (err) console.log(err);
+        res(result[0].email)
+      });
+  })
+  .then((data)=>{   
+         return data
+  })
+
+ return ff
+
+}
+
+
+exports.tasks_update_1 = async (data_start,data_end) => {
+  try{
+
+      const rrr = await new Promise((res,rej)=>{
+      var D_start = new Date(data_start);
+      D_start.setDate(D_start.getDate() + 1);
+          pool.query(
+              `SELECT * FROM tasks WHERE data_statrt BETWEEN  ? AND  ? ORDER BY id desc`,
+              [data_end,D_start],
+              function (err, result) {
+                  if (err) console.log(err);
+                  res(result)
+              });  
+    })
+    .then((data)=>{
+      return data
+    })
+         return rrr
+  }catch(e){
+      res.json({error:`что то не так ${D_start} c ${D_end}`});
+  }
+}
+
+
+exports.tasks_mail_big = async (id_tasks) => {
+  try{
+
+      const rrr = await new Promise((res,rej)=>{
+          pool.query(
+              `SELECT * FROM tasks WHERE id = ?`,
+              [id_tasks],
+              function (err, result) {
+                  if (err) console.log(err);
+                  res(result)
+              });  
+    })
+    .then((data)=>{
+      return data
+    })
+
+    const rrr1 = await new Promise((res,rej)=>{
+      pool.query(
+        `SELECT * FROM roles WHERE id_department = ? and status = ?`,
+        [rrr[0].id_department,1],
+        function (err, result) {
+            if (err) console.log(err);
+            res(result)
+        });  
+    })
+    .then((data) => {
+      return data
+    })
+
+
+         return rrr1
+  }catch(e){
+      res.json({error:`что то не так ${D_start} c ${D_end}`});
+  }
+}
+
+
+
+
 exports.logout= async(refreshToken)=> {
   tokenServis.deleteRefreshToken(refreshToken)
  

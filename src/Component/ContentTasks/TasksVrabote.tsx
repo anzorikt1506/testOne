@@ -16,11 +16,11 @@ const TasksVrabote: React.FC<ObjectF> = ({
                                 
                                  
                                 
-                                    <p onClick={tasksStart} role='Выполнил работу'  className="btn btn-warning btn-user btn-block">
+                                    <p onClick={tasksStart} id='Выполнил работу'  className="btn btn-warning btn-user btn-block">
                                       {fioUser}<br/>
                                      Выполнил работу
                                      </p>
-                                     <p onClick={tasksStart} role='Не может выполнить работу'  className="btn btn-danger btn-user btn-block">
+                                     <p onClick={tasksStart} id='Не может выполнить работу'  className="btn btn-danger btn-user btn-block">
                                       {fioUser}<br/>
                                      Не может выполнить работу
                                      </p>

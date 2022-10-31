@@ -14,17 +14,17 @@ class mailService {
     })
    }
 
-  async sendActivationMail(to, link){
+  async sendActivationMail(to, tema, opis, link){
           await this.transporter.sendMail({
             from: process.env.SMTP_USER,
             to,
-            subject: 'Тема письма',
+            subject: tema,
             text:'',
             html:
                   ` 
                   <div>
-                  <h1>Тестовое окно1</h1>
-                  <p>${link}</p>
+                  <h1>${tema}</h1>
+                  <a href='${link}'>${opis}</a>
                   </div>
                   `
           })
