@@ -114,15 +114,15 @@ const SpisokTasksC = () => {
       switch(true){
        case(tip==1):
         const f = department.filter((object)=> object.id == id)
-        if(f.length > 0) return f[0].name
+        if(f.length > 0) return Object(f).name
        break;
        case(tip==2):
         const f1 = roles.filter((object)=> object.id == id)
-        if(f1.length > 0) return f1[0].name
+        if(f1.length > 0) return Object(f1).name
        break;
        case(tip==3 && id > 0 ):
         const f2 = users.filter((object)=> object.id == id)
-       if(f2.length > 0) return f2[0].fio
+       if(f2.length > 0) return Object(f2).fio
        break;
        case(tip == 4 && id == 0  ):
         return 'Гостиница'
@@ -132,24 +132,24 @@ const SpisokTasksC = () => {
        break;
        case(tip == 5 && id == 0  ):
        const d_e_tasks = tasks.filter((tasks)=>tasks.id == id_w)
-       let time_expect = time_old(d_e_tasks[0].data_statrt) 
+       let time_expect = time_old(Object(d_e_tasks).data_statrt) 
        const ff = ['Ждёт выполнения','#d6d8d9','#383241',time_expect] 
         return ff
        break;
       case(tip == 5 && id == 1  ):
       const d_w_tasks = tasks.filter((tasks)=>tasks.id == id_w)
-      let time_work = time_old(d_w_tasks[0].data_v_rabote)
+      let time_work = time_old(Object(d_w_tasks).data_v_rabote)
       const ff1 = ['Выполняется','#de9c00','#856404',time_work]
       return ff1
       break;
       case(tip == 5 && id == 2  ):
       const d_y_tasks = tasks.filter((tasks)=>tasks.id == id_w)
-      let time_yes = time_midl(d_y_tasks[0].data_end,d_y_tasks[0].data_statrt)
+      let time_yes = time_midl(Object(d_y_tasks).data_end,Object(d_y_tasks).data_statrt)
       const ff2 = ['Выполнена','#38bb60','#155724',time_yes]
       return ff2
       case(tip == 5 && id == 3  ):
       const d_no_tasks = tasks.filter((tasks)=>tasks.id == id_w) 
-      let time_no = time_old(d_no_tasks[0].data_end)
+      let time_no = time_old(Object(d_no_tasks).data_end)
       const ff3 = ['Не выполнена','#ff4848','black',time_no] 
       return ff3
        default:

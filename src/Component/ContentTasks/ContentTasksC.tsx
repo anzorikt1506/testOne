@@ -19,27 +19,42 @@ const ContentTasksC: React.FC = ({
   const dispatch = useAppDispatch()
 
   const numberTasks = Number(document.location.pathname.split('/')[1])
-  const {tasks,data_start,data_end} = useAppSelector((state)=>state.tasksSlice)
+ 
+
+  const {tasks} = useAppSelector((state)=>state.tasksSlice)
   const {roles, status,} = useAppSelector((state)=>state.rolesSlice)
   const {users} = useAppSelector((state)=>state.usersSlice)
 
-  const tasksMas = tasks.filter((task)=> task.id == numberTasks)
-  const taskIdRoles = tasksMas[0].id_roles;
+
+
+    const tasksMas = tasks.filter((task)=> task.id == numberTasks)
+   
+
+ 
+     const taskIdRoles = Object(tasksMas).id_roles; 
+    
+    
+   
+
+
+
+
   const rolesMas = roles.filter((roles) => roles.id == taskIdRoles) 
-  const depatmentName =  rolesMas[0].name
+  const depatmentName = Object(rolesMas).name
   const buildingM = ['Гостиница','ЛОК'];
-  const buildingName = buildingM[Number(tasksMas[0].building)] 
-  const floor = Number(tasksMas[0].floor)
-  const room = Number(tasksMas[0].room)
-  const opis = tasksMas[0].opisanie
-  const statusTask = tasksMas[0].status
+  const buildingName = buildingM[Number(Object(tasksMas).building)] 
+  const floor = Number(Object(tasksMas).floor)
+  const room = Number(Object(tasksMas).room)
+  const opis = Object(tasksMas).opisanie
+  const statusTask = Object(tasksMas).status
+ 
+
 
   
   useEffect(() => { 
-       
-      if(tasksMas[0].status != 0){
-        let ff =  users.filter((users)=>users.id == tasksMas[0].id_users)[0].fio
-        fioUserF(ff)
+      if(Object(tasksMas).status != 0){
+        let ff =  users.filter((users)=>users.id == Object(tasksMas).id_users)
+        fioUserF(Object(ff).fio)
       }
 
   }, []);
@@ -55,8 +70,8 @@ const searchUser = users.filter((user)=>user.password == e.target.value && user.
  
  switch(true){
   case Object(searchUser).length == 1:
-    fioUserF(searchUser[0].fio) 
-    idUserF(searchUser[0].id) 
+    fioUserF(Object(searchUser).fio) 
+    idUserF(Object(searchUser).id) 
   break
   case Object(searchUser).length != 1:
     fioUserF('no') 
@@ -109,7 +124,7 @@ return (
    fioUser={fioUser}
    tasksStart={tasksStart}
    status={status}
-   prichina={tasksMas[0].prichina}
+   prichina={Object(tasksMas).prichina}
    />
 </>
   );
