@@ -16,6 +16,7 @@ const SpisObjectTabC: React.FC<ObjectF> = ({id_object,id,table}) => {
   const {object , error} = useAppSelector((state) => state.objectSlice);
   const name = object.filter((object)=>{return object.id == id_object})
   const [nameObject1, nameOnject1F] = useState<string>(`${Object(name).name}`);
+  debugger;
   const  selectObject = (event:any) =>{
    dispatch(object_update_table(event.target.id,id,table))
    nameOnject1F(event.target.role)
